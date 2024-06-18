@@ -6,7 +6,7 @@ const Home = () => {
             <header>
                 <div className="Logosect">
                     <img className="Logo" src="logo.png" alt=""/>
-                    <h2 className="Logotxt">StockWise</h2>
+                    <h2 className="Logotxt">StockWise Inventory</h2>
                 </div>
                 <nav className="Navbar">
                     <NavLink exact to="/" className="Navbar-active" activeClassName="Navbar-active">Home</NavLink>
