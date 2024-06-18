@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+*{
+    font-family: 'Poppins';
+    font-weight: 200;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    /* background-color: aquamarine; */
+}
+
+header{
+    border-bottom: 3px solid;
+    border-color: black;
+    top: 0;
+    left: 0;
+    padding: 20px 50px;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    z-index: 99;
+}
+
+.Logosect{
+    display: flex;
+    align-items: center;
+}
+
+.Logo{
+    width: 2.5cm;
+    height: 100%;
+    position: relative;
+    margin-right: .5cm;
+}
+
+.Logotxt{
+    font-family: lalezar;
+    color: rgb(0, 0, 0);
+    font-size: 4em;
+}
+
+.Navbar .Navbar-active::after {
+    transform: scaleX(1);
+}
+
+.Navbar a{
+    position: relative;
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    margin-right: 80px;
+    margin-left: px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.Navbar a::after{
+    content: '';
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    background-color:rgb(46, 14, 73);
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.Navbar a:hover::after{
+    transform: scaleX(1);
+}
+
+.Navbar .Register{
+    background-color: rgb(153, 96, 199);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 120px;
+    height: 50px;
+    font-size: 17px;
+    border-radius: 30px;
+    color: whitesmoke;
+    border: solid rgb(127, 75, 170) 2px;
+    cursor: pointer;
+}
+
+.Navbar .Register:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
+
+.Navbar .Login{
+    text-decoration: none;
+    font-size: 17px;
+    background: none;
+    border: none;
+    position: relative;
+    text-decoration: none;
+    color: black;
+    margin-right: 40px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    cursor: pointer;
+}
+
+.Navbar .Login::after{
+    content: '';
+    width: 100%;
+    height: 3px;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    background-color:rgb(46, 14, 73);
+    transform: scaleX(0);
+    transition: transform .5s;
+}
+.Navbar .Login:hover::after{
+    transform: scaleX(1);
+}
+
+.content {
+    margin-top: -470px;
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.content h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.image-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.image-grid img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.BtnRegisterCompany {
+    background-color: rgb(153, 96, 199);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;    
+    border: solid rgb(127, 75, 170) 2px;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.BtnRegisterCompany:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
+
+footer {
+    border-top: solid 2.5px rgb(46, 14, 73);
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255); 
+    height: 50px;
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: fixed;
+    bottom: 0; 
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
+}
+
+footer p.copyright{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 9cm;
+}
+
+footer p.tos{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 9cm;
+}
+
+footer p.pap{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 9cm;
+}
+
+footer a{
+    color: #ffffff;
+}
