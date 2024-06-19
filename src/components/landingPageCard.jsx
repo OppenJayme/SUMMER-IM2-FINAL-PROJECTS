@@ -1,1 +1,6 @@
 
+const LandingPageCard = () => {
+    return (
+      
+    )
+}
