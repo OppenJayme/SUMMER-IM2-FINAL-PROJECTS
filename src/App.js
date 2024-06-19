@@ -8,9 +8,8 @@ import Login from "./pages/Login"
 function App() {
   return (
     <Router>
-      <Home/>
       <Routes>
-                <Route path="/*" element={<Home />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/aboutus" element={<About />}  />
                 <Route path="/login"  element = {<Login/>}/>
