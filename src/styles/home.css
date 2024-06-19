@@ -154,19 +154,37 @@ header{
     transform: scaleX(1);
 }
 
-.content {
-    margin-top: -470px;
-    text-align: center;
+.firstimg{
+    position: fixed;
+    margin-left: -1cm;
 }
 
+.secondimg{
+    margin-right: 10px;
+}
+
+.fourthimg{
+    margin-left: 10px;
+}
+
+.fifthimg{
+    position: fixed;
+    margin-left: -6.3cm;
+}
+
+.content {
+    text-align: center;
+    margin-top: 50px;
+}   
+
 .content h1 {
-    font-size: 36px;
-    margin-bottom: 20px;
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .content h2 {
-    font-size: 24px;
-    margin-bottom: 40px;
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 .image-grid {
@@ -182,7 +200,6 @@ header{
     height: 150px;
     border-radius: 10px;
 }
-
 .BtnRegisterCompany {
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
