@@ -1,7 +1,7 @@
-
+import LoginPageCard from '../components/landingPageCard'
 const Login = () => {
     return (
-        <h1>Login</h1>
+        <LandingPageCard/>
     )
 }
 
