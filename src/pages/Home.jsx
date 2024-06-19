@@ -2,6 +2,7 @@ import {Link, NavLink} from "react-router-dom";
 import "../styles/home.css";
 import Footer from "../components/Footer";
 import "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js";
+import LandingPageCard from "../components/landingPageCard";
 const Home = () => {
     return (
         <div>
@@ -18,6 +19,7 @@ const Home = () => {
                     <button className="Register">Register</button>
                 </nav>
             </header>
+           <LandingPageCard/>
             <Footer/>
         </div>
 
