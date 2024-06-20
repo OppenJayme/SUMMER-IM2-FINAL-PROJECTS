@@ -2,6 +2,8 @@ import '../styles/registration.css'
 import supabase from '../client/database';
 import { useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const Register = () => {
 
@@ -40,7 +42,23 @@ const Register = () => {
     };
 
     return (
-            <div className="register-container">
+      <>
+        <header>
+                <div className="Logosect">
+                    <img className="Logo" src="logo.png" alt="stockwise-logo"/>
+                    <h2 className="Logotxt">StockWise</h2>
+                </div>
+                <nav className="Navbar">
+                    <NavLink exact to="/" className="Navbar-active" activeClassName="Navbar-active">Home</NavLink>
+                    <NavLink to="/contacts" className="Navbar-active" activeClassName="Navbar-active">Contacts</NavLink>
+                    <NavLink to="/aboutus" className="Navbar-active" activeClassName="Navbar-active">About us</NavLink>
+                </nav>
+                <div className="Login-Register">
+                    <Link to ="/login"><button className="Login">Login</button></Link>
+                    <Link to = "/registration"><button className="Register">Register</button></Link>
+                </div>
+            </header>
+       <div className="register-container">
         <div className="left-register">
         <h1>BEGIN MANAGING YOUR COMPANY'S INVENTORY WITH STOCKWISE</h1>
         <div className="photos">
@@ -120,6 +138,9 @@ const Register = () => {
     </form>
         </div>
     </div>
+    <Footer/>
+      </>
+           
     )
 }
 
