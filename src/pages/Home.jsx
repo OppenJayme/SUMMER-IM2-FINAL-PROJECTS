@@ -15,9 +15,11 @@ const Home = () => {
                     <NavLink exact to="/" className="Navbar-active" activeClassName="Navbar-active">Home</NavLink>
                     <NavLink to="/contacts" className="Navbar-active" activeClassName="Navbar-active">Contacts</NavLink>
                     <NavLink to="/aboutus" className="Navbar-active" activeClassName="Navbar-active">About us</NavLink>
+                </nav>
+                <div className="Login-Register">
                     <Link to ="/login"><button className="Login">Login</button></Link>
                     <Link to = "/registration"><button className="Register">Register</button></Link>
-                </nav>
+                </div>
             </header>
            <LandingPageCard/>
             <Footer/>
