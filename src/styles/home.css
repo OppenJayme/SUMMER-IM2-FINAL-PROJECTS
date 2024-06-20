@@ -101,11 +101,12 @@ header{
     transform: scaleX(0);
     transition: transform .5s;
 }
+
 .Navbar a:hover::after{
     transform: scaleX(1);
 }
 
-.Navbar .Register{
+.Login-Register .Register{
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 120px;
@@ -115,16 +116,17 @@ header{
     color: whitesmoke;
     border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
+    margin-left: 50px;
 }
 
-.Navbar .Register:hover{
+.Login-Register .Register:hover{
     color: rgb(46, 14, 73);
     border-color: rgb(46, 14, 73);
     background-color: transparent;
     transition: .5s;
 }
 
-.Navbar .Login{
+.Login-Register .Login{
     text-decoration: none;
     font-size: 17px;
     background: none;
@@ -132,12 +134,11 @@ header{
     position: relative;
     text-decoration: none;
     color: black;
-    margin-right: 40px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     cursor: pointer;
 }
 
-.Navbar .Login::after{
+.Login-Register .Login::after{
     content: '';
     width: 100%;
     height: 3px;
@@ -149,7 +150,7 @@ header{
     transform: scaleX(0);
     transition: transform .5s;
 }
-.Navbar .Login:hover::after{
+.Login-Register .Login:hover::after{
     transform: scaleX(1);
 }
 
@@ -259,4 +260,17 @@ footer p.pap{
 
 footer a{
     color: #ffffff;
+}
+
+.icons a{
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 9cm;
+    margin-left: 5px;
+}
+
+.icons{
+    right: 0;
+    position: fixed;
+    margin-right: 40px;
 }
