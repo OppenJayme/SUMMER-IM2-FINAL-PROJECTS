@@ -14,9 +14,11 @@ const Contacts = () => {
                     <NavLink exact to="/" className="Navbar-active" activeClassName="Navbar-active">Home</NavLink>
                     <NavLink to="/contacts" className="Navbar-active" activeClassName="Navbar-active">Contacts</NavLink>
                     <NavLink to="/aboutus" className="Navbar-active" activeClassName="Navbar-active">About us</NavLink>
-                    <Link to ="/login"><button className="Login">Login</button></Link>
-                    <button className="Register">Register</button>
                 </nav>
+                <div className="Login-Register">
+                    <Link to ="/login"><button className="Login">Login</button></Link>
+                    <Link to = "/registration"><button className="Register">Register</button></Link>
+                </div>
             </header>
             <Footer/>
         </div>
