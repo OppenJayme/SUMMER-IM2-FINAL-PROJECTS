@@ -16,7 +16,7 @@ const Home = () => {
                     <NavLink to="/contacts" className="Navbar-active" activeClassName="Navbar-active">Contacts</NavLink>
                     <NavLink to="/aboutus" className="Navbar-active" activeClassName="Navbar-active">About us</NavLink>
                     <Link to ="/login"><button className="Login">Login</button></Link>
-                    <button className="Register">Register</button>
+                    <Link to = "/registration"><button className="Register">Register</button></Link>
                 </nav>
             </header>
            <LandingPageCard/>
