@@ -1,8 +1,11 @@
 import '../styles/registration.css'
 import supabase from '../client/database';
-import { useEffect, useState } from 'react';
+import { useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -13,7 +16,28 @@ const Register = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-    }
+
+        
+        const { data, error } = await supabase
+        .from('employee_t')
+        .insert([
+        {  fname: firstName,
+            lname: lastName,
+            employeeemail: email,
+            employeecontact: contactNumber,
+            companyid: companyID},
+        ])
+        .select()
+        
+        if (error) {
+            setError('An error has occured. Please try again');
+            console.log(error)
+        } else {
+            setError('');
+            console.log('user registered succesfully', data)
+            navigate('/login');
+        }
+    };
 
     return (
             <div className="register-container">
