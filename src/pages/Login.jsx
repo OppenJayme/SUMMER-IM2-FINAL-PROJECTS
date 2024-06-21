@@ -1,10 +1,50 @@
+import { NavLink, Link } from 'react-router-dom';
+import { useState } from 'react';
 import Logo from '../styles/images/logo.png';
 import Footer from '../components/Footer'
-import { NavLink, Link } from 'react-router-dom';
 import "../styles/login.css"
 import loginimg from "../styles/images/6.png"
+import supabase from '../client/database';
 
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+
+    const {data: authData, error: authError} = await supabase.auth.signInWithPassword({
+      email , 
+      password,
+    });
+
+    if (authError && !authData) {
+      setError('Authentication Error, Try again')
+      console.log(authError);
+      return;
+    }
+
+    const {data: userData, error: userError} = await supabase 
+    .from('employee_t')
+    .select('*')
+    .eq('employeeemail', email)
+    .single();
+
+    if(userError || !userData) {
+      setError('User not found');
+      console.log(userError);
+      await supabase.auth.signOut();
+      return;
+    }
+
+    console.log("User logged in succesfully");
+
+  };
+
+
+
     return (
         <>
         <header>
@@ -25,16 +65,30 @@ const Login = () => {
 
         <div class="login">
         <h1>Login</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
+        {error && <p>{error}</p>}
           <div class="input-container">
             <i class="bi bi-envelope input-icon"></i>
-            <input class="input-login" type="text" placeholder="Your business email"/>
+            <input class="input-login"  
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder="Your business email"
+            />
           </div>
           <div class="input-container">
             <i class="bi bi-unlock input-icon"></i>
-            <input class="input-password" type="password" placeholder="Your password"/>
+            <input class="input-password" 
+            type="password" 
+            id='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder="Your password"/>
           </div>
-          <p>No account? No Problem <a href="">Sign up here!</a></p>
+          <p>No account? No Problem <a href="/registration">Sign up here!</a></p>
           <button class="BtnSubmit" type="submit">Login</button>
         </form>
         <img class="imgbackground" src={loginimg} alt="123"/>
@@ -45,15 +99,5 @@ const Login = () => {
     )
 }
 
-// const { data, error } = await supabase.auth.signUp({
-//   email: 'example@email.com',
-//   password: 'example-password',
-//   options: {
-//     data: {
-//       first_name: 'John',
-//       age: 27,
-//     },
-//   },
-// })
 
 export default Login;
