@@ -78,8 +78,9 @@
 }
 
 .imgbackground{
-    width: 750px;
-    top: -80%;
+    width: 500px;
+    top: -1%;
+    margin-left: 90px;
     left: 100%;
     position: fixed;
 }
