@@ -1,0 +1,85 @@
+.login {
+    position: fixed;
+    width: 750px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.login h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 40px;
+
+}
+.login input {
+    width: 100%;
+    height: 40px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.login .input-login{
+    margin-bottom: 50px;
+}
+
+.login button{
+    background-color: rgb(153, 96, 199);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 30%;
+    height: 50px;
+    font-size: 17px;
+    border-radius: 20px;
+    color: whitesmoke;
+    border: solid rgb(127, 75, 170) 2px;
+    cursor: pointer;
+    margin-left: 35%;
+    margin-top: 20px;
+}
+
+.login button:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
+
+.login p{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.input-icon {
+    position: absolute;
+    left: 10px;
+    top: 11.5px; 
+    color: #7000FF; 
+}
+
+.input-container input{
+    padding-left: 50px;
+}
+
+.imgbackground{
+    width: 750px;
+    top: -80%;
+    left: 100%;
+    position: fixed;
+}
