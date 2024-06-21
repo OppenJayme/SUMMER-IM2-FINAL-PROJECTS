@@ -1,14 +1,16 @@
+import Logo from '../styles/images/logo.png';
 import {Link, NavLink} from "react-router-dom";
 import "../styles/home.css";
 import Footer from "../components/Footer";
 import "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js";
 import LandingPageCard from "../components/landingPageCard";
+
 const Home = () => {
     return (
         <div>
             <header>
                 <div className="Logosect">
-                    <img className="Logo" src="logo.png" alt="stockwise-logo"/>
+                    <img className="Logo" src={Logo} alt="stockwise-logo"/>
                     <h2 className="Logotxt">StockWise</h2>
                 </div>
                 <nav className="Navbar">
