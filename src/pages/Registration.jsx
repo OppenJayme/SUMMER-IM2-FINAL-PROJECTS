@@ -1,6 +1,7 @@
+import logoimg from "../styles/images/logo.png"
 import '../styles/registration.css'
 import supabase from '../client/database';
-import { useState} from 'react';
+import {  useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
@@ -13,39 +14,76 @@ const Register = () => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [contactNumber, setContactNumber] = useState('');
+    const [password, setPassword] = useState('');
     const [companyID, setCompanyID] = useState('');
     const [error, setError] = useState('');
+    const [attempts, setAttempts] = useState(0);
+
+    const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        
-        const { data, error } = await supabase
-        .from('employee_t')
-        .insert([
-        {  fname: firstName,
-            lname: lastName,
-            employeeemail: email,
-            employeecontact: contactNumber,
-            companyid: companyID},
-        ])
-        .select()
-        
-        if (error) {
-            setError('An error has occured. Please try again');
-            console.log(error)
+        const maxRetries = 5;
+        let success = false;
+
+        if (attempts < maxRetries && !success) {
+          try {
+            const { data: authData, error: authError } = await supabase.auth.signUp({
+              email: email,
+              password: password,
+          });
+          if (authError && !authData) {
+            throw authError;
+          }
+
+          const { data, error } = await supabase
+          .from('employee_t')
+          .insert([
+          {  fname: firstName,
+              lname: lastName,
+              employeeemail: email,
+              employeecontact: contactNumber,
+              employeePassword: password,
+              companyid: companyID},
+          ])
+          .select()
+  
+          
+          if (error) {
+              setError('An error has occured. Please try again');
+              console.log(error)
+          } else {
+              setError('');
+              console.log('user registered succesfully', data)
+              navigate('/login');
+          }
+
+        } catch (err) {
+          if (err.message.includes("Email rate limit exceeded")) {
+            setAttempts(attempts => attempts + 1);
+            const backoffTime = Math.pow(2, attempts) * 1000; // Exponential backoff
+            console.log(`Retrying signup in ${backoffTime / 1000} seconds...`);
+            await delay(backoffTime);
         } else {
-            setError('');
-            console.log('user registered succesfully', data)
-            navigate('/login');
+            setError('Registration Error, Try again');
+            console.log(err);
+            return;
         }
-    };
+          }
+    }
+    if (!success) {
+      setError('Registration Error due to rate limit. Please try again later.');
+  }
+
+       
+};
 
     return (
       <>
         <header>
                 <div className="Logosect">
-                    <img className="Logo" src="logo.png" alt="stockwise-logo"/>
+                    <img className="Logo" src={logoimg} alt="stockwise-logo"/>
                     <h2 className="Logotxt">StockWise</h2>
                 </div>
                 <nav className="Navbar">
@@ -116,6 +154,19 @@ const Register = () => {
             id="contactNumber"
             value={contactNumber}
             onChange={(e) => setContactNumber(e.target.value)}
+            required
+          />
+        </div>
+      </div>
+      <div className="input-group">
+        <div className="input-group1">
+          <label htmlFor="employeePass">Password</label>
+          <input
+            className="inputBox"
+            type="text"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
