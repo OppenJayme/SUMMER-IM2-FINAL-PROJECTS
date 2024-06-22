@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+
+.contact-us-container {
+    position: relative;
+    top: 70px;
+    left: -540px; /* Adjust this as needed to fit your layout */
+    
+}
+
+.contact-us-container .img-container {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: start; /* Align items to the start of the container */
+    margin-bottom: 90px;
+}
+
+.contact-us-container .img-container .img-profile {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px; /* Add space between the image and the text */
+}
+
+/* Optional: Style for the text container */
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+.text-container h1 {
+    font-size: 25px;
+    font-family: 'poppins';
+    font-weight: 600;
+}
+/**/
+
+
+
