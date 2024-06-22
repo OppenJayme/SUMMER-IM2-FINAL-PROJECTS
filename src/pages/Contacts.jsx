@@ -1,6 +1,11 @@
 import Logo from '../styles/images/logo.png';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer'
+import '../styles/contacts.css';
+import charles from '../styles/images/charles.jpg'
+import ivan from '../styles/images/ivan.jpg';
+import yousif from '../styles/images/yousif.jpg';
+import reitz from '../styles/images/reitz.jpg';
 
 const Contacts = () => {
 
@@ -21,6 +26,36 @@ const Contacts = () => {
                     <Link to = "/registration"><button className="Register">Register</button></Link>
                 </div>
             </header>
+            <div className="contact-us-container">
+                <div className='img-container'>
+                    <img className='img-profile' src={charles}></img>
+                    <div className="text-container">
+                        <h1>CHARLES BENEDICT BOQUECOSA</h1>
+                        <h2>FullStack dev</h2>
+                    </div>
+                </div>
+                <div className='img-container'>
+                    <img className='img-profile' src={reitz}></img>
+                    <div className="text-container">
+                        <h1>RIETZ DAVE ANDRIANO</h1>
+                        <h2>FullStack dev</h2>
+                    </div>
+                </div>
+                <div className='img-container'>
+                    <img className='img-profile' src={ivan}></img>
+                    <div className="text-container">
+                        <h1>IVAN JAYME</h1>
+                        <h2>FullStack dev</h2>
+                    </div>
+                </div>
+                <div className='img-container'>
+                    <img className='img-profile' src={yousif}></img>
+                    <div className="text-container">
+                        <h1>YOUSIF QUIRICO CEBALLOS</h1>
+                        <h2>FullStack dev</h2>
+                    </div>
+                </div>
+            </div>
             <Footer/>
         </div>
     )
