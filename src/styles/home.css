@@ -19,7 +19,6 @@ body{
 }
 
 header{
-    border-bottom: 3px solid;
     border-color: black;
     top: 0;
     left: 0;
@@ -51,6 +50,7 @@ header{
     font-size: 4em;
     margin-left: 110px;
 }
+
 
 .Navbar .Navbar-active {
     font-size: 17px;
@@ -116,16 +116,14 @@ header{
     font-size: 17px;
     border-radius: 30px;
     color: whitesmoke;
-    border: solid rgb(127, 75, 170) 2px;
+    border: rgb(127, 75, 170) ;
     cursor: pointer;
     margin-left: 50px;
 }
 
 .Login-Register .Register:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: .5s;
+    background-color: rgb(128, 84, 163) ;
+    transition: .2s;
 }
 
 .Login-Register .Login{
@@ -153,7 +151,7 @@ header{
     transition: transform .5s;
 }
 .Login-Register .Login:hover::after{
-    transform: scaleX(1);
+    transform: scaleX();
 }
 
 
@@ -187,18 +185,24 @@ header{
 
 .content {
     text-align: center;
-    width: 1400px;
-    height: 500px;  
+    width: 1000px;
+    height: 600px;  
 }   
 
 .content h1 {
-    font-size: 25px;
-    margin-bottom: 10px;
+    
+    font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+  
 }
 
 .content h2 {
     font-size: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
+    color: grey;
+    font-weight: 200;
 }
 
 .content .image-grid {
@@ -213,7 +217,7 @@ header{
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #fff;    
-    border: solid rgb(127, 75, 170) 2px;
+    border: solid black 0px;
     border-radius: 25px;
     padding: 15px 30px;
     font-size: 17px;
@@ -221,11 +225,10 @@ header{
 }
 
 .BtnRegisterCompany:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: .5s;
+    background-color: rgb(128, 84, 163) ;
+    transition: .2s;
 }
+
 
 footer {
     border-top: solid 2.5px rgb(46, 14, 73);
