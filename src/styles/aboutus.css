@@ -1,0 +1,37 @@
+.BtnRegister{
+    background-color: rgb(153, 96, 199);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 150px;
+    height: 50px;
+    font-size: 17px;
+    border-radius: 30px;
+    color: whitesmoke;
+    border: solid rgb(127, 75, 170) 2px;
+    cursor: pointer;
+    margin-top: 35px;
+    margin-left: 45%;
+}
+
+.BtnRegister:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
+
+.text-container{
+    padding: 20px;
+    width: 1850px;
+}
+
+.text-container h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+    align-items: center;
+    text-align: center;
+}
+
+.text-container p{
+    text-align: justify;
+    font-size: 20px;
+}
