@@ -68,7 +68,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
         {error && <p>{error}</p>}
           <div class="input-container">
-            <i class="bi bi-envelope input-icon"></i>
+            <i class="bi bi-envelope"></i>
             <input class="input-login"  
             type="text"
             id="email"
@@ -79,7 +79,7 @@ const Login = () => {
             />
           </div>
           <div class="input-container">
-            <i class="bi bi-unlock input-icon"></i>
+            <i class="bi bi-lock-fill"></i>
             <input class="input-password" 
             type="password" 
             id='password'
