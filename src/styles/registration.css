@@ -1,199 +1,15 @@
 *{
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 200;
-    font-size: 15px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body{
-    background-position: center;
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-header{
-    border-bottom: 3px solid;
-    border-color: black;
-    top: 0;
-    left: 0;
-    padding: 20px 50px;
-    width: 100%;
-    align-items: center;
-    display: flex;
-    position: fixed;
-    justify-content: space-between;
-    z-index: 99;
-}
-
-.Logosect{
-    display: flex;
-    align-items: center;
-}
-
-.Logo{
-    width: 2.5cm;
-    height: 100%;
-    position: relative;
-    margin-right: .5cm;
-}
-
-.Logotxt{
-    font-family: lalezar;
-    color: rgb(0, 0, 0);
-    font-size: 4em;
-}
-
-.Navbar .Navbar-active::after {
-    transform: scaleX(1);
-}
-
-.Navbar a{
-    position: relative;
-    font-size: 17px;
-    text-decoration: none;
-    color: black;
-    margin-right: 80px;
-    margin-left: px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.Navbar a::after{
-    content: '';
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    background-color:rgb(46, 14, 73);
-    transform: scaleX(0);
-    transition: transform .5s;
-}
-.Navbar a:hover::after{
-    transform: scaleX(1);
-}
-
-.Navbar .Register{
-    background-color: rgb(153, 96, 199);
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 120px;
-    height: 50px;
-    font-size: 17px;
-    border-radius: 20px;
-    color: whitesmoke;
-    border: solid rgb(127, 75, 170) 2px;
-    cursor: pointer;
-}
-
-.Navbar .Register:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: .5s;
-}
-
-.Navbar .Login{
-    text-decoration: none;
-    font-size: 17px;
-    background: none;
-    border: none;
-    position: relative;
-    text-decoration: none;
-    color: black;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    cursor: pointer;
-}
-
-.Navbar .Login::after{
-    content: '';
-    width: 100%;
-    height: 3px;
-    border-radius: 3px;
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    background-color:rgb(46, 14, 73);
-    transform: scaleX(0);
-    transition: transform .5s;
-}
-.Navbar .Login:hover::after{
-    transform: scaleX(1);
-}
-
-
-
-
-footer {
-    border-top: solid 2.5px rgb(46, 14, 73);
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255); 
-    height: 50px;
-    width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    bottom: 0; 
-}
-
-footer p{
-    font-size: 13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-footer p.copyright{
-    font-size: 13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: fixed;
-}
-
-footer p.tos{
-    font-size: 13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: fixed;
-    margin-left: 13cm;
-}
-
-footer p.pap{
-    font-size: 13px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: fixed;
-    margin-left: 22cm;
-}
-
-footer a{
-    color: #ffffff;
-}
-
-
-
-.header {
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    align-items: center;
-    padding: 0 80px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 40px;
-}
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; 
-    height: 50%;
-    background-color: beige;
-    margin-top: 250px;   
+    width: 1850px; 
+    height: 100%;
 }
 
 .register-container .left-register {
@@ -206,12 +22,13 @@ footer a{
     margin-left: 10px;
 }
 .register-container .left-register h2{
-    font-size: 17px;
+    margin-top: 200px;
+    font-size: 20px;
 }
 .register-container .left-register h1{
     width: 100%;
-    margin-bottom: 20px;
-    margin-top: 30px;
+    padding-bottom: 10px;
+    font-size: 35px;
 }
 .register-container .right-register {
     width: 50%; 
@@ -220,40 +37,59 @@ footer a{
     font-style: normal;
     font-size: 20px;
     padding-left: 20px;
-    border-left: 1px solid black;
-    
 }
 
 .input-group1 {  
     width: 40%;
-
-   
 }
 .input-group2 {
     width: 40%;
-    margin-right: 20px;
+    margin-right: 30px;
 }
 
 label {
     display: block;
+    margin-bottom: 5px;
 }
+
+label i{
+    position: absolute;
+    font-size: 20px;
+    color: rgb(127, 75, 170);
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
 
 .input-group {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 30px;
+    margin-bottom: 30px;
 }
 
 .inputBox{
     width: 100%;
-    height: 30px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 35px;
 }   
+
+.right-register h1{
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 40px;
+}
 
 .BtnSignup{
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 120px;
+    width: 150px;
     height: 50px;
     font-size: 17px;
     border-radius: 30px;
@@ -261,5 +97,41 @@ label {
     border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
     margin-top: 35px;
-    margin-left: 40%;
+    margin-left: 43%;
+}
+
+.right-register .BtnSignup:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
+
+.left-register .photos img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+}
+
+.first{
+    border: solid black 5px;
+    margin-left:-200px;
+    position: fixed;
+}
+
+.second{
+    border: solid black 5px;
+    position: fixed;
+    margin-left:-100px;
+}
+
+.third{
+    border: solid black 5px;
+    position: fixed;
+}
+
+.fourth{
+    border: solid black 5px;
+    position: fixed;
+    margin-left: 100px;
 }
