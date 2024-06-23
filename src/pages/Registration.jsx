@@ -100,13 +100,15 @@ const Register = () => {
         <div className="left-register">
         <h1>BEGIN MANAGING YOUR COMPANY'S INVENTORY WITH STOCKWISE</h1>
         <div className="photos">
-            <div className="photo">Photo 1</div>
-            <div className="photo">Photo 2</div>
-            <div className="photo">Photo 3</div>
-            <div className="photo">Photo 4</div>
+            <img class="first" src={firstImg} alt="Yousep.img" />
+            <img class="second" src={secondImg} alt="Reitz.img" />
+            <img class="third" src={thirdImg} alt="Charles.img" />
+            <img class="fourth" src={fourthImg} alt="Ivan.img" />
         </div>
         <h2>We're here to help!</h2>
         </div>
+
+           
         <div className="right-register">
         <h1>Registration</h1>
         <form onSubmit={handleSubmit}>
