@@ -184,6 +184,55 @@ const Register = () => {
           />
         </div>
       </div>
+
+
+
+/* 
+<-----------Double Check lang ni nga Code Kay sakto ang CSS ani-------------->
+<form onSubmit={handleSubmit}>
+
+      <div className="input-group">
+        <div className="input-group1">
+          <label htmlFor="firstName"><i class="bi bi-person-fill"></i> First Name</label>
+          <input className="inputBox" type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} required/>
+        </div>
+
+        <div className="input-group2">
+          <label htmlFor="lastName"><i class="bi bi-person-fill-up"></i> Last Name</label>
+          <input className="inputBox" type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} required/>
+        </div>
+      </div>
+
+      <div className="input-group">
+        <div className="input-group1">
+          <label htmlFor="email"><i class="bi bi-envelope-at-fill"></i> Email</label>
+          <input className="inputBox" type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+        </div>
+
+        <div className="input-group2">
+          <label htmlFor="contactNumber"><i class="bi bi-telephone-fill"></i> Contact Number</label>
+          <input className="inputBox" type="tel" id="contactNumber" value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} required/>
+        </div>
+      </div>
+
+      <div className="input-group">
+        <div className="input-group1">
+          <label htmlFor="companyID"><i class="bi bi-postcard-fill"></i> Company ID</label>
+          <input className="inputBox" type="text" id="companyID" value={companyID} onChange={(e) => setCompanyID(e.target.value)} required/>
+        </div>
+
+        <div className="input-group2">
+          <label htmlFor="employeePass"><i class="bi bi-lock-fill"></i> Password</label>
+          <input className="inputBox" type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+        </div>
+      </div>
+
+      <button className="BtnSignup" type="submit">Sign Up</button>
+      {error && <p>{error}</p>}
+    </form> 
+<-----------Double Check lang ni nga Code-------------->
+*/
+
       <button className="BtnSignup" type="submit">Sign Up</button>
       {error && <p>{error}</p>}
     </form>
