@@ -19,6 +19,7 @@ body{
 }
 
 header{
+    border-bottom: 3px solid;
     border-color: black;
     top: 0;
     left: 0;
@@ -116,14 +117,16 @@ header{
     font-size: 17px;
     border-radius: 30px;
     color: whitesmoke;
-    border: rgb(127, 75, 170) ;
+    border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
     margin-left: 50px;
 }
 
 .Login-Register .Register:hover{
-    background-color: rgb(128, 84, 163) ;
-    transition: .2s;
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
 }
 
 .Login-Register .Login{
@@ -151,7 +154,7 @@ header{
     transition: transform .5s;
 }
 .Login-Register .Login:hover::after{
-    transform: scaleX();
+    transform: scaleX(1);
 }
 
 
@@ -185,24 +188,18 @@ header{
 
 .content {
     text-align: center;
-    width: 1000px;
-    height: 600px;  
+    width: 1400px;
+    height: 500px;  
 }   
 
 .content h1 {
-    
-    font-size: 50px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-  
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .content h2 {
     font-size: 20px;
-    margin-bottom: 60px;
-    font-family: 'Poppins', sans-serif;
-    color: grey;
-    font-weight: 200;
+    margin-bottom: 30px;
 }
 
 .content .image-grid {
@@ -217,7 +214,7 @@ header{
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #fff;    
-    border: solid black 0px;
+    border: solid rgb(127, 75, 170) 2px;
     border-radius: 25px;
     padding: 15px 30px;
     font-size: 17px;
@@ -225,10 +222,11 @@ header{
 }
 
 .BtnRegisterCompany:hover{
-    background-color: rgb(128, 84, 163) ;
-    transition: .2s;
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
 }
-
 
 footer {
     border-top: solid 2.5px rgb(46, 14, 73);
@@ -249,25 +247,26 @@ footer {
 footer p{
     font-size: 15px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: fixed;
+    width: 9cm;
     padding: 0;
 }
 
 footer p.copyright{
     font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 9cm;
+    width: 15cm;
+    left: 0;
+    margin-left: 40px;
 }
 
 footer p.tos{
-    font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 9cm;
+    left: 0;
+    margin-left: 39%;
 }
 
 footer p.pap{
-    font-size: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    width: 9cm;
+    right: 0;
+    margin-right: 20%;
 }
 
 footer a{
