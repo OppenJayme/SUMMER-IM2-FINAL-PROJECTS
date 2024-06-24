@@ -10,12 +10,12 @@ body {
 .Main_container {
     display: flex;
     position: fixed;
-    width: 100%;
-    height: 100%;
+    left: 0;
+    width: 2000px;
+    height: 960px;
     overflow: hidden;
     padding: 0;
     margin: 0;
-    border: 0;
     top: 0;
 }
 
@@ -24,53 +24,37 @@ body {
     background: rgb(245, 200, 53);
     height: 100vh;
     position: fixed;
-    align-self: center;
     transition: width 0.3s ease-in-out;
     z-index: 1;
-    border-right: solid black 3px;  
+    border-right: solid black 3px;
+}
+
+.dashboard_sidebar.hidden {
+    width: 0;
+    overflow: hidden;
 }
 
 .dashboard_logo {
     color: #000;
     font-size: 50px;
     text-align: center;
-    position: relative;
-    justify-content: center;
-    margin: 0;
     padding: 20px;
 }
 
 .dashboard_sidebar_user {
     text-align: center;
-    position: relative;
     padding-bottom: 10px;
     border-bottom: 1px solid #000;
-    justify-content: center;
 }
 
 .dashboard_sidebar_user h1 {
-    padding: 0;
-    margin: 0;
-    margin-top: 10px;
-    font-family: Permanent Marker, Anton, sans-serif;
-}
-
-.dashboard_sidebar_user h2 {
-    padding: 0;
-    margin: 0;
+    margin: 10px 0 0 0;
+    font-family: 'Permanent Marker', 'Anton', sans-serif;
 }
 
 .dashboard_sidebar_user img {
     width: 200px;
     height: 200px;
-}
-
-.dashboard_sidebar_user span {
-    top: 20%;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #000;
-    display: inline-block;
 }
 
 .dashboard_menu_lists {
@@ -105,48 +89,50 @@ body {
 }
 
 .dashboard_content_container {
-    width: 100%;
-    background: url(inventory-management-system-1.jpeg);
-    backdrop-filter: blur(3px);
-    background-position: center;
+    width: 80%;
+    background: white;
     height: 100vh;
-    position: fixed;
-    justify-content: center;
-    align-items: center;
     margin-left: 20%;
     transition: margin-left 0.3s ease-in-out;
 }
 
-.dashboard_content{
-    flex: 1;
-    margin-top: 50px;
-    margin-left: 10px;
-    width: 78.7%;
-    height: 100%;
-    display: block;
-    position: fixed;
-    transition: margin-left 0.3s ease-in-out;
-    z-index: 3; 
+.sidebar-hidden .dashboard_content_container {
+    margin-left: 0;
+    width: 100%;
 }
 
-.dashboard_content h1{
+.dashboard_content {
+    margin: 50px 0 0 10px;
+    width: calc(100% - 20%);
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar-hidden .dashboard_content {
+    margin-left: 0;
+    width: 100%;
+}
+
+.dashboard_content h1 {
     color: whitesmoke;
     font-weight: 300;
 }
 
 .dashboard_topNav {
-    background:rgb(46, 14, 73);
+    background: rgb(46, 14, 73);
     padding: 10px 0;
     width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
     transition: margin-left 0.3s ease-in-out;
-    z-index: 2; 
+    z-index: 2;
 }
 
-.Menu-Pop{
+.sidebar-hidden .dashboard_topNav {
+    width: 100%;
+}
+
+.Menu-Pop {
     cursor: pointer;
     color: rgb(255, 255, 255);
     font-size: 18px;
@@ -161,25 +147,6 @@ body {
     text-decoration: none;
 }
 
-.hidden {
-    width: 0;
-    overflow: hidden;
-}
-
-.sidebar-hidden .dashboard_content_container {
-    margin-left: 0%;
-}
-
-.topnav-hidden {
-    width: 98.7%;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-.content-hidden {
-    width: 100%;
-    transition: margin-left 0.3s ease-in-out;
-}
-
 .form-modal {
     position: relative;
     height: 450px;
@@ -189,7 +156,6 @@ body {
     border-radius: 10px;
     z-index: 1000;
     top: 15px;
-    justify-content: center;
     backdrop-filter: blur(3px);
 }
 
@@ -210,30 +176,28 @@ body {
     margin-top: 25px;
     padding: 10px 15px;
     background-color: rgb(100, 33, 155);
-    font-family: cursive;
     height: 50px;
     width: 100%;
     font-size: 17px;
     border-radius: 10px;
     color: whitesmoke;
-    border-color: black;
+    border: none;
     cursor: pointer;
 }
 
 .form-modal button:hover {
     color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
     background-color: transparent;
-    transition: .5s;
+    transition: 0.5s;
 }
 
-.addproductheader{
-    margin: 0   ;
-    font-family: Permanent Marker, Anton, sans-serif;
+.addproductheader {
+    margin: 0;
+    font-family: 'Permanent Marker', 'Anton', sans-serif;
 }
 
-.addprodicon{
-    padding-right: 5;
+.addprodicon {
+    padding-right: 5px;
     font-size: 30px;
     font-weight: 1000;
 }
