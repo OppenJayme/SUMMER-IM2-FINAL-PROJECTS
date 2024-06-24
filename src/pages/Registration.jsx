@@ -1,3 +1,9 @@
+import firstImg from '../styles/images/Charles.jpg';
+import secondImg from '../styles/images/Yousif.jpg';
+import thirdImg from '../styles/images/Ivan.jpg';
+import fourthImg from '../styles/images/Reitz.PNG';
+
+
 import logoimg from "../styles/images/logo.png"
 import '../styles/registration.css'
 import supabase from '../client/database';
@@ -111,87 +117,8 @@ const Register = () => {
            
         <div className="right-register">
         <h1>Registration</h1>
+
         <form onSubmit={handleSubmit}>
-      <div className="input-group">
-        <div className="input-group1">
-          <label htmlFor="firstName">First Name</label>
-          <input
-            className="inputBox"
-            type="text"
-            id="firstName"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group2">
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            className="inputBox"
-            type="text"
-            id="lastName"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="input-group">
-        <div className="input-group3">
-          <label htmlFor="email">Email</label>
-          <input
-            className="inputBox"
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="input-group2">
-          <label htmlFor="contactNumber">Contact Number</label>
-          <input
-            className="inputBox"
-            type="tel"
-            id="contactNumber"
-            value={contactNumber}
-            onChange={(e) => setContactNumber(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="input-group">
-        <div className="input-group1">
-          <label htmlFor="employeePass">Password</label>
-          <input
-            className="inputBox"
-            type="text"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-      <div className="input-group">
-        <div className="input-group1">
-          <label htmlFor="companyID">Company ID</label>
-          <input
-            className="inputBox"
-            type="text"
-            id="companyID"
-            value={companyID}
-            onChange={(e) => setCompanyID(e.target.value)}
-            required
-          />
-        </div>
-      </div>
-
-
-
-/* 
-<-----------Double Check lang ni nga Code Kay sakto ang CSS ani-------------->
-<form onSubmit={handleSubmit}>
 
       <div className="input-group">
         <div className="input-group1">
@@ -225,15 +152,10 @@ const Register = () => {
 
         <div className="input-group2">
           <label htmlFor="employeePass"><i class="bi bi-lock-fill"></i> Password</label>
-          <input className="inputBox" type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+          <input className="inputBox" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
         </div>
       </div>
 
-      <button className="BtnSignup" type="submit">Sign Up</button>
-      {error && <p>{error}</p>}
-    </form> 
-<-----------Double Check lang ni nga Code-------------->
-*/
 
       <button className="BtnSignup" type="submit">Sign Up</button>
       {error && <p>{error}</p>}
