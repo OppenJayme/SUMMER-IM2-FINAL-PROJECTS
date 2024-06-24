@@ -30,29 +30,33 @@ const Contacts = () => {
                 <div className='img-container'>
                     <img className='img-profile' src={charles} alt='charles-pic' />
                     <div className="text-container">
-                        <h1>CHARLES BENEDICT BOQUECOSA</h1>
-                        <h2>FullStack dev</h2>
+                        <h1>Yousif Qurico Ceballos</h1>
+                        <h2>FullStack developer</h2>
+                        <span><i class="bi bi-envelope"></i>yousifceballos@gmail.com</span>
                     </div>
                 </div>
                 <div className='img-container'>
                     <img className='img-profile' src={reitz}alt='reitz-pic' />
                     <div className="text-container">
-                        <h1>RIETZ DAVE ANDRIANO</h1>
-                        <h2>FullStack dev</h2>
+                        <h1>Reitz Dave Andriano</h1>
+                        <h2>FullStack developer</h2>
+                        <span><i class="bi bi-envelope"></i>reitzdave.andriano@gmail.com</span>
                     </div>
                 </div>
                 <div className='img-container'>
                     <img className='img-profile' src={ivan} alt='ivan-pic' />
                     <div className="text-container">
-                        <h1>IVAN JAYME</h1>
-                        <h2>FullStack dev</h2>
+                        <h1>Ivan Jayme</h1>
+                        <h2>FullStack developer</h2>
+                        <span><i class="bi bi-envelope"></i>jaymekyerivan@gmail.com</span>
                     </div>
                 </div>
                 <div className='img-container'>
                     <img className='img-profile' src={yousif} alt='yousif-pic'/>
                     <div className="text-container">
-                        <h1>YOUSIF QUIRICO CEBALLOS</h1>
-                        <h2>FullStack dev</h2>
+                        <h1> Chales Benedict Boquecosa</h1>
+                        <h2>FullStack developer</h2>
+                        <span><i class="bi bi-envelope"></i>charlesbenedictboquecosa@gmail.com</span>
                     </div>
                 </div>
             </div>
