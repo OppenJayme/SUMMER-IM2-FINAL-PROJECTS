@@ -11,13 +11,13 @@
     display: flex; 
     align-items: center; 
     justify-content: start; 
-    margin-bottom: 90px;
+    margin-bottom: 75px;
 }
 
 .contact-us-container .img-container .img-profile {
     width: 100px;
     height: 100px;
-    border-radius: 50%;
+    border-radius: 50px;
     margin-right: 20px; 
 }
 
@@ -25,11 +25,33 @@
     display: flex;
     flex-direction: column;
 }
-.text-container h1 {
+.text-container h1 {    
     font-size: 25px;
+    display: flex;
     font-family: 'poppins';
     font-weight: 600;
 }
+.text-container h2 {    
+    font-size: 15px;
+    margin-left: 1.5px;
+    margin-bottom: 2px;
+    font-family: 'poppins';
+    font-weight: 600;
+}
+.text-container span {    
+    font-size: 12px;
+    margin-bottom: 2px;
+    font-family: 'poppins';
+    font-weight: 600;
+}
+ .text-container i {
+    position: relative;
+    top: 2px;
+    height:10px;
+    margin-left: 1.5px;
+    color: rgb(153, 96, 199);
+    padding-right: 10px;
+ }
 
 
 
