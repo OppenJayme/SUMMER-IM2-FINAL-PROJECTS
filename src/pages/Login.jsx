@@ -1,4 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import Logo from '../styles/images/logo.png';
 import Footer from '../components/Footer'
@@ -10,6 +11,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +43,7 @@ const Login = () => {
     }
 
     console.log("User logged in succesfully");
-
+    navigate("/dashboard");
   };
 
 
