@@ -4,14 +4,13 @@
 .contact-us-container {
     position: relative;
     top: 70px;
-    left: -540px; /* Adjust this as needed to fit your layout */
-    
+    width: 1750px;
 }
 
 .contact-us-container .img-container {
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: start; /* Align items to the start of the container */
+    display: flex; 
+    align-items: center; 
+    justify-content: start; 
     margin-bottom: 90px;
 }
 
@@ -19,10 +18,9 @@
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-right: 20px; /* Add space between the image and the text */
+    margin-right: 20px; 
 }
 
-/* Optional: Style for the text container */
 .text-container {
     display: flex;
     flex-direction: column;
@@ -32,7 +30,6 @@
     font-family: 'poppins';
     font-weight: 600;
 }
-/**/
 
 
 
