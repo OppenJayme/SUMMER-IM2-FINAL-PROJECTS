@@ -1,0 +1,50 @@
+.content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1850px; 
+    height: 100%;
+    
+}
+
+.right-container{
+    width: 50%;
+    height: 100%;
+    right: 0;
+}
+
+.left-container{
+    width: 50%;
+    height: 100%;
+    left: 0;
+}
+
+.left-container h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+.rightimg{
+    width: 925px;
+}
+
+.BtnProceed{
+    background-color: rgb(153, 96, 199);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 150px;
+    height: 50px;
+    font-size: 17px;
+    border-radius: 30px;
+    color: whitesmoke;
+    border: solid rgb(127, 75, 170) 2px;
+    cursor: pointer;
+    margin-top: 35px;
+    margin-left: 43%;
+}
+
+.BtnProceed:hover{
+    color: rgb(46, 14, 73);
+    border-color: rgb(46, 14, 73);
+    background-color: transparent;
+    transition: .5s;
+}
