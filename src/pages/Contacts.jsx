@@ -2,10 +2,10 @@ import Logo from '../styles/images/logo.png';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer'
 import '../styles/contacts.css';
-import charles from '../styles/images/charles.jpg'
-import ivan from '../styles/images/ivan.jpg';
-import yousif from '../styles/images/yousif.jpg';
-import reitz from '../styles/images/reitz.jpg';
+import charles from '../styles/images/Charles.jpg'
+import ivan from '../styles/images/Ivan.jpg';
+import yousif from '../styles/images/Yousif.jpg';
+import reitz from '../styles/images/Reitz.PNG';
 
 const Contacts = () => {
 
@@ -28,28 +28,28 @@ const Contacts = () => {
             </header>
             <div className="contact-us-container">
                 <div className='img-container'>
-                    <img className='img-profile' src={charles}></img>
+                    <img className='img-profile' src={charles} alt='charles-pic' />
                     <div className="text-container">
                         <h1>CHARLES BENEDICT BOQUECOSA</h1>
                         <h2>FullStack dev</h2>
                     </div>
                 </div>
                 <div className='img-container'>
-                    <img className='img-profile' src={reitz}></img>
+                    <img className='img-profile' src={reitz}alt='reitz-pic' />
                     <div className="text-container">
                         <h1>RIETZ DAVE ANDRIANO</h1>
                         <h2>FullStack dev</h2>
                     </div>
                 </div>
                 <div className='img-container'>
-                    <img className='img-profile' src={ivan}></img>
+                    <img className='img-profile' src={ivan} alt='ivan-pic' />
                     <div className="text-container">
                         <h1>IVAN JAYME</h1>
                         <h2>FullStack dev</h2>
                     </div>
                 </div>
                 <div className='img-container'>
-                    <img className='img-profile' src={yousif}></img>
+                    <img className='img-profile' src={yousif} alt='yousif-pic'/>
                     <div className="text-container">
                         <h1>YOUSIF QUIRICO CEBALLOS</h1>
                         <h2>FullStack dev</h2>
