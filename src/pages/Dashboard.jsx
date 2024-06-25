@@ -6,7 +6,6 @@ import "../styles/dashboard.css";
 const Dashboard = () => {
     const [sidebarHidden, setSidebarHidden] = useState(false);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
-    const [AddProd, setAddProd] = useState(false);
 
     const handleSideNav = (e) => {
         e.preventDefault();
@@ -31,9 +30,6 @@ const Dashboard = () => {
         }
     };
 
-    const handleAddProd = () => {
-        setAddProd(true);
-    }
     return (
         <>
             <div className={`Main_container ${sidebarHidden ? 'sidebar-hidden' : ''}`}>
@@ -71,7 +67,7 @@ const Dashboard = () => {
                                 <ion-icon name="power"></ion-icon>Log-out</button>
                         <div className="dashboard_content">
                             <h1 className="addproductheader">
-                                <ion-icon className="addprodicon" name="add-sharp" onClick = {handleAddProd}></ion-icon>Add Products
+                                <ion-icon className="addprodicon" name="add-sharp"></ion-icon>Add Products
                             </h1>
                             <div id="formModal" className="form-modal">
                                 <form id="productForm" action="/dashboard/addProduct" method="POST" enctype="multipart/form-data">

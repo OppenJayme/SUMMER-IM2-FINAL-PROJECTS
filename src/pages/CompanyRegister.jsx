@@ -6,8 +6,40 @@ import '../styles/companyregister.css'
 // import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import supabase from '../client/database.js'
+import { useState } from "react";
 
 const CompReg = () => {
+    const [companyName, setCompanyName] = useState('');
+    const [companyEmail, setCompanyEmail] = useState('');
+    const [companyContact, setCompanyContact] = useState('');
+    const [error, setError] = useState('');
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const {data, error} = await supabase
+        .from('company_t')
+        .insert([
+            {
+                companyname: companyName,
+                companyemail: companyEmail,
+                companycontact: companyContact
+            }
+        ])
+        .select()
+
+        if (error) {
+            setError('An error has occured. Please try again');
+            console.log(error);
+        } else {
+            setError('');
+            console.log('company registered successfully', data);
+            Navigate('/');
+        }
+    }
+
     return (
         <>
             <header>
@@ -30,28 +62,23 @@ const CompReg = () => {
                 <div className="content-container" >
                     <div className="left-container">
                         <h1>SIGN UP YOUR COMPANY WITH US!</h1>
-                            <form action="">
+                            <form onSubmit={handleSubmit}>
                                 <div className="input-group">
                                     <div className="input-group1">
                                         <label htmlFor="companyName"><i class="bi bi-person-fill"></i> Company Name</label>
-                                        <input className="inputBox" type="text" id="companyName"/>
+                                        <input className="inputBox" type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} id="companyName"/>
                                     </div>
 
                                     <div className="input-group2">
                                         <label htmlFor="CompanyContact"><i class="bi bi-person-fill-up"></i> Contact Number</label>
-                                        <input className="inputBox" type="text" id="CompanyContact"/>
+                                        <input className="inputBox" type="text" value={companyContact} onChange={(e) => setCompanyContact(e.target.value)} id="CompanyContact"/>
                                     </div>
                                 </div>
 
                                 <div className="input-group">
                                     <div className="input-group1">
                                         <label htmlFor="email"><i class="bi bi-envelope-at-fill"></i> Email</label>
-                                        <input className="inputBox" type="email" id="email"/>
-                                    </div>
-
-                                    <div className="input-group2">
-                                        <label htmlFor="contactNumber"><i class="bi bi-telephone-fill"></i> Contact Number</label>
-                                        <input className="inputBox" type="text" id="contactNumber"/>
+                                        <input className="inputBox" type="email" value={companyEmail} onChange={(e) => setCompanyEmail(e.target.value)} id="email"/>
                                     </div>
                                 </div>
                                 <button className="BtnProceed" type="submit">Proceed</button>

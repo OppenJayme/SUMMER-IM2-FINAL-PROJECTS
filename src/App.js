@@ -6,6 +6,7 @@ import About from "./pages/AboutUs";
 import Login from "./pages/Login"
 import Register from "./pages/Registration"
 import Dashboard from "./pages/Dashboard";
+import CompReg from "./pages/CompanyRegister"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/login"  element = {<Login/>}/>
                 <Route path="/registration"  element = {<Register/>}/>
                 <Route path="/dashboard" element = {<Dashboard/>} />
+                <Route path="/companyregister" element = {<CompReg/>} /> 
     </Routes>
     </Router>
   );

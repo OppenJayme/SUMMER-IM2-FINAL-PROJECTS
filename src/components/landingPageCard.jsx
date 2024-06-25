@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import firstImg from '../styles/images/1.png';
 import secondImg from '../styles/images/2.png';
 import thirdImg from '../styles/images/3.png';
@@ -16,7 +17,7 @@ const LandingPageCard = () => {
             <img className="fourthimg" src={fourthImg} alt="Fourth" />
             <img className="fifthimg" src={fifthImg} alt="Fifth" />
         </div>
-        <button className="BtnRegisterCompany">Register Company</button>
+        <Link to="/companyregister"><button className="BtnRegisterCompany">Register Company</button></Link> 
     </div>
     );
 }
