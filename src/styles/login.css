@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Patua+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 .login {
     position: fixed;
@@ -14,7 +14,7 @@
 .login h1 {
     text-align: center;
     margin-bottom: 20px;
-    font-family: "Poppins", sans-serif;
+    font-family: Patua One;
     font-weight: 600;
     font-style: normal;
     font-size: 40px;
