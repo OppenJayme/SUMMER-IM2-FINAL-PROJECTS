@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Patua+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
 .contact-us-container {
     position: relative;
@@ -17,34 +16,34 @@
 .contact-us-container .img-container .img-profile {
     width: 100px;
     height: 100px;
-    border-radius: 50px;
+    border-radius: 100px;
     margin-right: 20px; 
 }
 
-.text-container {
+.contact-us-container .img-container .text-container {
     display: flex;
     flex-direction: column;
 }
-.text-container h1 {    
-    font-size: 25px;
-    display: flex;
-    font-family: 'poppins';
-    font-weight: 600;
+
+.contact-us-container .img-container .text-container h1 {    
+    font-size: 50x;
+    display: flex;font-family: Patua One;
+    font-weight: 200;
 }
-.text-container h2 {    
+.contact-us-container .img-container .text-container h2 {    
     font-size: 15px;
     margin-left: 1.5px;
     margin-bottom: 2px;
-    font-family: 'poppins';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 600;
 }
-.text-container span {    
+.contact-us-container .img-container .text-container span {    
     font-size: 12px;
     margin-bottom: 2px;
-    font-family: 'poppins';
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 600;
 }
- .text-container i {
+.contact-us-container .img-container .text-container i {
     position: relative;
     top: 2px;
     height:10px;
@@ -53,5 +52,7 @@
     padding-right: 10px;
  }
 
-
-
+ .contact-us-container .img-container .img-size{
+    width: 100px;
+    height: 100px;
+}
