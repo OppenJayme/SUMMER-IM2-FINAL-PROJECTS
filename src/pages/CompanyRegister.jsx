@@ -1,9 +1,7 @@
 import img from "../styles/images/7.png"
 import logoimg from "../styles/images/logo.png"
 import '../styles/companyregister.css'
-// import supabase from '../client/database';
-// import {  useState} from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import supabase from '../client/database.js'
@@ -15,6 +13,8 @@ const CompReg = () => {
     const [companyContact, setCompanyContact] = useState('');
     const [error, setError] = useState('');
 
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ const CompReg = () => {
         } else {
             setError('');
             console.log('company registered successfully', data);
-            Navigate('/');
+            navigate('/');
         }
     }
 
