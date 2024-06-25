@@ -2,6 +2,7 @@ import { useState } from "react";
 import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
 import "../styles/dashboard.css";
+import logoimg from "../styles/images/logo.png"
 
 const Dashboard = () => {
     const [sidebarHidden, setSidebarHidden] = useState(false);
