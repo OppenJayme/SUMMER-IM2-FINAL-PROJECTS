@@ -34,9 +34,8 @@ const Dashboard = () => {
     return (
         <>
             <div className={`Main_container ${sidebarHidden ? 'sidebar-hidden' : ''}`}>
-                <div
+                <div className={`dashboard_sidebar ${sidebarHidden ? 'hidden' : ''}`}
                     id="dashboard_sidebar"
-                    className={`dashboard_sidebar ${sidebarHidden ? 'hidden' : ''}`}
                     onClick={handleSideNav}
                 >
                         <div className="dashboard_sidebar_user">
@@ -46,12 +45,27 @@ const Dashboard = () => {
                             <ul className="dashboard_menu_lists">
                                 <li className="Menu_active">
                                     <a href="/dashboard">
-                                        <ion-icon name="aperture"></ion-icon> Dashboard
+                                    <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="/report">
-                                        <ion-icon name="bar-chart-sharp"></ion-icon> Reports
+                                    <i class="bi bi-box-seam-fill"></i> Items
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                    <i class="bi bi-bezier2"></i> Transaction
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                    <i class="bi bi-clipboard-check-fill"></i> Activity Logs
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" onClick={handleShowModal}>
+                                    <i class="bi bi-box-arrow-left"></i> Log-out
                                     </a>
                                 </li>
                             </ul>
@@ -63,14 +77,11 @@ const Dashboard = () => {
                             <div className="Menu-Pop" onClick={handleSideNav}>
                                 <ion-icon name="menu"></ion-icon>
                             </div>
-                            <button className="logoutBtn" onClick={handleShowModal}>
-                                <ion-icon name="power"></ion-icon>Log-out</button>
                         </div>        
                         <div className="dashboard_content">
                                                         
                         </div>
                     </div>
-                
             </div>
             {showLogoutModal && (
                 <LogOut handleCancel={handleCancelLogout} handleConfirm={handleConfirmLogout} />

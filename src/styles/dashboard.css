@@ -11,7 +11,7 @@
 }
 
 .dashboard_sidebar {
-    width: 300px;
+    width: 250px;
     background: rgb(245, 200, 53);
     height: 100vh;
     position: fixed;
@@ -55,14 +55,18 @@
 
 .dashboard_menu_lists li {
     padding: 15px;
-    font-size: 17px;
     text-transform: uppercase;
     list-style-type: none;
 }
 
 .dashboard_menu_lists li a {
     text-decoration: none;
+    font-size: 20px;
     color: #000;
+}
+
+.dashboard_menu_lists li a i{
+    font-size: 20px;
 }
 
 .dashboard_menu_lists li:hover {
@@ -79,11 +83,28 @@
     border-bottom: 2.5px solid whitesmoke;
 }
 
+.Menu_active a{
+    display: flex;
+    flex-direction: row;
+}
+
+.Menu_active i{
+    color: whitesmoke;
+    font-size: 20px;
+}
+
+
+.Menu_active_txt{
+    padding-left: 6px;
+    font-size: 20px;
+    color: whitesmoke;
+}
+
 .dashboard_content_container {
-    width: 1600px;
+    width: 2000px;
     background: white;
     height: 100vh;
-    margin-left: 300px;
+    margin-left: 250px;
     transition: margin-left 0.3s ease-in-out;
 }
 
@@ -110,7 +131,8 @@
 .dashboard_topNav {
     background: rgb(46, 14, 73);
     padding: 10px;
-    width: 1579px;
+    width: 100%;
+    height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
