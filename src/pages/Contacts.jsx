@@ -39,7 +39,7 @@ const Contacts = () => {
                     <img className='img-profile' src={reitz}alt='reitz-pic' />
                     <div className="text-container">
                         <h1>Reitz Dave Andriano</h1>
-                        <h2>FullStack developer</h2>
+                        <h2>FullStack develope</h2>
                         <span><i class="bi bi-envelope"></i>reitzdave.andriano@gmail.com</span>
                     </div>
                 </div>
