@@ -63,7 +63,7 @@ const CompReg = () => {
                     <div className="left-container">
                         <h1>SIGN UP YOUR COMPANY WITH US!</h1>
                             <form onSubmit={handleSubmit}>
-                            {error && <p>{error}</p>}
+                                {error && <p>{error}</p>}
                                 <div className="input-group">
                                     <div className="input-group1">
                                         <label htmlFor="companyName"><i class="bi bi-person-fill"></i> Company Name</label>
