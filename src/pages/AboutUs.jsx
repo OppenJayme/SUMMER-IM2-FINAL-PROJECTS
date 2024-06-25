@@ -46,7 +46,7 @@ const About = () => {
                         ></div>
                     ))}
                 </div>
-                <a href="#register" className="BtnRegister">
+                <a href="/register" className="BtnRegister">
                 Register Company</a>
             </div>
 
