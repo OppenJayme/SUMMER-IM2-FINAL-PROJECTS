@@ -21,8 +21,10 @@
 }
 
 .contact-us-container .img-container .text-container {
-    display: flex;
+    display: block;
     flex-direction: column;
+    margin-left: 120px;
+    margin-top: 0px;
 }
 
 .contact-us-container .img-container .text-container h1 {    
