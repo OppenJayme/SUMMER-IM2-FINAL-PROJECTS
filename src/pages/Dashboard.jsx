@@ -39,8 +39,7 @@ const Dashboard = () => {
                     onClick={handleSideNav}
                 >
                         <div className="dashboard_sidebar_user">
-                            <h1>STOCKWISE</h1>
-                            <img src="img/logo.png" alt="" />
+                            <img src={logoimg} alt="logo.png" />
                         </div>
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
@@ -56,7 +55,7 @@ const Dashboard = () => {
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                </div>
 
                     <div className="dashboard_content_container">
                         <div className="dashboard_topNav">
@@ -65,33 +64,12 @@ const Dashboard = () => {
                             </div>
                             <button className="logoutBtn" onClick={handleShowModal}>
                                 <ion-icon name="power"></ion-icon>Log-out</button>
+                        </div>        
                         <div className="dashboard_content">
-                            <h1 className="addproductheader">
-                                <ion-icon className="addprodicon" name="add-sharp"></ion-icon>Add Products
-                            </h1>
-                            <div id="formModal" className="form-modal">
-                                <form id="productForm" action="/dashboard/addProduct" method="POST" enctype="multipart/form-data">
-                                    <label htmlFor="itemName">Item Name:</label>
-                                    <input type="text" id="itemName" name="itemName" required />
-
-                                    <label htmlFor="price">Price:</label>
-                                    <input type="number" id="price" name="price" required />
-
-                                    <label htmlFor="quantity">Quantity:</label>
-                                    <input type="number" id="quantity" name="quantity" required />
-
-                                    <label htmlFor="supplier">Supplier:</label>
-                                    <input type="text" id="supplier" name="supplier" required />
-
-                                    <label htmlFor="itemPicture">Image:</label>
-                                    <input type="file" id="itemPicture" name="itemPicture" accept="image/*" required />
-
-                                    <button type="submit">Add Product</button>
-                                </form>
-                            </div>
+                                                        
                         </div>
                     </div>
-                </div>
+                
             </div>
             {showLogoutModal && (
                 <LogOut handleCancel={handleCancelLogout} handleConfirm={handleConfirmLogout} />
