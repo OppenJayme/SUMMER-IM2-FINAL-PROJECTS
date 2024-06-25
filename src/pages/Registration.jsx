@@ -50,7 +50,7 @@ const Register = () => {
               lname: lastName,
               employeeemail: email,
               employeecontact: contactNumber,
-              employeePassword: password,
+              employeepassword: password,
               companyid: companyID},
           ])
           .select()
