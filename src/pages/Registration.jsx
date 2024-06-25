@@ -68,7 +68,7 @@ const Register = () => {
         } catch (err) {
           if (err.message.includes("Email rate limit exceeded")) {
             setAttempts(attempts => attempts + 1);
-            const backoffTime = Math.pow(2, attempts) * 1000; // Exponential backoff
+            const backoffTime = Math.pow(2, attempts) * 1000;
             console.log(`Retrying signup in ${backoffTime / 1000} seconds...`);
             await delay(backoffTime);
         } else {
