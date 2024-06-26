@@ -8,6 +8,7 @@ import Register from "./pages/Registration"
 import Dashboard from "./pages/Dashboard";
 import CompReg from "./pages/CompanyRegister"
 import Items from "./pages/Items"
+import Transactions from "./pages/Transaction";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/dashboard" element = {<Dashboard/>} />
                 <Route path="/companyregister" element = {<CompReg/>} /> 
                 <Route path="/items" element = {<Items/>} />
+                <Route path="/transactions" element = {<Transactions/>} />
     </Routes>
     </Router>
   );

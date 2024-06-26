@@ -1,11 +1,12 @@
 import SideNav from "../components/SideNav";
 
-const Items = () => {
+const Transactions = () => {
     return (
         <>
         <SideNav/>
-         <h1>Items</h1>
+         <h1>Transaction</h1>
         </>
     )
 }
-export default  Items;
+
+export default Transactions;
