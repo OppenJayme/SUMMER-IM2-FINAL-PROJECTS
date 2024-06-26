@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Patua+One&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+}
+
 .logout-overlay {
     position: fixed;
     top: 0;
@@ -13,9 +20,9 @@
 
 .logout-modal {
     background-color: white;
-    padding: 20px;
+    padding: 50px 10px;
     border-radius: 10px;
-    width: 300px;
+    width: 500px;
     text-align: center;
 }
 
@@ -31,19 +38,26 @@
 
 .logout-buttons button {
     margin: 0 10px;
-    padding: 10px 20px;
+    padding: 20px 20px;
+    width: 50%;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .logout-confirm {
-    background-color: #FF6347; /* Red color for confirmation */
-    color: white;
+    background-color: #ddd; 
     border: none;
+}
+.logout-confirm:hover {
+    background-color: #e83616; 
+    color: white;
 }
 
 .logout-cancel {
-    background-color: #ddd; /* Light gray for cancellation */
+    background-color: #ddd;
     color: black;
     border: none;
+}
+.logout-cancel:hover {
+    background-color: #B998FF;
 }
