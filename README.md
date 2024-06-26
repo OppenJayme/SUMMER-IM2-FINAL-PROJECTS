@@ -1,7 +1,10 @@
 STARTING UP THE PROJECT
 
-INSTALL THESE
+INSTALL 
 
 npm install
-npm install @supabase/supabase-js
-npm install bootstrap-icons
+
+TO START
+
+npm start 
+
