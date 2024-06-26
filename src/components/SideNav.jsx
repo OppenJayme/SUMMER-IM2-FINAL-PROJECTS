@@ -36,12 +36,12 @@ const SideNav = () => {
         <>
          <div className={`Main_container ${sidebarHidden ? 'sidebar-hidden' : ''}`}>
                 <div className={`dashboard_sidebar ${sidebarHidden ? 'hidden' : ''}`}
-                    id="dashboard_sidebar"
-                    onClick={handleSideNav}
-                >
+                    id="dashboard_sidebar" onClick={handleSideNav}>
+
                         <div className="dashboard_sidebar_user">
                             <img src={logoimg} alt="logo.png" />
                         </div>
+
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
                                 <Link to ="/dashboard">
@@ -81,15 +81,13 @@ const SideNav = () => {
                         </div>
 
                 </div>
-                        <div className="dashboard_topNav">
-                                <div className="Menu-Pop" onClick={handleSideNav}>
-                                    <ion-icon name="menu"></ion-icon>
-                                </div>
-                            </div>   
 
-                        <div className="sidebar-handler">
-                                
+                <div className="dashboard_topNav">
+                    <div className="Menu-Pop" onClick={handleSideNav}>
+                        <ion-icon name="menu"></ion-icon>
                     </div>
+                    <i class="bi bi-bell-fill"></i>
+                </div>   
             </div>
             {showLogoutModal && (
                 <LogOut handleCancel={handleCancelLogout} handleConfirm={handleConfirmLogout} />
