@@ -70,6 +70,10 @@ const Dashboard = () => {
                                 </li>
                             </ul>
                         </div>
+
+                        <div className="sidebar-handler">
+        
+                        </div>
                 </div>
 
                     <div className="dashboard_content_container">

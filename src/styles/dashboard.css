@@ -120,7 +120,7 @@
 }
 
 .sidebar-hidden .dashboard_content {
-    width: 1879px;
+    width: 100%;
 }
 
 .dashboard_content h1 {
@@ -141,16 +141,7 @@
 }
 
 .sidebar-hidden .dashboard_topNav {
-    
-    width: 1879px;
-}
-
-.Menu-Pop {
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    padding: 0 15px;
-    text-decoration: none;
+    width: 100%;
 }
 
 .dashboard_topNav a {
@@ -170,49 +161,6 @@
     z-index: 1000;
     top: 15px;
     backdrop-filter: blur(3px);
-}
-
-.form-modal label {
-    display: block;
-    margin-top: 10px;
-}
-
-.form-modal input {
-    width: 98.7%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.form-modal button {
-    margin-top: 25px;
-    padding: 10px 15px;
-    background-color: rgb(100, 33, 155);
-    height: 50px;
-    width: 100%;
-    font-size: 17px;
-    border-radius: 10px;
-    color: whitesmoke;
-    border: none;
-    cursor: pointer;
-}
-
-.form-modal button:hover {
-    color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: 0.5s;
-}
-
-.addproductheader {
-    margin: 0;
-    font-family: 'Permanent Marker', 'Anton', sans-serif;
-}
-
-.addprodicon {
-    padding-right: 5px;
-    font-size: 30px;
-    font-weight: 1000;
 }
 
 .logoutBtn{
