@@ -1,168 +1,27 @@
-.Main_container {
-    display: flex;
-    position: fixed;
-    left: 0;
-    width: 1919.5px;
-    height: 960px;
-    overflow: hidden;
-    padding: 0;
-    margin: 0;
-    top: 0;
-}
-
-.dashboard_sidebar {
-    width: 250px;
-    background: #B998FF;
-    height: 100vh;
-    position: fixed;
-    transition: width 0.3s ease-in-out;
-    z-index: 1;
-    border-right: solid black 3px;
-}
-
-.dashboard_sidebar.hidden {
-    width: 0;
-    overflow: hidden;
-}
-
-.dashboard_logo {
-    color: #000;
-    font-size: 50px;
-    text-align: center;
+.dashboard_content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     padding: 20px;
 }
 
-.dashboard_sidebar_user {
+.dashboard_box {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #000;
 }
 
-.dashboard_sidebar_user h1 {
-    margin: 10px 0 0 0;
-    font-family: 'Permanent Marker', 'Anton', sans-serif;
+.dashboard_box h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.dashboard_sidebar_user img {
-    width: 200px;
-    height: 200px;
-}
-
-.dashboard_menu_lists {
-    margin-top: 20px;
-    padding-left: 0;
-}
-
-.dashboard_menu_lists li {
-    padding: 15px;
-    text-transform: uppercase;
-    list-style-type: none;
-}
-
-.dashboard_menu_lists li a {
-    text-decoration: none;
-    font-size: 20px;
-    color: #000;
-}
-
-.dashboard_menu_lists li a i{
-    font-size: 20px;
-}
-
-.dashboard_menu_lists li:hover {
-    background: rgb(94, 69, 114);
-    color: whitesmoke;
-    transition: 0.5s all;
-    cursor: pointer;
-}
-
-.Menu_active {
-    background: rgb(91, 41, 132);
-    cursor: pointer;
-    border-top: 2.5px solid whitesmoke;
-    border-bottom: 2.5px solid whitesmoke;
-}
-
-.Menu_active a{
-    display: flex;
-    flex-direction: row;
-}
-
-.Menu_active i{
-    color: whitesmoke;
-    font-size: 20px;
-}
-
-
-.Menu_active_txt{
-    padding-left: 6px;
-    font-size: 20px;
-    color: whitesmoke;
-}
-
-.dashboard_content_container {
-    margin-top: -51.5vh;
-    width: 2000px;
-    background: white;
-    height: 100vh;
-    margin-left: 250px;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-
-.dashboard_topNav {
-    background: #b998ff85;
-    padding: 10px;
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: margin-left 0.3s ease-in-out;
-    z-index: 2;
-    margin-left: 250px;
-}
-
-.sidebar-hidden .dashboard_topNav {
-    margin-left: 0;
-    width: 100%;
-}
-
-.dashboard_topNav a {
-    color: rgb(255, 255, 255);
+.dashboard_box p {
     font-size: 18px;
-    padding: 0 15px;
-    text-decoration: none;
+    color: #555555;
 }
 
-.form-modal {
-    position: relative;
-    height: 450px;
-    background-color: #d8d8d88d;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    z-index: 1000;
-    top: 15px;
-    backdrop-filter: blur(3px);
-}
-
-.logoutBtn{
-    background: none;
-    border: none;
-    color: whitesmoke;
-}
-
-/* FOR DASHBOARD CONTENT */
-
-
-
-.box-container {
-    flex: 1 1 100%;
-}
-
-.dashboard_content .bottom-box {
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Pang format rani nako na code kay naa koy gi sulyan */

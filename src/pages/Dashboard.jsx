@@ -8,16 +8,26 @@ const Dashboard = () => {
     return (
         <>
             <SideNav/>
-                        <div className="dashboard_content">
-                            <TotalCategories/>
-                            <TotalEmployees/>
-                            <TotalItems/>
-                            <TotalSales/>
-                        <div className="bottom-box">
-                            <TotalMarketValue/>
-                            <TotalMarketRevenue/>
-                            </div>                              
-                        </div>
+            <div className="dashboard_content">
+            <div className="dashboard_box">
+                <TotalMarketValue />
+            </div>
+            <div className="dashboard_box">
+                <TotalCategories />
+            </div>
+            <div className="dashboard_box">
+                <TotalEmployees />
+            </div>
+            <div className="dashboard_box">
+                <TotalItems />
+            </div>
+            <div className="dashboard_box">
+                <TotalSales />
+            </div>
+            <div className="dashboard_box">
+                <TotalMarketRevenue />
+            </div>
+        </div>
         </>
     );
 };

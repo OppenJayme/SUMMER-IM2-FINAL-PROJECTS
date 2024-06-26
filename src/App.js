@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import CompReg from "./pages/CompanyRegister"
 import Items from "./pages/Items"
 import Transactions from "./pages/Transaction";
+import ActLogs from "./pages/ActivityLogs";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/companyregister" element = {<CompReg/>} /> 
                 <Route path="/items" element = {<Items/>} />
                 <Route path="/transactions" element = {<Transactions/>} />
+                <Route path = "/activitylogs" element = {<ActLogs/>} />
     </Routes>
     </Router>
   );

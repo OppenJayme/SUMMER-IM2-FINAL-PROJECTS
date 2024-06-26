@@ -1,9 +1,9 @@
 import logoimg from "../styles/images/logo.png"
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
-import "../styles/dashboard.css";
+import "../styles/sidenav.css";
 
 
 const SideNav = () => {
@@ -44,38 +44,38 @@ const SideNav = () => {
 
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
-                                <Link to ="/dashboard">
+                                <NavLink to ="/dashboard">
                                 <li className="Menu_active">
-                                    <div className="sidenav-menus">
+                                    <div>
                                     <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
                                     </div>
                                 </li>
-                                </Link>
-                                <Link to = "/items">
+                                </NavLink>
+                                <NavLink to = "/items">
                                 <li>
-                                    <div className="sidenav-menus">
+                                    <div>
                                     <i class="bi bi-box-seam-fill"></i> Items
                                     </div>
                                 </li>
-                                </Link>
-                                <Link to= "/transactions">                              
+                                </NavLink>
+                                <NavLink to= "/transactions">                              
                                 <li>
-                                <div className="sidenav-menus">
+                                <div>
                                     <i class="bi bi-bezier2"></i> Transaction
                                     </div>
                                 </li>
-                                </Link>  
-                                <Link to = "/activitylogs">
+                                </NavLink>  
+                                <NavLink to = "/activitylogs">
                                 <li>
-                                <div className="sidenav-menus">
+                                <div>
                                     <i class="bi bi-clipboard-check-fill"></i> Activity Logs
                                     </div>
                                 </li>
-                                </Link>
+                                </NavLink>
                                 <li>
-                                    <a href="" onClick={handleShowModal}>
+                                    <div onClick={handleShowModal}>
                                     <i class="bi bi-box-arrow-left"></i> Log-out
-                                    </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
