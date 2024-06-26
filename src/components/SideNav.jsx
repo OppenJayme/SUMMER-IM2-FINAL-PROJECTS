@@ -41,31 +41,32 @@ const SideNav = () => {
                         <div className="dashboard_sidebar_user">
                             <img src={logoimg} alt="logo.png" />
                         </div>
+                    
 
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
-                                <NavLink to ="/dashboard">
+                                <NavLink className="link" to ="/dashboard">
                                 <li className="Menu_active">
                                     <div>
                                     <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
                                     </div>
                                 </li>
                                 </NavLink>
-                                <NavLink to = "/items">
+                                <NavLink className="link" to = "/items">
                                 <li>
                                     <div>
                                     <i class="bi bi-box-seam-fill"></i> Items
                                     </div>
                                 </li>
                                 </NavLink>
-                                <NavLink to= "/transactions">                              
+                                <NavLink className="link" to= "/transactions">                              
                                 <li>
                                 <div>
                                     <i class="bi bi-bezier2"></i> Transaction
                                     </div>
                                 </li>
                                 </NavLink>  
-                                <NavLink to = "/activitylogs">
+                                <NavLink className="link" to = "/activitylogs">
                                 <li>
                                 <div>
                                     <i class="bi bi-clipboard-check-fill"></i> Activity Logs
@@ -79,13 +80,15 @@ const SideNav = () => {
                                 </li>
                             </ul>
                         </div>
+                </div>
 
+                <div className="sidebar-handler" onClick={handleSideNav}>
+                    <div className="left-half"></div>
+                    <div className="right-half"> <i class="bi bi-chevron-right"></i></div>    
                 </div>
 
                 <div className="dashboard_topNav">
-                    <div className="Menu-Pop" onClick={handleSideNav}>
-                        <ion-icon name="menu"></ion-icon>
-                    </div>
+                    <h1>OPPAI WARRIOR</h1>
                     <i class="bi bi-bell-fill"></i>
                 </div>   
             </div>

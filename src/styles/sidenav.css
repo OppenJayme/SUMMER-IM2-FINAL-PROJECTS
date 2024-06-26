@@ -21,7 +21,7 @@
 }
 
 .dashboard_sidebar.hidden {
-    width: 0;
+    width: 0.1%;
     overflow: hidden;
 }
 
@@ -38,14 +38,60 @@
     border-bottom: 1px solid #000;
 }
 
-.dashboard_sidebar_user h1 {
-    margin: 10px 0 0 0;
-    font-family: 'Permanent Marker', 'Anton', sans-serif;
-}
-
 .dashboard_sidebar_user img {
     width: 200px;
     height: 200px;
+}
+
+.sidebar-handler {
+    margin-top: 25%;
+    position: fixed;
+    width: 80px;
+    height: 90px;
+    border-radius: 50%;
+    margin-left: 207px;
+    transition: 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.left-half, .right-half {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+}
+
+.left-half {
+    left: 0;
+    border-radius: 50% 0 0 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right-half {
+    right: 0;
+    background-color: #B998FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid black; /* Adjust the border width and color as needed */
+    border-left: none;
+    border-radius: 0 50% 50% 0;
+}
+
+.bi-chevron-right {
+    font-size: 24px; /* Adjust icon size as needed */
+    color: black;
+}
+
+.sidebar-hidden .sidebar-handler{
+    margin-left: -40px;
+    position: fixed;
+}
+
+.sidebar-handler i{
+    font-size: 30px;
 }
 
 .dashboard_menu_lists {
@@ -67,6 +113,10 @@
 
 .dashboard_menu_lists li div i{
     font-size: 20px;
+}
+
+.link{
+    text-decoration: none;
 }
 
 .dashboard_menu_lists li:hover {
