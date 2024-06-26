@@ -4,6 +4,7 @@ import LogOut from "../components/LogOutCard";
 import "../styles/dashboard.css";
 import logoimg from "../styles/images/logo.png"
 import { TotalMarketValue, TotalCategories, TotalEmployees, TotalItems, TotalMarketRevenue, TotalSales} from "../components/DashboardComps";
+import { Link } from "react-router-dom";
 
 
 const Dashboard = () => {
@@ -50,13 +51,15 @@ const Dashboard = () => {
                                     <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
                                     </a>
                                 </li>
+                                <Link to = "/items">
                                 <li>
-                                    <a href="/report">
+                                    <div className="sidenav-menus">
                                     <i class="bi bi-box-seam-fill"></i> Items
-                                    </a>
+                                    </div>
                                 </li>
+                                </Link>
                                 <li>
-                                    <a href="">
+                                    <a href="/items">
                                     <i class="bi bi-bezier2"></i> Transaction
                                     </a>
                                 </li>

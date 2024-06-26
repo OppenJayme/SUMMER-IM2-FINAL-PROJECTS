@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Registration"
 import Dashboard from "./pages/Dashboard";
 import CompReg from "./pages/CompanyRegister"
+import Items from "./pages/Items"
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/registration"  element = {<Register/>}/>
                 <Route path="/dashboard" element = {<Dashboard/>} />
                 <Route path="/companyregister" element = {<CompReg/>} /> 
+                <Route path="/items" element = {<Items/>} />
     </Routes>
     </Router>
   );
