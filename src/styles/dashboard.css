@@ -124,7 +124,7 @@
 }
 
 .dashboard_content h1 {
-    color: whitesmoke;
+    color: rgb(2, 2, 2);
     font-weight: 300;
 }
 
@@ -220,3 +220,21 @@
     border: none;
     color: whitesmoke;
 }
+
+/* FOR DASHBOARD CONTENT */
+
+
+
+.dashboard_content_container {
+    padding: 10px;
+}
+
+.box-container {
+    flex: 1 1 100%;
+}
+
+.dashboard_content .bottom-box {
+    flex-direction: column;
+    align-items: center;
+}
+

@@ -3,6 +3,8 @@ import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
 import "../styles/dashboard.css";
 import logoimg from "../styles/images/logo.png"
+import { TotalMarketValue, TotalCategories, TotalEmployees, TotalItems, TotalMarketRevenue, TotalSales} from "../components/DashboardComps";
+
 
 const Dashboard = () => {
     const [sidebarHidden, setSidebarHidden] = useState(false);
@@ -79,7 +81,14 @@ const Dashboard = () => {
                             </div>
                         </div>        
                         <div className="dashboard_content">
-                                                        
+                            <TotalCategories/>
+                            <TotalEmployees/>
+                            <TotalItems/>
+                            <TotalSales/>
+                        <div className="bottom-box">
+                            <TotalMarketValue/>
+                            <TotalMarketRevenue/>
+                        </div>                              
                         </div>
                     </div>
             </div>
