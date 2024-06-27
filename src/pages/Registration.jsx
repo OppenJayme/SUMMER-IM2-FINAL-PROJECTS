@@ -36,73 +36,71 @@ const Register = () => {
 
         if (attempts < maxRetries && !success) {
           try {
-              //Email verification checker
-              const {data: existingEmployee, error: errorCheck} = await supabase
-              .from('employee_t')
-              .select('employeeemail')
-              .eq('employeeemail', email);
-
-
-              if (errorCheck) {
-                throw errorCheck;
-              }
-
-              //If user already exists
-              if(existingEmployee && existingEmployee.length > 0) {
-                console.error('Email is already used');
-                alert('This email has already been used');
-                return;
-              } else {
-                //if user doesn't exist, insert new user into the database
-                const hashedPassword = await bcrypt.hash(password, 10)
-                
-                
-                const { user, error: authError } = await supabase.auth.signUp({
-                  email: email,
-                  password: password,
-              });
-                  const { data, error } = await supabase
-                    .from('employee_t')
-                    .insert([
-                    {  fname: firstName,
-                        lname: lastName,
-                        employeeemail: email,
-                        employeecontact: contactNumber,
-                        employeepassword: hashedPassword,
-                        companyid: companyID},
-                    ])
-                    .single();
-
-                    if (error) {
-                      setError('An error has occured. Please try again');
-                      throw error;
-                  } 
+            const hashedPassword = await bcrypt.hash(password, 10);
+            //Email verification checker
+            const {data: existingEmployee, error: errorCheck} = await supabase
+            .from('employee_t')
+            .select('employeeemail')
+            .eq('employeeemail', email);
             
-                if (authError || !user) {
-                  console.error('Error signing up user:', authError);
-                  await supabase
-                  .from('employee_t')
-                    .delete()
-                    .eq('employeeemail', email);
+            
+            if (errorCheck) {
+              throw errorCheck;
+            }
+            
+            //If user already exists
+            if(existingEmployee && existingEmployee.length > 0) {
+              console.error('Email is already used');
+              alert('This email has already been used');
+              return;
+            } else {
+              const { user, error: authError } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+            });
 
-                  throw authError || new Error('User not created');
+            if (authError || !user) {
+                console.error('Error signing up user:', authError);
+                throw authError || new Error('User not created');
+            }
+              
+              // Insert user data into employee_t table
+              const { data: insertData, error: insertError } = await supabase
+              .from('employee_t')
+              .insert([
+                {
+                  fname: firstName,
+                  lname: lastName,
+                  employeeemail: email,
+                  employeecontact: contactNumber,
+                  employeepassword: hashedPassword,
+                  companyid: companyID,
+                },
+              ])
+              .single();
+              
+              if (insertError) {
+                setError('An error has occurred. Please try again');
+                console.error('Error inserting user data:', insertError);
+                throw insertError;
               }
+              
+            // Update auth_uid in employee_t table
+            // const { data: uidData, error: uidError } = await supabase
+            //     .from('employee_t')
+            //     .update({ auth_uid: user.id })
+            //     .eq('employeeemail', email)
+            //     .single();
 
-                const { data: uidData, error: uidError } = await supabase
-                .from('employee_t')
-                .update({ auth_uid: user.id })
-                .eq('employeeemail', email)
-                .single();
+            // if (uidError) {
+            //     console.error('Error updating employee record:', uidError);
+            //     throw uidError;
+            // }
 
-                if (uidError && !uidData) {
-                  console.error('Error updating employee record:', uidError);
-                  throw uidError;
-              }
-                 else {
-                  setError('');
-                console.log('user registered succesfully', data)
-                navigate('/login');
-                }
+            // Successful registration
+            setError('');
+            console.log('User registered successfully', insertData);
+            navigate('/login');
               
               }
 
