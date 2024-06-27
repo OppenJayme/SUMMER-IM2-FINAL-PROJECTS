@@ -35,35 +35,55 @@ const Register = () => {
 
         if (attempts < maxRetries && !success) {
           try {
-            const { data: authData, error: authError } = await supabase.auth.signUp({
-              email: email,
-              password: password,
-          });
-          if (authError && !authData) {
-            throw authError;
-          }
+              //Email verification checker
+              const {data: existingEmployee, error: errorCheck} = await supabase
+              .from('employee_t')
+              .select('employeeemail')
+              .eq('employeeemail', email);
 
-          const { data, error } = await supabase
-          .from('employee_t')
-          .insert([
-          {  fname: firstName,
-              lname: lastName,
-              employeeemail: email,
-              employeecontact: contactNumber,
-              employeepassword: password,
-              companyid: companyID},
-          ])
-          .select()
-  
-          
-          if (error) {
-              setError('An error has occured. Please try again');
-              console.log(error)
-          } else {
-              setError('');
-              console.log('user registered succesfully', data)
-              navigate('/login');
-          }
+
+              if (errorCheck) {
+                throw errorCheck;
+              }
+
+              //If user already exists
+              if(existingEmployee && existingEmployee.length > 0) {
+                console.error('Email is already used');
+                alert('This email has already been used');
+                return;
+              } else {
+                  //if user doesn't exist, insert new user into the database
+                  const { data: authData, error: authError } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                });
+                if (authError && !authData) {
+                  throw authError;
+                }
+      
+                const { data, error } = await supabase
+                .from('employee_t')
+                .insert([
+                {  fname: firstName,
+                    lname: lastName,
+                    employeeemail: email,
+                    employeecontact: contactNumber,
+                    employeepassword: password,
+                    companyid: companyID},
+                ])
+                .select()
+        
+                
+                if (error) {
+                    setError('An error has occured. Please try again');
+                    console.log(error)
+                } else {
+                    setError('');
+                    console.log('user registered succesfully', data)
+                    navigate('/login');
+                }
+    
+              }
 
         } catch (err) {
           if (err.message.includes("Email rate limit exceeded")) {
