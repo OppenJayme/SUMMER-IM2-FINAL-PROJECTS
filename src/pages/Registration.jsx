@@ -7,6 +7,7 @@ import fourthImg from '../styles/images/Reitz.PNG';
 import logoimg from "../styles/images/logo.png"
 import '../styles/registration.css'
 import supabase from '../client/database';
+import bcrypt from 'bcryptjs';
 import {  useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
@@ -32,6 +33,7 @@ const Register = () => {
 
         const maxRetries = 5;
         let success = false;
+        const hashedPassword = await bcrypt.hash(password, 10)
 
         if (attempts < maxRetries && !success) {
           try {
@@ -53,36 +55,44 @@ const Register = () => {
                 return;
               } else {
                   //if user doesn't exist, insert new user into the database
+                    const { data, error } = await supabase
+                    .from('employee_t')
+                    .insert([
+                    {  fname: firstName,
+                        lname: lastName,
+                        employeeemail: email,
+                        employeecontact: contactNumber,
+                        employeepassword: hashedPassword,
+                        companyid: companyID},
+                    ])
+                    .select()
+
+                    if (error) {
+                      setError('An error has occured. Please try again');
+                      console.log(error)
+                  } 
+            
                   const { data: authData, error: authError } = await supabase.auth.signUp({
                     email: email,
                     password: password,
                 });
                 if (authError && !authData) {
+                  await supabase
+                    .from('employee_t')
+                    .delete()
+                    .eq('employeeemail', email);
+
                   throw authError;
+
                 }
       
-                const { data, error } = await supabase
-                .from('employee_t')
-                .insert([
-                {  fname: firstName,
-                    lname: lastName,
-                    employeeemail: email,
-                    employeecontact: contactNumber,
-                    employeepassword: password,
-                    companyid: companyID},
-                ])
-                .select()
-        
                 
-                if (error) {
-                    setError('An error has occured. Please try again');
-                    console.log(error)
-                } else {
-                    setError('');
-                    console.log('user registered succesfully', data)
-                    navigate('/login');
-                }
-    
+
+
+                setError('');
+                console.log('user registered succesfully', data)
+                navigate('/login');
+              
               }
 
         } catch (err) {
@@ -101,7 +111,6 @@ const Register = () => {
     if (!success) {
       setError('Registration Error due to rate limit. Please try again later.');
   }
-
        
 };
 
