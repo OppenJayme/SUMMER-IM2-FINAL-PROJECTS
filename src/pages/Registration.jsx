@@ -85,10 +85,6 @@ const Register = () => {
                   throw authError;
 
                 }
-      
-                
-
-
                 setError('');
                 console.log('user registered succesfully', data)
                 navigate('/login');
