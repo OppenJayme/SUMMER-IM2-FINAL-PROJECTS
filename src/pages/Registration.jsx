@@ -7,6 +7,7 @@ import fourthImg from '../styles/images/Reitz.PNG';
 import logoimg from "../styles/images/logo.png"
 import '../styles/registration.css'
 import supabase from '../client/database';
+import bcrypt from 'bcryptjs';
 import {  useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
@@ -35,35 +36,75 @@ const Register = () => {
 
         if (attempts < maxRetries && !success) {
           try {
-            const { data: authData, error: authError } = await supabase.auth.signUp({
-              email: email,
-              password: password,
-          });
-          if (authError && !authData) {
-            throw authError;
-          }
+              //Email verification checker
+              const {data: existingEmployee, error: errorCheck} = await supabase
+              .from('employee_t')
+              .select('employeeemail')
+              .eq('employeeemail', email);
 
-          const { data, error } = await supabase
-          .from('employee_t')
-          .insert([
-          {  fname: firstName,
-              lname: lastName,
-              employeeemail: email,
-              employeecontact: contactNumber,
-              employeepassword: password,
-              companyid: companyID},
-          ])
-          .select()
-  
-          
-          if (error) {
-              setError('An error has occured. Please try again');
-              console.log(error)
-          } else {
-              setError('');
-              console.log('user registered succesfully', data)
-              navigate('/login');
-          }
+
+              if (errorCheck) {
+                throw errorCheck;
+              }
+
+              //If user already exists
+              if(existingEmployee && existingEmployee.length > 0) {
+                console.error('Email is already used');
+                alert('This email has already been used');
+                return;
+              } else {
+                //if user doesn't exist, insert new user into the database
+                const hashedPassword = await bcrypt.hash(password, 10)
+                
+                
+                const { user, error: authError } = await supabase.auth.signUp({
+                  email: email,
+                  password: password,
+              });
+                  const { data, error } = await supabase
+                    .from('employee_t')
+                    .insert([
+                    {  fname: firstName,
+                        lname: lastName,
+                        employeeemail: email,
+                        employeecontact: contactNumber,
+                        employeepassword: hashedPassword,
+                        companyid: companyID},
+                    ])
+                    .single();
+
+                    if (error) {
+                      setError('An error has occured. Please try again');
+                      throw error;
+                  } 
+            
+                if (authError || !user) {
+                  console.error('Error signing up user:', authError);
+                  await supabase
+                  .from('employee_t')
+                    .delete()
+                    .eq('employeeemail', email);
+
+                  throw authError || new Error('User not created');
+              }
+
+                const { data: uidData, error: uidError } = await supabase
+                .from('employee_t')
+                .update({ auth_uid: user.id })
+                .eq('employeeemail', email)
+                .single();
+
+                if (uidError && !uidData) {
+                  console.error('Error updating employee record:', uidError);
+                  throw uidError;
+              }
+                 else {
+                  setError('');
+                console.log('user registered succesfully', data)
+                navigate('/login');
+                }
+              
+              }
 
         } catch (err) {
           if (err.message.includes("Email rate limit exceeded")) {
@@ -81,7 +122,6 @@ const Register = () => {
     if (!success) {
       setError('Registration Error due to rate limit. Please try again later.');
   }
-
        
 };
 

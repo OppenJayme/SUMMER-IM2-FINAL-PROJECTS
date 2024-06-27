@@ -1,6 +1,6 @@
 import logoimg from "../styles/images/logo.png"
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
 import "../styles/sidenav.css";
@@ -9,6 +9,7 @@ import "../styles/sidenav.css";
 const SideNav = () => {
     const [sidebarHidden, setSidebarHidden] = useState(false);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [companyName, setCompanyName] = useState('');
 
     const handleSideNav = (e) => {
         e.preventDefault();
