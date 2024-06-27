@@ -7,7 +7,6 @@ import fourthImg from '../styles/images/Reitz.PNG';
 import logoimg from "../styles/images/logo.png"
 import '../styles/registration.css'
 import supabase from '../client/database';
-import bcrypt from 'bcryptjs';
 import {  useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
@@ -29,99 +28,87 @@ const Register = () => {
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
     const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const maxRetries = 5;
-        let success = false;
-
-        if (attempts < maxRetries && !success) {
-          try {
-            const hashedPassword = await bcrypt.hash(password, 10);
-            //Email verification checker
-            const {data: existingEmployee, error: errorCheck} = await supabase
+      e.preventDefault();
+      const maxRetries = 5;
+      let success = false;
+  
+      if (attempts < maxRetries && !success) {
+        try {
+          
+          // Email verification checker
+          const { data: existingEmployee, error: errorCheck } = await supabase
             .from('employee_t')
             .select('employeeemail')
             .eq('employeeemail', email);
-            
-            
-            if (errorCheck) {
-              throw errorCheck;
-            }
-            
-            //If user already exists
-            if(existingEmployee && existingEmployee.length > 0) {
-              console.error('Email is already used');
-              alert('This email has already been used');
-              return;
-            } else {
-              const { user, error: authError } = await supabase.auth.signUp({
-                email: email,
-                password: password,
-            });
+          
+          if (errorCheck) {
+            throw errorCheck;
+          }
+          
+          // If user already exists
+          if (existingEmployee && existingEmployee.length > 0) {
+            console.error('Email is already used');
+            alert('This email has already been used');
+            return;
+          }
+  
+          // Sign up user in Auth
+          const { user, error: authError } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+          });
+  
+          if (authError && !user) {
+            console.error('Error signing up user:', authError);
+            throw authError || new Error('User not created');
+          }
+          
 
-            if (authError || !user) {
-                console.error('Error signing up user:', authError);
-                throw authError || new Error('User not created');
-            }
-              
-              // Insert user data into employee_t table
-              const { data: insertData, error: insertError } = await supabase
-              .from('employee_t')
-              .insert([
-                {
-                  fname: firstName,
-                  lname: lastName,
-                  employeeemail: email,
-                  employeecontact: contactNumber,
-                  employeepassword: hashedPassword,
-                  companyid: companyID,
-                },
-              ])
-              .single();
-              
-              if (insertError) {
-                setError('An error has occurred. Please try again');
-                console.error('Error inserting user data:', insertError);
-                throw insertError;
-              }
-              
-            // Update auth_uid in employee_t table
-            // const { data: uidData, error: uidError } = await supabase
-            //     .from('employee_t')
-            //     .update({ auth_uid: user.id })
-            //     .eq('employeeemail', email)
-            //     .single();
-
-            // if (uidError) {
-            //     console.error('Error updating employee record:', uidError);
-            //     throw uidError;
-            // }
-
-            // Successful registration
-            setError('');
-            console.log('User registered successfully', insertData);
-            navigate('/login');
-              
-              }
-
+          // Insert user into the employee table
+          const { data: insertData, error: insertError } = await supabase
+            .from('employee_t')
+            .insert([
+              {
+                fname: firstName,
+                lname: lastName,
+                employeeemail: email,
+                employeecontact: contactNumber,
+                employeepassword: password,
+                companyid: companyID
+              },
+            ])
+            .single();
+  
+          if (insertError) {
+            console.error('Error inserting user data:', insertError);
+            setError('Error registering user')
+            throw insertError;
+          }
+  
+          setError('');
+          console.log('User registered successfully', insertData);
+          navigate('/login');
+          success = true;
+  
         } catch (err) {
           if (err.message.includes("Email rate limit exceeded")) {
-            setAttempts(attempts => attempts + 1);
-            const backoffTime = Math.pow(2, attempts) * 1000;
-            console.log(`Retrying signup in ${backoffTime / 1000} seconds...`);
-            await delay(backoffTime);
+          setAttempts(prevAttempts => prevAttempts + 1);
+          const backoffTime = Math.pow(2, attempts) * 1000;
+          console.log(`Retrying signup in ${backoffTime / 1000} seconds...`);
+          setError(`Too many requests. Retrying signup in ${backoffTime / 1000} seconds...`);
+          await delay(backoffTime);
         } else {
-            setError('Registration Error, Try again');
-            console.log(err);
-            return;
+          setError('Registration Error, Try again');
+          return;
         }
-          }
+      }
     }
-    if (!success) {
-      setError('Registration Error due to rate limit. Please try again later.');
-  }
-       
-};
+  
+      if (!success) {
+        setError('Registration Error due to rate limit. Please try again later.');
+      }
+    };
+  
 
     return (
       <>

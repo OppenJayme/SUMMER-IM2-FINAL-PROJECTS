@@ -17,35 +17,44 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    try {
+      const { user, error: authError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    const {data: authData, error: authError} = await supabase.auth.signInWithPassword({
-      email , 
-      password,
-    });
+      if (authError) {
+        setError('Authentication Error, please check your credentials and try again.');
+        console.error('Authentication error:', authError);
+        return;
+      }
 
-    if (authError && !authData) {
-      setError('Authentication Error, Try again')
-      console.log(authError);
-      return;
+      // If authentication is successful, proceed to fetch user data or other actions
+      console.log("User logged in successfully:", user);
+
+      // Example: Fetch additional user data if needed
+      const { data: userData, error: userError } = await supabase
+        .from('employee_t')
+        .select('*')
+        .eq('employeeemail', email)
+        .single();
+
+      if (userError || !userData) {
+        setError('User data not found');
+        console.error('User data error:', userError);
+        return;
+      }
+
+      console.log("User data fetched successfully:", userData);
+
+      // Redirect to the dashboard after successful login
+      navigate("/dashboard");
+
+    } catch (err) {
+      console.error('Login error:', err.message);
+      setError('Login failed, please try again later.');
     }
-
-    const {data: userData, error: userError} = await supabase 
-    .from('employee_t')
-    .select('*')
-    .eq('employeeemail', email)
-    .single();
-
-    if(userError || !userData) {
-      setError('User not found');
-      console.log(userError);
-      await supabase.auth.signOut();
-      return;
-    }
-
-    console.log("User logged in succesfully");
-    navigate("/dashboard");
   };
-
 
 
     return (

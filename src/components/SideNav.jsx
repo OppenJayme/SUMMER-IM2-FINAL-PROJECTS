@@ -11,6 +11,46 @@ const SideNav = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [companyName, setCompanyName] = useState('');
 
+    useEffect(() => {
+        const getCompanyName = async () => {
+            try {
+                const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+                if (sessionError) throw sessionError;
+
+                const user = sessionData?.session?.user;
+                console.log('User:', user);
+
+                if (user) {
+                    const { data: employeeData, error: employeeError } = await supabase
+                        .from('employee_t')
+                        .select('companyid')
+                        .eq('employeeemail', user.email)
+                        .single();
+                    if (employeeError) throw employeeError;
+                    console.log('Employee Data:', employeeData);
+
+                    const companyID = employeeData.companyid;
+
+                    const { data: companyData, error: companyError } = await supabase
+                        .from('company_t')
+                        .select('companyname')
+                        .eq('companyid', companyID)
+                        .single();
+                    if (companyError) throw companyError;
+                    console.log('Company Data:', companyData);
+
+                    setCompanyName(companyData.companyname);
+                } else {
+                    console.log('No active user session found');
+                }
+            } catch (error) {
+                console.error('Error:', error.message);
+            }
+        };
+
+        getCompanyName();
+    }, []);
+
     const handleSideNav = (e) => {
         e.preventDefault();
         setSidebarHidden(!sidebarHidden);
@@ -85,7 +125,7 @@ const SideNav = () => {
                 </div>
 
                 <div className="dashboard_topNav">
-                    <h1>OPPAI WARRIOR</h1>
+                    <h1>{companyName}</h1>
                 </div>   
             </div>
             {showLogoutModal && (
