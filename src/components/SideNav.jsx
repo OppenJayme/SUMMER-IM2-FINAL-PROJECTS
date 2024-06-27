@@ -36,49 +36,45 @@ const SideNav = () => {
     return (
         <>
          <div className={`Main_container ${sidebarHidden ? 'sidebar-hidden' : ''}`}>
+
                 <div className={`dashboard_sidebar ${sidebarHidden ? 'hidden' : ''}`}
                     id="dashboard_sidebar" onClick={handleSideNav}>
 
                         <div className="dashboard_sidebar_user">
-                            <img src={logoimg} alt="logo.png" />
+                            <div className="logo-container">
+                                <img src={logoimg} alt="logo.png" />
+                            </div>
+                            <div className="edit-icon">
+                                <i class="bi bi-pencil-square"></i>
+                            </div>
                         </div>
                     
 
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
                                 <NavLink className="link" to ="/dashboard">
-                                <li className="Menu_active">
-                                    <div>
-                                    <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
-                                    </div>
-                                </li>
+                                    <li className="Menu_active"><div>
+                                        <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
+                                    </div></li>
                                 </NavLink>
                                 <NavLink className="link" to = "/items">
-                                <li>
-                                    <div>
-                                    <i class="bi bi-box-seam-fill"></i> Items
-                                    </div>
-                                </li>
+                                    <li><div>
+                                        <i class="bi bi-box-seam-fill"></i> Items
+                                    </div></li>
                                 </NavLink>
                                 <NavLink className="link" to= "/transactions">                              
-                                <li>
-                                <div>
-                                    <i class="bi bi-bezier2"></i> Transaction
-                                    </div>
-                                </li>
+                                    <li><div>
+                                        <i class="bi bi-bezier2"></i> Transaction
+                                    </div></li>
                                 </NavLink>  
                                 <NavLink className="link" to = "/activitylogs">
-                                <li>
-                                <div>
-                                    <i class="bi bi-clipboard-check-fill"></i> Activity Logs
-                                    </div>
-                                </li>
+                                    <li><div>
+                                        <i class="bi bi-clipboard-check-fill"></i> Activity Logs
+                                    </div></li>
                                 </NavLink>
-                                <li>
-                                    <div onClick={handleShowModal}>
-                                    <i class="bi bi-box-arrow-left"></i> Log-out
-                                    </div>
-                                </li>
+                                    <li><div onClick={handleShowModal}>
+                                        <i class="bi bi-box-arrow-left"></i> Log-out
+                                    </div></li>
                             </ul>
                         </div>
                 </div>
@@ -90,7 +86,6 @@ const SideNav = () => {
 
                 <div className="dashboard_topNav">
                     <h1>OPPAI WARRIOR</h1>
-                    <i class="bi bi-bell-fill"></i>
                 </div>   
             </div>
             {showLogoutModal && (
