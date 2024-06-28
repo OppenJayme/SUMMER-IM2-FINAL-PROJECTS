@@ -24,7 +24,7 @@ const SideNav = () => {
                     const { data: employeeData, error: employeeError } = await supabase
                         .from('employee_t')
                         .select('companyid')
-                        .eq('employeeemail', user.email)
+                        .eq('employeeemail', user.email) 
                         .single();
                     if (employeeError) throw employeeError;
                     console.log('Employee Data:', employeeData);

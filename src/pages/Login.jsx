@@ -24,15 +24,17 @@ const Login = () => {
       });
 
       if (authError) {
-        setError('Authentication Error, please check your credentials and try again.');
+        if (authError.message === "Email not confirmed") {
+          setError('Email not verified. Please Confirm your email before logging in');
+        } else {  
+          setError('Password does not match , please check your credentials and try again.');
+        }
         console.error('Authentication error:', authError);
         return;
       }
 
-      // If authentication is successful, proceed to fetch user data or other actions
       console.log("User logged in successfully:", user);
 
-      // Example: Fetch additional user data if needed
       const { data: userData, error: userError } = await supabase
         .from('employee_t')
         .select('*')
@@ -47,7 +49,6 @@ const Login = () => {
 
       console.log("User data fetched successfully:", userData);
 
-      // Redirect to the dashboard after successful login
       navigate("/dashboard");
 
     } catch (err) {
@@ -78,7 +79,7 @@ const Login = () => {
         <div class="login">
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
-        {error && <p>{error}</p>}
+        {error && <p className='error-msg'>{error}</p>}
           <div class="input-container">
             <i class="bi bi-envelope"></i>
             <input class="input-login"  

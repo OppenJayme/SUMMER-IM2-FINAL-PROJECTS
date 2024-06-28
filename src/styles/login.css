@@ -89,3 +89,7 @@
     left: 100%;
     position: fixed;
 }
+
+form .error-msg {
+    color: red;
+}
