@@ -1,5 +1,4 @@
 import "../styles/dashboard.css";
-import { TotalMarketValue, TotalCategories, TotalEmployees, TotalItems, TotalMarketRevenue, TotalSales} from "../components/DashboardComps";
 import SideNav from "../components/SideNav";
 
 
