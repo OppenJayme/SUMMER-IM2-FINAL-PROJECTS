@@ -6,7 +6,6 @@ import supabase from "../client/database";
 const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
     const [totalEmployees, setTotalEmployees] = useState(0);
-    const [totalSales, setTotalSales] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
     const [totalMarketValue, setMarketValue] = useState(0);
     const [totalMarketRevenue, setMarketRevenue] = useState(0);
@@ -14,34 +13,62 @@ const Dashboard = () => {
 
     useEffect(() => {
         const fetchData = async() => {
-            const {data: sessionData, error:sessionError} = await supabase.auth.getSession();
-            if(sessionError) {
-                console.error(sessionError);
+            try {
+                const {data: sessionData, error:sessionError} = await supabase.auth.getSession();
+                if(sessionError) {
+                    console.error(sessionError);
+                }
+    
+                const user = sessionData?.session.user;
+                console.log('User:', user);
+    
+                if (user) {
+                    const {data: employeeData, error: employeeError } = await supabase
+                    .from('employee_t')
+                    .select('companyid')
+                    .eq('employeeemail', user.email)
+                    .single();
+    
+                    if(employeeError) throw employeeError;
+                    
+                    const companyID = employeeData.companyid;
+    
+                    const {data: inventoryData, error:inventoryError } = await supabase
+                    .from('inventory_t')
+                    .select('*,  product_T (product_name, category, product_quantity, product_price)')
+                    .eq('companyid', companyID)
+    
+                    if(inventoryError) throw inventoryError;
+                    const totalSales = inventoryData.reduce((acc, item) => acc + item.productSale);
+                    setMarketRevenue(totalSales);
+    
+                    const productData = inventoryData.map(item=> item.product_t);
+    
+                    const totalItems = productData.reduce((acc, product) => acc + product.product_quantity, 0);
+                    setTotalItems(totalItems);
+    
+                    const totalMarketValue = productData.reduce((acc, product) => acc + (product.product_quantity * product.product_price), 0);
+                    setMarketValue(totalMarketValue);
+    
+                        // Calculate totalCategories from productData
+                    const categories = new Set(productData.map(product => product.category));
+                    setTotalCategories(categories.size);
+    
+                    const {data: allEmployeeData, error: allEmployeeError} = await supabase
+                    .from('employee_t')
+                    .select('*')
+                    .eq('companyid', companyID);
+    
+                    if(allEmployeeError) throw allEmployeeError;
+    
+                    setTotalEmployees(allEmployeeData.length);
+                     }
+                 } catch (err) {
+                console.error('Error fetching data:', err);
+                setError('Failed to fetch data. Please try again');
             }
-
-            const user = sessionData?.session.user;
-            console.log('User:', user);
-
-            if (user) {
-                const {data: employeeData, error: employeeError } = await supabase
-                .from('employee_t')
-                .select('companyid')
-                .eq('employeeemail', user.email)
-                .single();
-
-                if(employeeError) throw employeeError;
-                
-                const companyID = employeeData.companyid;
-
-                const {data: inventoryData, error:inventoryError } = await supabase
-                .from('inventory_t')
-                .select('*')
-                .eq('companyid', companyID)
-
-                if(inventoryError) throw inventoryError;
-
-        }
-    }
+        };
+        fetchData();
 }, []);
 
 
@@ -57,21 +84,20 @@ const Dashboard = () => {
                                 <div className="dashboard_box">
                                     <h1>TotalCategories</h1>
                                     <img src={firstImg} alt="" />
+                                    <p>{totalCategories}</p>
                                 </div>
 
                                 <div className="dashboard_box">
                                     <h1>TotalEmployees</h1>
                                     <img src={firstImg} alt="" />
+                                    <p>{totalEmployees}</p>
                                 </div>
 
-                                <div className="dashboard_box">
-                                    <h1>TotalSales</h1>
-                                    <img src={firstImg} alt="" />
-                                </div>
 
                                 <div className="dashboard_box">
                                     <h1>TotalItems</h1>
                                     <img src={firstImg} alt="" />
+                                    <p>{totalItems}</p>
                                 </div>
 
                             </div>
@@ -81,12 +107,12 @@ const Dashboard = () => {
 
                                 <div className="dashboard_box">
                                     <h1>TotalMarketValue</h1>
-                                    <h2>VALUE HERE!</h2>
+                                    <h2>{totalMarketValue}</h2>
                                 </div>
 
                                 <div className="dashboard_box">
                                     <h1>TotalMarketRevenue</h1>
-                                    <h2>VALUE HERE!</h2>
+                                    <h2>{totalMarketRevenue}</h2>
                                 </div>
 
                             </div>
