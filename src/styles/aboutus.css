@@ -14,7 +14,7 @@
     text-decoration: none;
     font-size: 25px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    scale: 75%;
+    /* Remove scale: 75%; */
     cursor: pointer;
 }
 

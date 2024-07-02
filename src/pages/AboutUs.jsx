@@ -47,7 +47,8 @@ const About = () => {
                             ></div>
                         ))}
                     </div>
-                    <button href="#register" className="BtnRegister">Register Company</button>
+                    <Link to="/companyregister"><button className="BtnRegister">Register Company</button>
+                    </Link>
                 </div>
 
                 <div className="text-container">
