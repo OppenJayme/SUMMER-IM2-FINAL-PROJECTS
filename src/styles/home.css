@@ -19,8 +19,7 @@ body{
 }
 
 header{
-    border-bottom: 3px solid;
-    border-color: black;
+    box-shadow: -1px 9px 21px -5px rgba(0,0,0,0.26);
     top: 0;
     left: 0;
     padding: 20px 50px;
@@ -113,21 +112,20 @@ header{
 .Login-Register .Register{
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 0;
     width: 120px;
     height: 50px;
     font-size: 17px;
     border-radius: 30px;
     color: whitesmoke;
-    border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
     margin-left: 50px;
 }
 
 .Login-Register .Register:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: .5s;
+    color: white;
+    background-color: rgb(127, 81, 165);;
+    transition: .2  s;
 }
 
 .Login-Register .Login{
@@ -218,8 +216,8 @@ header{
 .BtnRegisterCompany {
     background-color: rgb(153, 96, 199);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border: 0px;
     color: #fff;    
-    border: solid rgb(127, 75, 170) 2px;
     border-radius: 25px;
     padding: 15px 30px;
     font-size: 17px;
@@ -227,10 +225,9 @@ header{
 }
 
 .BtnRegisterCompany:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
-    transition: .5s;
+    color: white;
+    background-color: rgb(127, 81, 165);;
+    transition: .2  s;
 }
 
 footer {
