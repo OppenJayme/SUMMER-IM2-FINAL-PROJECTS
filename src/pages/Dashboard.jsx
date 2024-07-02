@@ -18,49 +18,54 @@ const Dashboard = () => {
                 if(sessionError) {
                     console.error(sessionError);
                 }
-    
+   
                 const user = sessionData?.session.user;
                 console.log('User:', user);
-    
+   
                 if (user) {
                     const {data: employeeData, error: employeeError } = await supabase
                     .from('employee_t')
                     .select('companyid')
                     .eq('employeeemail', user.email)
                     .single();
-    
+   
                     if(employeeError) throw employeeError;
-                    
+                   
                     const companyID = employeeData.companyid;
-    
+   
                     const {data: inventoryData, error:inventoryError } = await supabase
                     .from('inventory_t')
-                    .select('*,  product_T (product_name, category, product_quantity, product_price)')
+                    .select('*, product_t(product_name, category, product_quantity, product_price)')
                     .eq('companyid', companyID)
-    
+   
                     if(inventoryError) throw inventoryError;
-                    const totalSales = inventoryData.reduce((acc, item) => acc + item.productSale);
+
+                    console.log('Inventory Data', inventoryData)
+
+                    const totalSales = inventoryData.reduce((acc, item) => acc + item.productSale, 0);
                     setMarketRevenue(totalSales);
-    
-                    const productData = inventoryData.map(item=> item.product_t);
-    
+   
+                    const productData = inventoryData.map(item => item.product_t);
+
+                    console.log('Product Data:', productData);
+   
                     const totalItems = productData.reduce((acc, product) => acc + product.product_quantity, 0);
                     setTotalItems(totalItems);
-    
+   
                     const totalMarketValue = productData.reduce((acc, product) => acc + (product.product_quantity * product.product_price), 0);
                     setMarketValue(totalMarketValue);
-    
-                        // Calculate totalCategories from productData
+   
+                    // Calculate totalCategories from productData
                     const categories = new Set(productData.map(product => product.category));
                     setTotalCategories(categories.size);
-    
+   
                     const {data: allEmployeeData, error: allEmployeeError} = await supabase
                     .from('employee_t')
                     .select('*')
                     .eq('companyid', companyID);
-    
+   
                     if(allEmployeeError) throw allEmployeeError;
-    
+   
                     setTotalEmployees(allEmployeeData.length);
                      }
                  } catch (err) {
@@ -78,7 +83,7 @@ const Dashboard = () => {
                     <div className="dashboard_content">
                         <div className="main_content_container">
                             <h1>Dashboard</h1>
-
+                            {error && <p>{error}</p>}
                             <div className="container0">
 
                                 <div className="dashboard_box">
