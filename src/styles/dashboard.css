@@ -1,27 +1,67 @@
 .dashboard_content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    display: flex;
+    position: fixed;
+    left: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    margin-top: 110px;
+    margin-left: 275px;
+    width: 1645px;
+}
+
+.sidebar-hidden .dashboard_content {
+    margin-left: 0;
+    width: 100%;
+}
+
+.main_content_container{
+    width: 100%;
 }
 
 .dashboard_box {
+    display: block;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    justify-content: center;
+    margin: 20px;
+    height: 350px;
+    width: 400px;
 }
 
 .dashboard_box h1 {
     font-size: 24px;
     margin-bottom: 10px;
+    top: 0;
+    height: 20px;
 }
 
-.dashboard_box p {
-    font-size: 18px;
-    color: #555555;
+.container0{
+    width: 100%;
+    display: inline-flex;
 }
 
+.container1{
+    width: 100%;
+    display: inline-flex;
+}
+
+.container1 .dashboard_box{
+    display: block;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    justify-content: center;
+    margin: 20px;
+    height: 150px;
+    width: 1000px;
+}
 /* Pang format rani nako na code kay naa koy gi sulyan */
