@@ -11,13 +11,11 @@
 }
 
 .dashboard_sidebar {
-    width: 250px;
-    background: #B998FF;
+    width: 200px;
+    background: #474747;
     height: 100vh;
     position: fixed;
-    transition: width 0.3s ease-in-out;
     z-index: 1;
-    border-right: solid black 3px;
 }
 
 .dashboard_sidebar.hidden {
@@ -32,12 +30,17 @@
 
 .logo-container{
     text-align: center;
+    width: 150px;
+    height: 190px;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo-container img{
-    width: 200px;
-    height: 200px;
-    border: solid black;
+    width: 250px;
+    height: 250px;
+    margin-left: -33px;
+    margin-top: -30px;
     border-radius: 100%;
 }
 
@@ -55,65 +58,6 @@
     margin-left: 150px;
 }
 
-.dashboard_sidebar_user .edit-icon i{
-    font-size: 30px;
-}
-
-.dashboard_sidebar_user .edit-icon i:hover{cursor: pointer;
-}
-
-.sidebar-handler {
-    margin-top: 25%;
-    position: fixed;
-    width: 50px;
-    height: 90px;
-    border-radius: 50%;
-    margin-left: 221.5px;
-    transition: 0.3s ease-in-out;
-    z-index: 1;
-}
-
-.left-half, .right-half {
-    position: absolute;
-    cursor: pointer;
-    width: 50%;
-    height: 100%;
-    top: 0;
-}
-
-.left-half {
-    left: 0;
-    border-radius: 50% 0 0 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.right-half {
-    right: 0;
-    background-color: #B998FF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 3px solid black; /* Adjust the border width and color as needed */
-    border-left: none;
-    border-radius: 0 50% 50% 0;
-}
-
-.bi-chevron-right {
-    font-size: 24px; /* Adjust icon size as needed */
-    color: black;
-}
-
-.sidebar-hidden .sidebar-handler{
-    margin-left: -22px;
-    position: fixed;
-}
-
-.sidebar-handler i{
-    font-size: 30px;
-}
-
 .dashboard_menu_lists {
     margin-top: 20px;
     padding-left: 0;
@@ -128,11 +72,21 @@
 .dashboard_menu_lists li div {
     text-decoration: none;
     font-size: 20px;
-    color: #000;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
 }
 
+.dashboard_menu_lists li div h1{
+    text-decoration: none;
+    font-size: 15px;
+    color: #ffffff;
+    padding-left: 10px;
+}
+
+
 .dashboard_menu_lists li div i{
-    font-size: 20px;
+    font-size: 35px;
 }
 
 .link{
@@ -140,17 +94,14 @@
 }
 
 .dashboard_menu_lists li:hover {
-    background: rgb(94, 69, 114);
-    color: whitesmoke;
+    background: #b998ffa8;
     transition: 0.5s all;
     cursor: pointer;
 }
 
 .Menu_active {
-    background: rgb(91, 41, 132);
+    background: #B998FF;
     cursor: pointer;
-    border-top: 2.5px solid whitesmoke;
-    border-bottom: 2.5px solid whitesmoke;
 }
 
 .Menu_active div{
@@ -159,15 +110,16 @@
 }
 
 .Menu_active i{
-    color: whitesmoke;
+    color: rgb(0, 0, 0);
     font-size: 20px;
 }
 
 
 .Menu_active_txt{
     padding-left: 6px;
-    font-size: 20px;
-    color: whitesmoke;
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
 }
 
 .dashboard_content_container {
@@ -181,7 +133,6 @@
 
 
 .dashboard_topNav {
-    background: #b998ff85;
     padding: 10px;
     padding-left: 20px;
     width: 100%;
@@ -191,12 +142,8 @@
     align-items: center;
     transition: margin-left 0.3s ease-in-out;
     z-index: 2;
-    margin-left: 250px;
-}
-
-.sidebar-hidden .dashboard_topNav {
-    margin-left: 0;
-    width: 100%;
+    margin-left: 200px;
+    box-shadow: -1px 9px 21px -5px rgba(0,0,0,0.26);
 }
 
 .dashboard_topNav h1{

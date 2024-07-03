@@ -7,7 +7,6 @@ import "../styles/sidenav.css";
 
 
 const SideNav = () => {
-    const [sidebarHidden, setSidebarHidden] = useState(false);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [companyName, setCompanyName] = useState('');
 
@@ -51,11 +50,6 @@ const SideNav = () => {
         getCompanyName();
     }, []);
 
-    const handleSideNav = (e) => {
-        e.preventDefault();
-        setSidebarHidden(!sidebarHidden);
-    };
-
     const handleShowModal = () => {
         setShowLogoutModal(true);
     }
@@ -75,18 +69,14 @@ const SideNav = () => {
     };
     return (
         <>
-         <div className={`Main_container ${sidebarHidden ? 'sidebar-hidden' : ''}`}>
-
-                <div className={`dashboard_sidebar ${sidebarHidden ? 'hidden' : ''}`}
-                    id="dashboard_sidebar" onClick={handleSideNav}>
+         <div className="Main_container">
+                <div className="dashboard_sidebar">
 
                         <div className="dashboard_sidebar_user">
                             <div className="logo-container">
                                 <img src={logoimg} alt="logo.png" />
                             </div>
-                            <div className="edit-icon">
-                                <i class="bi bi-pencil-square"></i>
-                            </div>
+                            
                         </div>
                     
 
@@ -94,34 +84,29 @@ const SideNav = () => {
                             <ul className="dashboard_menu_lists">
                                 <NavLink className="link" to ="/dashboard">
                                     <li className="Menu_active"><div>
-                                        <i class="bi bi-speedometer"></i> <p className="Menu_active_txt">Dashboard</p>
+                                        <i class="bi bi-speedometer"></i><p className="Menu_active_txt">Dashboard</p>
                                     </div></li>
                                 </NavLink>
                                 <NavLink className="link" to = "/items">
                                     <li><div>
-                                        <i class="bi bi-box-seam-fill"></i> Items
+                                        <i class="bi bi-box-seam-fill"></i><h1>Items</h1>
                                     </div></li>
                                 </NavLink>
                                 <NavLink className="link" to= "/transactions">                              
                                     <li><div>
-                                        <i class="bi bi-bezier2"></i> Transaction
+                                        <i class="bi bi-bezier2"></i><h1>Transaction</h1>
                                     </div></li>
                                 </NavLink>  
                                 <NavLink className="link" to = "/activitylogs">
                                     <li><div>
-                                        <i class="bi bi-clipboard-check-fill"></i> Activity Logs
+                                        <i class="bi bi-clipboard-check-fill"></i><h1>Activity Logs</h1>
                                     </div></li>
                                 </NavLink>
                                     <li><div onClick={handleShowModal}>
-                                        <i class="bi bi-box-arrow-left"></i> Log-out
+                                        <i class="bi bi-box-arrow-left"></i><h1>Log-out</h1>
                                     </div></li>
                             </ul>
                         </div>
-                </div>
-
-                <div className="sidebar-handler" onClick={handleSideNav}>
-                    <div className="left-half"></div>
-                    <div className="right-half"> <i class="bi bi-chevron-right"></i></div>    
                 </div>
 
                 <div className="dashboard_topNav">
