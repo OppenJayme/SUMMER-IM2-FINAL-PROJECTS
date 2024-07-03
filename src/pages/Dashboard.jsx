@@ -88,7 +88,7 @@ const Dashboard = () => {
 
                                 <div className="dashboard_box">
                                     <div className="left">
-                                        <i class="bi bi-card-checklist"></i>
+                                    <i class="bi bi-diagram-2-fill"></i>
                                     </div>
                                     <div className="right">
                                         <h1>Total Categories</h1>
@@ -108,13 +108,23 @@ const Dashboard = () => {
 
 
                                 <div className="dashboard_box">
-                                    <h1>TotalItems</h1>
-                                    <p>{totalItems}</p>
+                                    <div className="left3">
+                                    <i class="bi bi-microsoft"></i>
+                                    </div>
+                                    <div className="right">
+                                        <h1>Total Items</h1>
+                                        <p>{totalItems}</p>
+                                    </div>
                                 </div>
 
                                 <div className="dashboard_box">
-                                    <h1>Total Sales</h1>
-                                    <p>{totalSales}</p>
+                                    <div className="left4">
+                                    <i class="bi bi-reception-4"></i>
+                                    </div>
+                                    <div className="right">
+                                        <h1>Total Sales</h1>
+                                        <p>{totalSales}</p>
+                                    </div>
                                 </div>
 
                             </div>
@@ -123,8 +133,13 @@ const Dashboard = () => {
                             <div className="container1">
 
                                 <div className="dashboard_box">
-                                    <h1>Total Market Value</h1>
-                                    <h2>{totalMarketValue}</h2>
+                                    <div className="leftbig">
+                                    <i class="bi bi-reception-4"></i>
+                                    </div>
+                                    
+                                        <h1>Total Sales</h1>
+                                        <p>{totalSales}</p>
+                                    
                                 </div>
 
                                 <div className="dashboard_box">
