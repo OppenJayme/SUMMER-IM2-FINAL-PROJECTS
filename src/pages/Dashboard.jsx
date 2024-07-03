@@ -7,6 +7,7 @@ const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
     const [totalEmployees, setTotalEmployees] = useState(0);
     const [totalItems, setTotalItems] = useState(0);
+    const [totalSales, setTotalSales] = useState(0);
     const [totalMarketValue, setMarketValue] = useState(0);
     const [totalMarketRevenue, setMarketRevenue] = useState(0);
     const [error, setError] = useState('');
@@ -20,7 +21,6 @@ const Dashboard = () => {
                 }
    
                 const user = sessionData?.session.user;
-                console.log('User:', user);
    
                 if (user) {
                     const {data: employeeData, error: employeeError } = await supabase
@@ -40,14 +40,15 @@ const Dashboard = () => {
    
                     if(inventoryError) throw inventoryError;
 
-                    console.log('Inventory Data', inventoryData)
 
                     const totalSales = inventoryData.reduce((acc, item) => acc + item.productSale, 0);
-                    setMarketRevenue(totalSales);
+                    setTotalSales(totalSales);
+
+                    const totalRevenue = inventoryData.reduce((acc, item) => acc + (item.productSale * item.product_t.product_price), 0);
+                    setMarketRevenue(totalRevenue);
    
                     const productData = inventoryData.map(item => item.product_t);
 
-                    console.log('Product Data:', productData);
    
                     const totalItems = productData.reduce((acc, product) => acc + product.product_quantity, 0);
                     setTotalItems(totalItems);
@@ -55,7 +56,6 @@ const Dashboard = () => {
                     const totalMarketValue = productData.reduce((acc, product) => acc + (product.product_quantity * product.product_price), 0);
                     setMarketValue(totalMarketValue);
    
-                    // Calculate totalCategories from productData
                     const categories = new Set(productData.map(product => product.category));
                     setTotalCategories(categories.size);
    
@@ -105,18 +105,24 @@ const Dashboard = () => {
                                     <p>{totalItems}</p>
                                 </div>
 
+                                <div className="dashboard_box">
+                                    <h1>Total Sales</h1>
+                                    <img src={firstImg} alt="" />
+                                    <p>{totalSales}</p>
+                                </div>
+
                             </div>
 
 
                             <div className="container1">
 
                                 <div className="dashboard_box">
-                                    <h1>TotalMarketValue</h1>
+                                    <h1>Total Market Value</h1>
                                     <h2>{totalMarketValue}</h2>
                                 </div>
 
                                 <div className="dashboard_box">
-                                    <h1>TotalMarketRevenue</h1>
+                                    <h1>Total Market Revenue</h1>
                                     <h2>{totalMarketRevenue}</h2>
                                 </div>
 
