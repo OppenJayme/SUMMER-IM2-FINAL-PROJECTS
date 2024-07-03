@@ -87,27 +87,33 @@ const Dashboard = () => {
                             <div className="container0">
 
                                 <div className="dashboard_box">
-                                    <h1>TotalCategories</h1>
-                                    <img src={firstImg} alt="" />
-                                    <p>{totalCategories}</p>
+                                    <div className="left">
+                                        <i class="bi bi-card-checklist"></i>
+                                    </div>
+                                    <div className="right">
+                                        <h1>Total Categories</h1>
+                                        <p>{totalCategories}</p>
+                                    </div>
                                 </div>
 
                                 <div className="dashboard_box">
-                                    <h1>TotalEmployees</h1>
-                                    <img src={firstImg} alt="" />
-                                    <p>{totalEmployees}</p>
+                                    <div className="left2">
+                                    <i class="bi bi-people-fill"></i>
+                                    </div>
+                                    <div className="right">
+                                        <h1>Total Employees</h1>
+                                        <p>{totalEmployees}</p>
+                                    </div>
                                 </div>
 
 
                                 <div className="dashboard_box">
                                     <h1>TotalItems</h1>
-                                    <img src={firstImg} alt="" />
                                     <p>{totalItems}</p>
                                 </div>
 
                                 <div className="dashboard_box">
                                     <h1>Total Sales</h1>
-                                    <img src={firstImg} alt="" />
                                     <p>{totalSales}</p>
                                 </div>
 
