@@ -82,11 +82,12 @@ header{
 }
 
 
+
 .Navbar a{
     position: relative;
     font-size: 17px;
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
     margin-right: 80px;
     margin-left: px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

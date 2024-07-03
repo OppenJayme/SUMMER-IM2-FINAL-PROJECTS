@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Logo from '../styles/images/logo.png';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
-import { NavLink, Link } from 'react-router-dom';
+import Header from '../components/Header';
 import imgpic1 from '../styles/images/For-website-image-8.png';
 import imgpic2 from '../styles/images/GettyImages-142227958_optimized.jpg';
 import imgpic3 from '../styles/images/Web_150DPI-20190927_10th_Floor_Conference_Room_2_v1.jpg';
@@ -20,22 +20,7 @@ const About = () => {
 
     return (
         <div>
-            <header>
-                <div className="Logosect">
-                    <img className="Logo" src={Logo} alt="stockwise-logo" />
-                    <h2 className="Logotxt">StockWise</h2>
-                </div>
-                <nav className="Navbar">
-                    <NavLink to="/" className={({ isActive }) => (isActive ? 'Navbar-active' : '')}>Home</NavLink>
-                    <NavLink to="/contacts" className={({ isActive }) => (isActive ? 'Navbar-active' : '')}>Contacts</NavLink>
-                    <NavLink to="/aboutus" className={({ isActive }) => (isActive ? 'Navbar-active' : '')}>About us</NavLink>
-                </nav>
-                <div className="Login-Register">
-                    <Link to="/login"><button className="Login">Login</button></Link>
-                    <Link to="/registration"><button className="Register">Register</button></Link>
-                </div>
-            </header>
-
+            <Header/>
             <div className='content-container'>
                 <div className="pic-container">
                     <div className="slideshow">
