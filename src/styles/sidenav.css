@@ -1,3 +1,6 @@
+*{
+    text-decoration: none;
+}
 .Main_container {
     display: flex;
     position: fixed;
@@ -93,15 +96,20 @@
     text-decoration: none;
 }
 
-.dashboard_menu_lists li:hover {
-    background: #b998ffa8;
+/* .dashboard_menu_lists li:hover {
+    background: #303030a8;
     transition: 0.5s all;
     cursor: pointer;
-}
+} */
 
-.Menu_active {
-    background: #B998FF;
+.Menu_active li{
+    background: #ffffff;
     cursor: pointer;
+    text-decoration: none;
+}
+.Menu_active li div h1 {
+    color: black;
+    text-decoration: none;
 }
 
 .Menu_active div{

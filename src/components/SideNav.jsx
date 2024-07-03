@@ -17,7 +17,6 @@ const SideNav = () => {
                 if (sessionError) throw sessionError;
 
                 const user = sessionData?.session?.user;
-                console.log('User:', user);
 
                 if (user) {
                     const { data: employeeData, error: employeeError } = await supabase
@@ -26,7 +25,6 @@ const SideNav = () => {
                         .eq('employeeemail', user.email) 
                         .single();
                     if (employeeError) throw employeeError;
-                    console.log('Employee Data:', employeeData);
 
                     const companyID = employeeData.companyid;
 
@@ -36,7 +34,6 @@ const SideNav = () => {
                         .eq('companyid', companyID)
                         .single();
                     if (companyError) throw companyError;
-                    console.log('Company Data:', companyData);
 
                     setCompanyName(companyData.companyname);
                 } else {
@@ -82,22 +79,22 @@ const SideNav = () => {
 
                         <div className="dashboard_sidebar_menus">
                             <ul className="dashboard_menu_lists">
-                                <NavLink className="link" to ="/dashboard">
-                                    <li className="Menu_active"><div>
-                                        <i class="bi bi-speedometer"></i><p className="Menu_active_txt">Dashboard</p>
+                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to ="/dashboard">
+                                    <li><div>
+                                        <i class="bi bi-speedometer"></i><h1>Dashboard</h1>
                                     </div></li>
                                 </NavLink>
-                                <NavLink className="link" to = "/items">
+                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""} to = "/items">
                                     <li><div>
                                         <i class="bi bi-box-seam-fill"></i><h1>Items</h1>
                                     </div></li>
                                 </NavLink>
-                                <NavLink className="link" to= "/transactions">                              
+                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to= "/transactions">                              
                                     <li><div>
                                         <i class="bi bi-bezier2"></i><h1>Transaction</h1>
                                     </div></li>
                                 </NavLink>  
-                                <NavLink className="link" to = "/activitylogs">
+                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to = "/activitylogs">
                                     <li><div>
                                         <i class="bi bi-clipboard-check-fill"></i><h1>Activity Logs</h1>
                                     </div></li>
