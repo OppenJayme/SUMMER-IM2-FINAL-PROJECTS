@@ -1,0 +1,26 @@
+.inventory-card {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.inventory-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.inventory-card h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.inventory-card p {
+    margin: 4px 0;
+    font-size: 16px;
+}
