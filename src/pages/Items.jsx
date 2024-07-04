@@ -36,7 +36,7 @@ const Items = () => {
 
                 if(error) {
                     setError('Could not fetch database. Please try again later')
-                    console.error(error)
+                    console.log(error)
                     setInventory(null);
                 }
                 if (inventoryData) {
@@ -53,7 +53,6 @@ const Items = () => {
         <SideNav/>
         <div className="item_content">
             <div className="item_content_container">
-
                 <div className="search-container">
                     <i class="bi bi-search"></i>
                     
@@ -63,16 +62,7 @@ const Items = () => {
                     </div>
                     
                 </div>
-<<<<<<< HEAD
-                {error && <h1>{error}</h1>}
-                <InventoryCard key = {inventory} inventory={inventory}/>
-=======
-<<<<<<< HEAD
-                
-=======
                 <InventoryCard/>
->>>>>>> 4639192d7000deb55ae6eb0f1c73d67bd8b4a0e6
->>>>>>> fa1b1d7571d13f2e9b7ec155240f7f97c0bf362d
             </div>
         </div>
         </>
