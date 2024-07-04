@@ -124,14 +124,24 @@ const Dashboard = () => {
                     </div>
 
                     <div className="container1">
-                        <div className="dashboard_box hvr-sweep-to-right-bottom">
-                            <h1>Total Market Value</h1>
-                            <p>{totalMarketValue}</p>
+                        <div className="dashboard_box">
+                            <div className="left4 hvr-sweep-to-right">
+                                <i class="bi bi-cash-coin"></i>
+                            </div>
+                            <div className="right">
+                                <h1>Total Market Value</h1>
+                                <p>{totalMarketValue}</p>
+                            </div>
                         </div>
 
-                        <div className="dashboard_box hvr-sweep-to-right-bottom">
-                            <h1>Total Market Revenue</h1>
-                            <h2>{totalMarketRevenue}</h2>
+                        <div className="dashboard_box">
+                            <div className="left4 hvr-sweep-to-right">
+                                <i class="bi bi-activity"></i>
+                            </div>
+                            <div className="right">
+                                <h1>Total Market Revenue</h1>
+                                <p>{totalMarketRevenue}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
