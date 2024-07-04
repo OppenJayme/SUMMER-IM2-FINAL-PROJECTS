@@ -6,6 +6,7 @@ const Items = () => {
         <SideNav/>
         <div className="item_content">
             <div className="item_content_container">
+
                 <div className="search-container">
                     <i class="bi bi-search"></i>
                     
@@ -15,6 +16,7 @@ const Items = () => {
                     </div>
                     
                 </div>
+                
             </div>
         </div>
         </>
