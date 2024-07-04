@@ -64,6 +64,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
         },
         ])
         .single();
+        console.log(inventoryData);
 
         if(inventoryError) {
             setError('Trouble creating Inventory. Try again later')

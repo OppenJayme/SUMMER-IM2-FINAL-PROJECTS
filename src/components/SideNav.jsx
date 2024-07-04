@@ -99,7 +99,7 @@ const SideNav = () => {
                                         <i class="bi bi-clipboard-check-fill"></i><h1>Activity Logs</h1>
                                     </div></li>
                                 </NavLink>
-                                    <li><div onClick={handleShowModal}>
+                                    <li className="logoutBtn"><div onClick={handleShowModal}>
                                         <i class="bi bi-box-arrow-left"></i><h1>Log-out</h1>
                                     </div></li>
                             </ul>

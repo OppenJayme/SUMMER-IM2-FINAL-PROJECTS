@@ -2,22 +2,26 @@
     display: flex;
     position: fixed;
     left: 0;
-    overflow: hidden;
     padding: 0;
     margin: 0;
     top: 0;
     margin-top: 110px;
     margin-left: 225px;
-    width: 1645px;
+    width: calc(100% - 225px);
+    height: calc(100% - 110px);
+    overflow: auto;
+    /* ^Kini */
 }
 
 .sidebar-hidden .dashboard_content {
     margin-left: 0;
     width: 100%;
+    /* ^Kini */
 }
 
 .main_content_container{
     width: 100%;
+    /* ^Kini */
 }
 
 .dashboard_box {
@@ -30,7 +34,8 @@
     justify-content: space-between;
     margin: 20px;
     height: 200px;
-    width: 1000px;
+    width: 500px;
+    /* ^Kini */
 }
 
 .dashboard_box h1 {
@@ -108,7 +113,10 @@
 .container0,
 .container1 {
     width: 100%;
+    /* ^Kini */
     display: inline-flex;
+    flex-wrap: wrap;
+    /* ^Kini */
 }
 
 .container1 .dashboard_box {

@@ -5,7 +5,8 @@
     display: flex;
     position: fixed;
     left: 0;
-    width: 1919.5px;
+    width: 100%;
+    /* ^Kini */
     height: 960px;
     overflow: hidden;
     padding: 0;
@@ -177,8 +178,8 @@
     backdrop-filter: blur(3px);
 }
 
-.logoutBtn{
-    background: none;
+.logoutBtn:hover{
+    background: #7d7d7d8d;
     border: none;
     color: whitesmoke;
 }
