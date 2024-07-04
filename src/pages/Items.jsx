@@ -36,7 +36,7 @@ const Items = () => {
 
                 if(error) {
                     setError('Could not fetch database. Please try again later')
-                    console.log(error)
+                    console.error(error)
                     setInventory(null);
                 }
                 if (inventoryData) {
@@ -62,7 +62,8 @@ const Items = () => {
                     </div>
                     
                 </div>
-                <InventoryCard/>
+                {error && <h1>{error}</h1>}
+                <InventoryCard key = {inventory} inventory={inventory}/>
             </div>
         </div>
         </>
