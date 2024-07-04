@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SideNav from "../components/SideNav";
 import InventoryCard from "../components/ItemInvnetoryCard"; // Make sure the import path is correct
 import "../styles/items.css";
@@ -47,6 +47,10 @@ const Items = () => {
         fetchInventory();
     }, []);
 
+    const [showModal, setShowModal] = useState(false);
+
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
     return (
         <>
             <SideNav />
@@ -57,7 +61,7 @@ const Items = () => {
                         <i className="bi bi-search"></i>
                         <div className="search_box_container">
                             <input className="search-box" type="text" placeholder="Search" />
-                            <i className="bi bi-plus-square-fill"></i>
+                            <i className="bi bi-plus-square-fill" onClick={handleShowModal}></i>
                         </div>
                     </div>
                     <div className="main-content-area">
@@ -67,6 +71,18 @@ const Items = () => {
                     </div>
                 </div>
             </div>
+        
+
+            <ItemInventoryCard showModal={showModal} handleCloseModal={handleCloseModal}>
+            <div className="modal-body">
+                <p>PRODUCT ID</p>
+                <input className="input-container"></input>
+                <p>SUPPLIER NAME</p>
+                <input className="input-container"></input>
+                <p>DATE ADDED</p>
+                <input className="input-container"></input>
+            </div>    
+            </ItemInventoryCard>
         </>
     );
 };
