@@ -125,7 +125,7 @@ const Dashboard = () => {
 
                     <div className="container1">
                         <div className="dashboard_box">
-                            <div className="left4 hvr-sweep-to-right">
+                            <div className="left5 hvr-sweep-to-right">
                                 <i class="bi bi-cash-coin"></i>
                             </div>
                             <div className="right">
@@ -135,7 +135,7 @@ const Dashboard = () => {
                         </div>
 
                         <div className="dashboard_box">
-                            <div className="left4 hvr-sweep-to-right">
+                            <div className="left6 hvr-sweep-to-right">
                                 <i class="bi bi-activity"></i>
                             </div>
                             <div className="right">

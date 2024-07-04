@@ -45,7 +45,9 @@
 .dashboard_box .leftbig ,
 .left2 ,
 .left3 ,
-.left4 {
+.left4 ,
+.left5 ,
+.left6{
     width: 50%;
     height: 100%;
     display: flex;
@@ -58,11 +60,13 @@
 .dashboard_box .leftbig i,
 .left2 i,
 .left3 i,
-.left4 i{
+.left4 i,
+.left5 i,
+.left6 i{
     display: inline-flex;
     justify-content: center;
     align-items: center;
-   font-size: 70px;
+    font-size: 70px;
 }
 
 .dashboard_box .left {
@@ -76,6 +80,12 @@
 }
 .left4 {
     background-color: rgb(194, 223, 148);
+}
+.left5 {
+    background-color: rgb(255, 167, 255);
+}
+.left6 {
+    background-color: rgb(236, 147, 147);
 }
 
 .dashboard_box .right,
@@ -139,7 +149,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: #000000;
+  background: #474747;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;

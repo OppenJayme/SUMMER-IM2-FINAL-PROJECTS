@@ -108,6 +108,7 @@ const SideNav = () => {
 
                 <div className="dashboard_topNav">
                     <h1>{companyName}</h1>
+                    <i class="bi bi-bell-fill"></i>
                 </div>   
             </div>
             {showLogoutModal && (
