@@ -57,6 +57,9 @@
     background: #007bff;
     color: white;
 }
+.button.primary:hover {
+    background: #72aff1;
+}
 
 .button.secondary {
     background: #6c757d;
@@ -66,4 +69,7 @@
 .container-input{
     width: 1000px;
     height: 400px;
+}
+.error-message {
+    color: red;
 }

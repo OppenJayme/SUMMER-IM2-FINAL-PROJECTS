@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import SideNav from "../components/SideNav";
-import InventoryCard from "../components/ItemInvnetoryCard"; // Make sure the import path is correct
+import AddProducts from "../components/ItemInventoryCard"; // Make sure the import path is correct
+import InventoryCard from "../components/ItemInvnetoryCard";
 import "../styles/items.css";
+import "../styles/ItemInventoryCard.css";
 import supabase from "../client/database";
 
 const Items = () => {
     const [inventory, setInventory] = useState([]);
     const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const fetchInventory = async () => {
@@ -47,7 +50,7 @@ const Items = () => {
         fetchInventory();
     }, []);
 
-    const [showModal, setShowModal] = useState(false);
+   
 
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
@@ -73,16 +76,7 @@ const Items = () => {
             </div>
         
 
-            <ItemInventoryCard showModal={showModal} handleCloseModal={handleCloseModal}>
-            <div className="modal-body">
-                <p>PRODUCT ID</p>
-                <input className="input-container"></input>
-                <p>SUPPLIER NAME</p>
-                <input className="input-container"></input>
-                <p>DATE ADDED</p>
-                <input className="input-container"></input>
-            </div>    
-            </ItemInventoryCard>
+            <AddProducts showModal={showModal} handleCloseModal={handleCloseModal}/>
         </>
     );
 };
