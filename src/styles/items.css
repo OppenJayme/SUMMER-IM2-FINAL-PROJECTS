@@ -15,11 +15,6 @@
     width: 100%;
 }
 
-.items-text{
-    text-align: center;
-    font-size: 100px;
-    margin-bottom: 50px;
-}
 .search-container{
     width: 2000px;
     height: 50px;
@@ -35,6 +30,21 @@
 
 .search_box_container{
     padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search_box_container i{
+    right: 0;
+    padding-right: 20px;
+    color: whitesmoke;
+    font-size: 30px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.search_box_container i:hover{
+    color: #474747;
 }
 
 .search-box{

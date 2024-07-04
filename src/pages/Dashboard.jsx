@@ -129,7 +129,7 @@ const Dashboard = () => {
                             </div>
                             <div className="right">
                                 <h1>Total Market Value</h1>
-                                <p>$ {totalMarketValue}</p>
+                                <p>₱ {totalMarketValue}</p>
                             </div>
                         </div>
 
@@ -139,7 +139,7 @@ const Dashboard = () => {
                             </div>
                             <div className="right">
                                 <h1>Total Market Revenue</h1>
-                                <p>$ {totalMarketRevenue}</p>
+                                <p>₱ {totalMarketRevenue}</p>
                             </div>
                         </div>
                     </div>
