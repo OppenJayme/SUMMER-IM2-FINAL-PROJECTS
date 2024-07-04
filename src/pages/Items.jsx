@@ -1,71 +1,42 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SideNav from "../components/SideNav";
-import InventoryCard from "../components/ItemInvnetoryCard";
+import ItemInventoryCard from "../components/ItemInventoryCard"
+import "../styles/ItemInventoryCard.css";
 import "../styles/items.css";
-import supabase from "../client/database";
+
 const Items = () => {
-    const [inventory, setInventory] = useState(null)
-    const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
+    const handleShowModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
 
-    useEffect (() => {
-        const fetchInventory = async () => {
-
-            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-                if (sessionError) {
-                    console.error(sessionError);
-                }
-
-                const user = sessionData?.session.user;
-
-                if (user) {
-                    const { data: employeeData, error: employeeError } = await supabase
-                        .from('employee_t')
-                        .select('companyid')
-                        .eq('employeeemail', user.email)
-                        .single();
-
-                    if (employeeError) throw employeeError;
-
-                    const companyID = employeeData.companyid;
-
-            const {data: inventoryData, error} = await supabase 
-                .from('inventory_t')
-                .select('*, product_t(product_name, category, product_quantity, product_price)')
-                .eq('companyid', companyID)
-
-                if(error) {
-                    setError('Could not fetch database. Please try again later')
-                    console.log(error)
-                    setInventory(null);
-                }
-                if (inventoryData) {
-                    setInventory(inventoryData)
-                    setError(null);
-                }
-            }
-
-        }
-        fetchInventory();
-    }, [])
     return (
         <>
-        <SideNav/>
-        <div className="item_content">
-            <div className="item_content_container">
-                <div className="search-container">
-                    <i class="bi bi-search"></i>
-                    
-                    <div className="search_box_container">
-                        <input className="search-box" type="text" placeholder="Search"/>
-                        <i class="bi bi-plus-square-fill"></i>
+            <SideNav/>
+            <div className="item_content">
+                <div className="item_content_container">
+                    <div className="search-container">
+                        <i className="bi bi-search"></i>
+                        <div className="search_box_container">
+                            <input className="search-box" type="text" placeholder="Search"/>
+                            <i className="bi bi-plus-square-fill" onClick={handleShowModal}></i>
+                        </div>
                     </div>
-                    
                 </div>
-                <InventoryCard/>
             </div>
-        </div>
+
+            <ItemInventoryCard showModal={showModal} handleCloseModal={handleCloseModal}>
+            <div className="modal-body">
+                <p>PRODUCT ID</p>
+                <input className="input-container"></input>
+                <p>SUPPLIER NAME</p>
+                <input className="input-container"></input>
+                <p>DATE ADDED</p>
+                <input className="input-container"></input>
+            </div>    
+            </ItemInventoryCard>
         </>
     );
-}   
-export default  Items;
+}
+
+export default Items;
