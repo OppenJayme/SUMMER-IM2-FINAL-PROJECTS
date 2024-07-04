@@ -120,7 +120,7 @@
     text-align: center;
     justify-content: center;
     margin: 20px;
-    height: 150px;
+    height: 175px;
     width: 1000px;
 }
 
@@ -169,7 +169,7 @@
 .hvr-sweep-to-right-bottom:hover,
 .hvr-sweep-to-right-bottom:focus,
 .hvr-sweep-to-right-bottom:active {
-  color: white;
+  color: whitesmoke;
 }
 
 .hvr-sweep-to-right:hover:before,
