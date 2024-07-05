@@ -68,6 +68,13 @@ const Items = () => {
                         </div>
                     </div>
                     <div className="main-content-area">
+                    <div className="inventory-card-categories">
+                        <div className="table-box-categories"><p>Product Name </p></div>
+                        <div className="table-box-categories"><p>Category </p></div>
+                        <div className="table-box-categories"><p>Quantity </p></div>
+                        <div className="table-box-categories"><p>Sold </p></div>
+                        <div className="table-box-categories"><p>Price </p></div>
+                    </div>
                         {inventory.map(item => (
                             <InventoryCard key={item.id} item={item} />
                         ))}

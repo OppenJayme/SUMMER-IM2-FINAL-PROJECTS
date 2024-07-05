@@ -1,28 +1,30 @@
 .inventory-card {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 8px;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
     background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 80%; 
+    width: 89%;
+    cursor: pointer;
     /* ^Kini */
 }
 
-.inventory-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+.table-box{
+    width: 100%;
+    height: 100%;
+    border-right: 1px solid #000000;
+    justify-content: center;
 }
 
-.inventory-card h2 {
-    margin-top: 0;
-    font-size: 24px;
+.inventory-card:hover {
+    transform: scale(0.99);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .inventory-card p {
+    padding-left: 10px;
     margin: 4px 0;
-    font-size: 16px;
+    font-size: 18px;
+    justify-content: left;
 }

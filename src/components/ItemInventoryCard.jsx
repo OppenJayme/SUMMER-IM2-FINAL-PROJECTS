@@ -86,16 +86,17 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                     <h5 className="modal-title">Add Item</h5>
                     <button className="close-button" onClick={handleCloseModal}>×</button>
                 </div>
+                
                 <div className="modal-body">
                     {error && <p className="error-message">{error}</p>}
                     <p>SUPPLIER NAME</p>
-                    <input
-                        name="suppliername"
+                    <input name="suppliername"
                         className="input-container"
                         value={supplierName}
                         onChange={(e) => setSupplierName(e.target.value)}
                         required
                     />
+
                     <p>PRODUCT QUANTITY</p>
                     <input
                         name="quantity"
@@ -112,6 +113,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setProductName(e.target.value)}
                         required
                     />
+                    
                     <p>CATEGORY</p>
                     <input
                         name="category"
@@ -120,6 +122,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setCategory(e.target.value)}
                         required
                     />
+
                     <p>PRODUCT PRICE</p>
                     <input
                         name="price"
@@ -128,6 +131,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setPrice(e.target.value)}
                         required
                     />
+
                      <p>NO. PRODCUTS SOLD</p>
                     <input
                         name="sale"
@@ -137,6 +141,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         required
                     />
                 </div>
+
                 <div className="modal-footer">
                     <button className="button" onClick={handleCloseModal}>Close</button>
                     <button className="button primary" onClick={addProduct}>Save changes</button>
