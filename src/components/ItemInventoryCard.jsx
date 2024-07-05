@@ -143,8 +143,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 </div>
 
                 <div className="modal-footer">
-                    <button className="button" onClick={handleCloseModal}>Close</button>
-                    <button className="button primary" onClick={addProduct}>Save changes</button>
+                    <button className="firstBtn" onClick={handleCloseModal}>Close</button>
+                    <button className="secondBtn" onClick={addProduct}>Save changes</button>
                 </div>
             </div>
         </div>
