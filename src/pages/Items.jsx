@@ -5,14 +5,18 @@ import InventoryCard from "../components/ItemInvnetoryCard";
 import "../styles/items.css";
 import "../styles/ItemInventoryCard.css";
 import supabase from "../client/database";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Items = () => {
     const [inventory, setInventory] = useState([]);
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchInventory = async () => {
+           try {
+
             const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
             if (sessionError) {
                 console.error(sessionError);
@@ -46,14 +50,21 @@ const Items = () => {
                     setError(null);
                 }
             }
+
+           } catch (err) {
+                console.error(err)
+           } finally {
+            setLoading(false);
+           }
         };
         fetchInventory();
     }, []);
-
-   
-
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
+
+    if (loading) {
+        return <LoadingScreen/>
+    }
     return (
         <>
             <SideNav />

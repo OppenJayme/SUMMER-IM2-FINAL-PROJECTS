@@ -2,6 +2,7 @@ import "../styles/dashboard.css";
 import SideNav from "../components/SideNav";
 import { useEffect, useState } from "react";
 import supabase from "../client/database";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
@@ -11,6 +12,7 @@ const Dashboard = () => {
     const [totalMarketValue, setMarketValue] = useState(0);
     const [totalMarketRevenue, setMarketRevenue] = useState(0);
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -69,10 +71,16 @@ const Dashboard = () => {
             } catch (err) {
                 console.error('Error fetching data:', err);
                 setError('Failed to fetch data. Please try again');
+            } finally {
+                setLoading(false);
             }
         };
         fetchData();
     }, []);
+
+    if (loading) {
+        return <LoadingScreen/>
+    }
 
     return (
         <>
