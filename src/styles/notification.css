@@ -1,0 +1,96 @@
+.notification-main-container {
+    position: absolute;
+    top: 60px; /* Adjust this value based on your needs */
+    right: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 300px;
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.notification-header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #333;
+}
+
+.clear-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.notification-list {
+    max-height: 200px; /* Adjust based on your preference */
+    overflow-y: auto;
+}
+
+.notification-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.notification-timestamp {
+    font-size: 12px;
+    color: #999;
+    margin-top: 5px;
+    text-align: right;
+}
+
+/* Optional: Adding a hover effect to the notification items */
+.notification-item:hover {
+    background-color: #f9f9f9;
+}
+
+/* Style the notification bell */
+.dashboard_topNav .bi-bell-fill {
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Scrollbar styling (optional) */
+.notification-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.notification-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.notification-list::-webkit-scrollbar-track {
+    background-color: #f9f9f9;
+}

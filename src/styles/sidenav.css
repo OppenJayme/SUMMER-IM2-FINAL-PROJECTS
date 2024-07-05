@@ -161,9 +161,12 @@
 }
 
 .dashboard_topNav i{
-    font-size: 35px;
+    font-size: 40px;
     padding-right: 20px;
     cursor: pointer;
+}
+.dashboard_topNav i:hover {
+    color: #474747;
 }
 
 .form-modal {
