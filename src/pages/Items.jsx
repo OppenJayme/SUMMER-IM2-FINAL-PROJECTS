@@ -12,6 +12,7 @@ const Items = () => {
     const [error, setError] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         const fetchInventory = async () => {
@@ -62,6 +63,13 @@ const Items = () => {
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);
 
+    const handleSearchQuery = (e) => setSearchQuery(e.target.value);
+
+    const filterInventory = inventory.filter(item => 
+        item.product_t.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.product_t.category.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+
     if (loading) {
         return <LoadingScreen/>
     }
@@ -74,7 +82,13 @@ const Items = () => {
                     <div className="search-container">
                         <i className="bi bi-search"></i>
                         <div className="search_box_container">
-                            <input className="search-box" type="text" placeholder="Search" />
+                            <input 
+                            className="search-box" 
+                            type="text" 
+                            placeholder="Search by Product Name or Category" 
+                            value={searchQuery}
+                            onChange={handleSearchQuery}
+                            />
                             <i className="bi bi-plus-square-fill" onClick={handleShowModal}></i>
                         </div>
                     </div>
@@ -86,7 +100,7 @@ const Items = () => {
                         <div className="table-box-categories"><p>Sold </p></div>
                         <div className="table-box-categories"><p>Price </p></div>
                     </div>
-                        {inventory.map(item => (
+                        {filterInventory.map(item => (
                             <InventoryCard key={item.id} item={item} />
                         ))}
                     </div>
