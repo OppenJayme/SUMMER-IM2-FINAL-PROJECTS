@@ -11,6 +11,7 @@ import {  useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { NavLink, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Register = () => {
 
@@ -24,11 +25,13 @@ const Register = () => {
     const [companyID, setCompanyID] = useState('');
     const [error, setError] = useState('');
     const [attempts, setAttempts] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
     
     const handleSubmit = async (e) => {
       e.preventDefault();
+      setLoading(true);
       const maxRetries = 5;
       let success = false;
   
@@ -107,7 +110,12 @@ const Register = () => {
       if (!success) {
         setError('Registration Error due to rate limit. Please try again later.');
       }
+      setLoading(false)
     };
+
+    if (loading) {
+      return <LoadingScreen/>
+    }
   
 
     return (

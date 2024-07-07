@@ -6,15 +6,18 @@ import Footer from '../components/Footer'
 import "../styles/login.css"
 import loginimg from "../styles/images/6.png"
 import supabase from '../client/database';
+import LoadingScreen from '../components/LoadingScreen';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
 
     try {
@@ -55,8 +58,14 @@ const Login = () => {
       console.error('Login error:', err.message);
       setError('Login failed, please try again later.');
     }
+    
+    setLoading(false)
   };
 
+
+  if (loading) {
+    return <LoadingScreen/>
+  }
 
     return (
         <>
