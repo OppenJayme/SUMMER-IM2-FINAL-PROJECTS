@@ -190,3 +190,26 @@
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
+
+.notif{
+    position: fixed;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.notif i{
+    font-size: 35px;
+    padding-top: 20px;
+    padding-right: 20px;
+    color: #000000;
+    transition: .5s;
+}
+
+.notif i:hover{
+    color: #181515;
+}

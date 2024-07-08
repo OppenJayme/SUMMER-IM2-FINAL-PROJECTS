@@ -6,6 +6,7 @@ import "../styles/items.css";
 import "../styles/ItemInventoryCard.css";
 import supabase from "../client/database";
 import LoadingScreen from "../components/LoadingScreen";
+import Notification from "../components/Notification";
 
 const Items = () => {
     const [inventory, setInventory] = useState([]);
@@ -13,6 +14,7 @@ const Items = () => {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
+    const [showNotification, setNotification] = useState(false);
 
     useEffect(() => {
         const fetchInventory = async () => {
@@ -73,9 +75,18 @@ const Items = () => {
     if (loading) {
         return <LoadingScreen/>
     }
+
+    const handleNotfication = () =>{
+        setNotification(prev=> !prev);
+    }
+
     return (
         <>
             <SideNav />
+            <div className="notif">
+                <i class="bi bi-bell-fill" onClick={handleNotfication}></i>
+                {showNotification && <Notification/>}
+            </div>
             <div className="item_content">
                 <div className="item_content_container">
                     {error && <h1>{error}</h1>}

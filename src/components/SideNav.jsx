@@ -3,14 +3,12 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
-import Notification from "./Notification";
 import "../styles/sidenav.css";
 
 
 const SideNav = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
     const [companyName, setCompanyName] = useState('');
-    const [showNotification, setNotification] = useState(false);
 
     useEffect(() => {
         const getCompanyName = async () => {
@@ -67,9 +65,6 @@ const SideNav = () => {
         }
     };
 
-    const handleNotification = () => {
-        setNotification(prev => !prev);
-    }
     return (
         <>
          <div className="Main_container">
@@ -114,8 +109,6 @@ const SideNav = () => {
 
                 <div className="dashboard_topNav">
                     <h1>{companyName}</h1>
-                    <i class="bi bi-bell-fill" onClick={handleNotification}></i>
-                    {showNotification && <Notification/>}
                 </div>   
             </div>
             {showLogoutModal && (

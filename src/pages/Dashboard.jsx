@@ -3,6 +3,7 @@ import SideNav from "../components/SideNav";
 import { useEffect, useState } from "react";
 import supabase from "../client/database";
 import LoadingScreen from "../components/LoadingScreen";
+import Notification from "../components/Notification";
 
 const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
@@ -13,6 +14,7 @@ const Dashboard = () => {
     const [totalMarketRevenue, setMarketRevenue] = useState(0);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
+    const [showNotification, setNotification] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,9 +84,18 @@ const Dashboard = () => {
         return <LoadingScreen/>
     }
 
+    
+    const handleNotification = () => {
+        setNotification(prev => !prev);
+    }
+
     return (
         <>
             <SideNav />
+            <div className="notif">
+                <i class="bi bi-bell-fill" onClick={handleNotification}></i>
+                {showNotification && <Notification/>}
+            </div>
             <div className="dashboard_content">
                 <div className="main_content_container">
                     {error && <p>{error}</p>}
