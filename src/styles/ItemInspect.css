@@ -53,6 +53,10 @@
     align-items: center;
     border: solid black 1px;
 }
+.inspect-modal-content_left img {
+    width: 100%;
+    height: inherit;
+}
 
 .inspect-modal-content_right{
     width: 50%;

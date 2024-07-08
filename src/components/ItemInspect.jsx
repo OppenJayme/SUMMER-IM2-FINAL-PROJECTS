@@ -6,12 +6,13 @@ const ItemInspect = ({ show, onClose, item }) => {
     if (!show) {
         return null;
     }
-
+    console.log(item.product_t.image_path);
     return (
         <div className="inspect-modal-overlay">
             <div className="inspect-modal-content">
                 <div className="inspect-modal-content_left">
-                    <img src={item.product_t.image_path} alt="image" />
+                    <img src={item.product_t.image_path} alt="" />
+
                 </div>
                 <div className="inspect-modal-content_right">
                     <h2>{item.product_t.product_name}</h2>

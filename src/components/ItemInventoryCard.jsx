@@ -25,12 +25,16 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
             upsert: false
         });
 
-            if (error) {
+            if (error || !imageData) {
                 console.error("Error uploading image:", error.message);
                 throw error;
             } 
             
-        return imageData.path;
+        const {data: { publicUrl }} = supabase.storage
+        .from('Products Image')
+        .getPublicUrl(`Images/{file.name}`);
+
+        return publicUrl;
     }
 
     const addProduct = async () => {
@@ -56,6 +60,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
         let imagePath = null;
         if (image) {
             imagePath = await addImage(image);
+            console.log(imagePath)
         }
         
         
@@ -68,7 +73,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 product_name: productName,
                 category: category,
                 product_price: price,
-                image_path: imagePath
+                image_path: 'https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/' + image.name
             }
         ])
         .select('productid')
