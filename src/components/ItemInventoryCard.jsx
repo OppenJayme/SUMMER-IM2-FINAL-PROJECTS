@@ -10,9 +10,34 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
     const [price, setPrice] = useState('');
     const [sale, setSales] = useState('');
     const [error, setError] = useState(null);
+    const [image, setImage] = useState(null);
+    const [imageLoading, setImageLoading] = useState(false);
+
+    const handleFile = (e) => {
+        setImage(e.target.files[0]);
+    }
+
+    const addImage = async (file) => {
+        const {data: imageData, error} = await supabase.storage
+        .from('Products Image')
+        .upload(`Images/${file.name}`, file ,{
+            cacheControl: '3600',
+            upsert: false
+        });
+
+            if (error) {
+                console.error("Error uploading image:", error.message);
+                throw error;
+            } 
+            
+        return imageData.path;
+    }
 
     const addProduct = async () => {
-        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+        setImageLoading(true);
+
+        try {
+            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
         if (sessionError) {
             console.error(sessionError);
         }
@@ -27,6 +52,11 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 .single();
 
         if (employeeError) throw employeeError;
+
+        let imagePath = null;
+        if (image) {
+            imagePath = await addImage(image);
+        }
         
         
         const { data: productData , error } = await supabase
@@ -37,7 +67,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 product_quantity: quantity,
                 product_name: productName,
                 category: category,
-                product_price: price
+                product_price: price,
+                image_path: imagePath
             }
         ])
         .select('productid')
@@ -74,6 +105,14 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
 
         setError('');
         handleCloseModal();
+        }
+
+        } catch (err) {
+            setError(err.message)
+            console.error(err.message)
+            return;
+        } finally {
+            setImageLoading(false);
         }
     }
 
@@ -146,7 +185,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         name="sale"
                         className="img-input-container"
                         type="file"
-                        // onChange={handleFile}
+                        onChange={handleFile}
                         required
                     />
 
@@ -154,7 +193,9 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
 
                 <div className="modal-footer">
                     <button className="firstBtn" onClick={handleCloseModal}>Close</button>
-                    <button className="secondBtn" onClick={addProduct}>Save changes</button>
+                    <button className="secondBtn" onClick={addProduct} disabled={imageLoading}>
+                        {imageLoading ? 'Saving' : 'Save Product'}
+                    </button>
                 </div>
             </div>
         </div>
