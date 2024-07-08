@@ -8,8 +8,8 @@ const ItemInspect = ({ show, onClose, item }) => {
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
+        <div className="inspect-modal-overlay">
+            <div className="inspect-modal-content">
                 <h2>{item.product_t.product_name}</h2>
                 <p>Category: {item.product_t.category}</p>
                 <p>Quantity: {item.product_t.product_quantity}</p>

@@ -140,6 +140,16 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setSales(e.target.value)}
                         required
                     />
+
+                    <p>ITEM IMAGE</p>
+                    <input
+                        name="sale"
+                        className="img-input-container"
+                        type="file"
+                        // onChange={handleFile}
+                        required
+                    />
+
                 </div>
 
                 <div className="modal-footer">
