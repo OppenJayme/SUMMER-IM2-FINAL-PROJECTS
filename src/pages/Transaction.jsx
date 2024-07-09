@@ -1,5 +1,5 @@
 import SideNav from "../components/SideNav";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Notification from "../components/Notification";
 
 

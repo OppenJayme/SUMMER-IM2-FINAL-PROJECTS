@@ -41,7 +41,7 @@ const Items = () => {
 
                 const { data: inventoryData, error } = await supabase
                     .from('inventory_t')
-                    .select('*, product_t(product_name, category, product_quantity, product_price, suppliername, dateadded, image_path)')
+                    .select('*, product_t(productid,product_name, category, product_quantity, product_price, suppliername, dateadded, image_path)')
                     .eq('companyid', companyID);
 
                 if (error) {

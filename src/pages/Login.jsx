@@ -6,8 +6,6 @@ import Footer from '../components/Footer'
 import "../styles/login.css"
 import loginimg from "../styles/images/6.png"
 import supabase from '../client/database';
-import LoadingScreen from '../components/LoadingScreen';
-
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,6 +29,7 @@ const Login = () => {
           setError('Email not verified. Please Confirm your email before logging in');
         } else {  
           setError('Password does not match , please check your credentials and try again.');
+          setLoading(false)
         }
         console.error('Authentication error:', authError);
         return;
@@ -57,15 +56,11 @@ const Login = () => {
     } catch (err) {
       console.error('Login error:', err.message);
       setError('Login failed, please try again later.');
+      setLoading(false)
     }
     
     setLoading(false)
   };
-
-
-  if (loading) {
-    return <LoadingScreen/>
-  }
 
     return (
         <>
@@ -111,7 +106,9 @@ const Login = () => {
             placeholder="Your password"/>
           </div>
           <p>No account? No Problem <a href="/registration">Sign up here!</a></p>
-          <button class="BtnSubmit" type="submit">Login</button>
+          <button class="BtnSubmit" type="submit">
+            {loading ? 'Logging in..' : 'Login'}
+          </button>
         </form>
         <img class="imgbackground" src={loginimg} alt="123"/>
       </div>
