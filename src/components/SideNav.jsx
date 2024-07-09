@@ -103,6 +103,11 @@ const SideNav = () => {
                                     <li className="logoutBtn"><div onClick={handleShowModal}>
                                         <i class="bi bi-box-arrow-left"></i><h1>Log-out</h1>
                                     </div></li>
+                                    <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to = "/profile">
+                                    <li className="profileBtn"><div >
+                                        <i class="bi bi-person"><span>Profile</span></i>
+                                    </div></li>
+                                </NavLink>
                             </ul>
                         </div>
                 </div>

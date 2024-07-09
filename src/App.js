@@ -10,6 +10,7 @@ import CompReg from "./pages/CompanyRegister"
 import Items from "./pages/Items"
 import Transactions from "./pages/Transaction";
 import ActLogs from "./pages/ActivityLogs";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/items" element = {<Items/>} />
                 <Route path="/transactions" element = {<Transactions/>} />
                 <Route path = "/activitylogs" element = {<ActLogs/>} />
+                <Route path = "/profile" element = {<Profile/>}/>
     </Routes>
     </Router>
   );

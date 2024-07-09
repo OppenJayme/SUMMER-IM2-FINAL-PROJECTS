@@ -186,3 +186,12 @@
     border: none;
     color: whitesmoke;
 }
+.profileBtn {
+    margin-top: 290px;
+}
+.profileBtn span {
+    position:absolute;
+    margin-top: 14px;
+    margin-left: 6px;
+}
+
