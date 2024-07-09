@@ -1,11 +1,10 @@
 import "../styles/dashboard.css";
 import SideNav from "../components/SideNav";
-import { useEffect, useState, useRef } from "react"; // Import useRef
+import { useEffect, useState, useRef, useCallback } from "react"; // Import useCallback
 import supabase from "../client/database";
 import LoadingScreen from "../components/LoadingScreen";
 import Notification from "../components/Notification";
 import Chart from 'chart.js/auto';
-
 
 const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
@@ -17,9 +16,9 @@ const Dashboard = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [showNotification, setNotification] = useState(false);
-    const [showChart, setShowChart] = useState(false)
-
-    const chartRef = useRef(null); // Create a ref for the chart instance
+    const [monthlySales, setMonthlySales] = useState([]);
+    const [monthlyItems, setMonthlyItems] = useState([]);
+    const chartRef = useRef(null);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +44,7 @@ const Dashboard = () => {
 
                     const { data: inventoryData, error: inventoryError } = await supabase
                         .from('inventory_t')
-                        .select(`*, product_t(product_name, category, product_quantity, product_price)`)
+                        .select(`*, product_t(product_name, category, product_quantity, product_price, dateadded)`)
                         .eq('companyid', companyID);
 
                     if (inventoryError) throw inventoryError;
@@ -75,6 +74,29 @@ const Dashboard = () => {
                     if (allEmployeeError) throw allEmployeeError;
 
                     setTotalEmployees(allEmployeeData.length);
+
+                    const salesByMonth = inventoryData.reduce((acc, item) => {
+                        const saleDate = new Date(item.product_t.dateadded);
+                        const month = saleDate.getMonth();
+                        const year = saleDate.getFullYear();
+                        const key = `${year}-${String(month + 1).padStart(2, '0')}`;
+
+                        if (!acc[key]) {
+                            acc[key] = { sales: 0, items: 0 };
+                        }
+                        acc[key].sales += item.productSale;
+                        acc[key].items += item.product_t.product_quantity;
+                        return acc;
+                    }, {});
+
+                    const monthlySalesArray = Object.keys(salesByMonth).map(key => ({
+                        month: key,
+                        totalSales: salesByMonth[key].sales ,
+                        totalItems: salesByMonth[key].items
+                    })).sort((a, b) => new Date(a.month) - new Date(b.month));
+
+                    setMonthlySales(monthlySalesArray.map(data => ({ month: data.month, totalSales: data.totalSales })));
+                    setMonthlyItems(monthlySalesArray.map(data => ({ month: data.month, totalItems: data.totalItems })));
                 }
             } catch (err) {
                 console.error('Error fetching data:', err);
@@ -86,28 +108,38 @@ const Dashboard = () => {
         fetchData();
     }, []);
 
-    
     const handleNotification = () => {
         setNotification(prev => !prev);
     }
-    
-    const renderChart = () => {
+
+    const renderChart = useCallback(() => {
         const ctx = chartRef.current.getContext('2d');
-        
+
         if (ctx) {
             if (chartRef.current.chart) {
                 chartRef.current.chart.destroy();
             }
-            
+
+            const labels = monthlySales.map(data => data.month);
+            const salesData = monthlySales.map(data => data.totalSales);
+            const itemsData = monthlyItems.map(data => data.totalItems)
+
             chartRef.current.chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Total Sales'],
+                    labels: labels,
                     datasets: [
                         {
                             label: 'Total Sales',
-                            data: [totalSales],
-                            backgroundColor: ' rgb(194, 223, 148)',
+                            data: salesData,
+                            backgroundColor: 'rgb(194, 223, 148)',
+                            borderColor: 'none',
+                            borderWidth: 0
+                        } ,
+                        {
+                            label: 'Total Items',
+                            data: itemsData,
+                            backgroundColor: 'rgb(147, 189, 236)',
                             borderColor: 'none',
                             borderWidth: 0
                         }
@@ -122,20 +154,18 @@ const Dashboard = () => {
                 }
             });
         }
-    };
+    }, [monthlySales, monthlyItems]);
+
     useEffect(() => {
         if (!loading && chartRef.current) {
             renderChart();
-        } 
-    }, [loading]);
-    const toggleChart = () => {
-        setShowChart(prev => !prev);
-    }
-    
+        }
+    }, [loading, renderChart]);
+
     if (loading) {
-        return <LoadingScreen />; 
+        return <LoadingScreen />;
     }
-    
+
     return (
         <>
             <SideNav />
@@ -177,7 +207,7 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="dashboard_box" onClick={toggleChart}>
+                        <div className="dashboard_box">
                             <div className="left4 hvr-sweep-to-right">
                                 <i className="bi bi-reception-4"></i>
                             </div>
@@ -208,10 +238,9 @@ const Dashboard = () => {
                                 <p>₱ {totalMarketRevenue}</p>
                             </div>
                         </div>
-
                     </div>
-                    <div className={`dashboard-chart ${showChart ? 'active' : ''}`}>
-                            <canvas id="acquisitions" ref={chartRef}></canvas> {/* Attach ref to canvas */}
+                    <div className="dashboard-chart">
+                        <canvas id="acquisitions" ref={chartRef}></canvas>
                     </div>
                 </div>
             </div>

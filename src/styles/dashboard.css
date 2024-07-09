@@ -201,19 +201,18 @@
     color: #181515;
 }
 
+
+/* this is for the charts */
 .dashboard-chart {
-    width: 47.5%;
-    position: relative;
+    width: 80%;
+    position: inherit;
     perspective: 1000px;
     transition: transform 0.6s;
     transform-style: preserve-3d;
 }
 
-.dashboard-chart.active {
-    transform: rotateY(180deg);
-}
-
-.dashboard-chart canvas {
+.dashboard-chart canvas {   
+    border: 1px solid black;
     backface-visibility: hidden;
     position: absolute;
     top: 0;
