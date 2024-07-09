@@ -213,3 +213,23 @@
 .notif i:hover{
     color: #181515;
 }
+
+/* FOR CHART */
+.dashboard-chart {
+    width: 1000px;
+    position: relative;
+    perspective: 1000px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.dashboard-chart.active {
+    transform: rotateY(180deg);
+}
+
+.dashboard-chart canvas {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

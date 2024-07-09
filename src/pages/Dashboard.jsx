@@ -1,9 +1,11 @@
 import "../styles/dashboard.css";
 import SideNav from "../components/SideNav";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"; // Import useRef
 import supabase from "../client/database";
 import LoadingScreen from "../components/LoadingScreen";
 import Notification from "../components/Notification";
+import Chart from 'chart.js/auto';
+
 
 const Dashboard = () => {
     const [totalCategories, setTotalCategories] = useState(0);
@@ -15,6 +17,9 @@ const Dashboard = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(true);
     const [showNotification, setNotification] = useState(false);
+    const [showChart, setShowChart] = useState(false)
+
+    const chartRef = useRef(null); // Create a ref for the chart instance
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,6 +27,7 @@ const Dashboard = () => {
                 const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
                 if (sessionError) {
                     console.error(sessionError);
+                    throw sessionError;
                 }
 
                 const user = sessionData?.session.user;
@@ -39,7 +45,7 @@ const Dashboard = () => {
 
                     const { data: inventoryData, error: inventoryError } = await supabase
                         .from('inventory_t')
-                        .select('*, product_t(product_name, category, product_quantity, product_price)')
+                        .select(`*, product_t(product_name, category, product_quantity, product_price)`)
                         .eq('companyid', companyID);
 
                     if (inventoryError) throw inventoryError;
@@ -80,21 +86,62 @@ const Dashboard = () => {
         fetchData();
     }, []);
 
-    if (loading) {
-        return <LoadingScreen/>
-    }
-
     
     const handleNotification = () => {
         setNotification(prev => !prev);
     }
-
+    
+    const renderChart = () => {
+        const ctx = chartRef.current.getContext('2d');
+        
+        if (ctx) {
+            if (chartRef.current.chart) {
+                chartRef.current.chart.destroy();
+            }
+            
+            chartRef.current.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Sales'],
+                    datasets: [
+                        {
+                            label: 'Total Sales',
+                            data: [totalSales],
+                            backgroundColor: ' rgb(194, 223, 148)',
+                            borderColor: 'none',
+                            borderWidth: 0
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    };
+    useEffect(() => {
+        if (!loading && chartRef.current) {
+            renderChart();
+        } 
+    }, [loading]);
+    const toggleChart = () => {
+        setShowChart(prev => !prev);
+    }
+    
+    if (loading) {
+        return <LoadingScreen />; 
+    }
+    
     return (
         <>
             <SideNav />
             <div className="notif">
-                <i class="bi bi-bell-fill" onClick={handleNotification}></i>
-                {showNotification && <Notification/>}
+                <i className="bi bi-bell-fill" onClick={handleNotification}></i>
+                {showNotification && <Notification />}
             </div>
             <div className="dashboard_content">
                 <div className="main_content_container">
@@ -130,7 +177,7 @@ const Dashboard = () => {
                             </div>
                         </div>
 
-                        <div className="dashboard_box">
+                        <div className="dashboard_box" onClick={toggleChart}>
                             <div className="left4 hvr-sweep-to-right">
                                 <i className="bi bi-reception-4"></i>
                             </div>
@@ -144,7 +191,7 @@ const Dashboard = () => {
                     <div className="container1">
                         <div className="dashboard_box">
                             <div className="left5 hvr-sweep-to-right">
-                                <i class="bi bi-cash-coin"></i>
+                                <i className="bi bi-cash-coin"></i>
                             </div>
                             <div className="right">
                                 <h1>Total Market Value</h1>
@@ -154,14 +201,18 @@ const Dashboard = () => {
 
                         <div className="dashboard_box">
                             <div className="left6 hvr-sweep-to-right">
-                                <i class="bi bi-activity"></i>
+                                <i className="bi bi-activity"></i>
                             </div>
                             <div className="right">
                                 <h1>Total Market Revenue</h1>
                                 <p>₱ {totalMarketRevenue}</p>
                             </div>
                         </div>
+
                     </div>
+                    <div className={`dashboard-chart ${showChart ? 'active' : ''}`}>
+                            <canvas id="acquisitions" ref={chartRef}></canvas> {/* Attach ref to canvas */}
+                        </div>
                 </div>
             </div>
         </>
