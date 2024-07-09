@@ -3,11 +3,13 @@ import SideNav from "../components/SideNav";
 import Notification from "../components/Notification";
 import supabase from '../client/database';
 import '../styles/activitylogs.css'; 
+import LoadingScreen from "../components/LoadingScreen"
 
 const ActLogs = () => {
   const [showNotification, setNotification] = useState(false);
   const [companyID, setCompanyID] = useState(null);
   const [products, setProducts] = useState([]);
+  const [loading, isLoading] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +38,8 @@ const ActLogs = () => {
             }
         } catch (err) {
             console.error('Error fetching data:', err);
+        } finally {
+          isLoading(false)
         }
     };
     fetchData();
@@ -44,6 +48,10 @@ const ActLogs = () => {
   const handleNotification = () => {
     setNotification(prev => !prev);
   };
+
+  if (loading) {
+    return <LoadingScreen/>
+  }
 
   return (
     <>
