@@ -52,23 +52,34 @@ const ActLogs = () => {
         <i className="bi bi-bell-fill" onClick={handleNotification}></i>
         {showNotification && <Notification />}
       </div>
-      <div className="product-list">
+      <div className="activity_content">
+        <div className="activity_content_container">
         {products.length === 0 ? (
           <p>No products found</p>
         ) : (
           products.map((product, index) => (
-            <div key={index} className="product-item">
-              <h2>Item Name: {product.product_t.product_name}</h2>
-              <p>Employee Added: {product.employee_t?.fname || 'Unknown'}</p>
-              <p>Category: {product.product_t.category}</p>
-              <p>Quantity: {product.product_t.product_quantity}</p>
-              <p>Price: {product.product_t.product_price}</p>
-              <p>Supplier: {product.product_t.suppliername}</p>
-              <p>Date Added: {product.product_t.dateadded}</p>
-              <br></br>
+            <div key={index} className="activity-notif">
+              <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t.product_name}" from items</p>
+              <p>{product.product_t.dateadded}</p>
             </div>
           ))
         )}
+
+
+
+{/* HIMOA IF ELSE OR WATEVER PARAS TAAS
+            <div key={index} className="activity-notif">
+              <p>{product.employee_t?.fname || 'Unknown'} has deleted an item "{product.product_t.product_name}" from items</p>
+              <p>{product.product_t.dateadded}</p>
+            </div>
+
+            <div key={index} className="activity-notif">
+              <p>{product.employee_t?.fname || 'Unknown'} has updated an item "{product.product_t.product_name}" from items</p>
+              <p>{product.product_t.dateadded}</p>
+            </div> */}
+
+
+        </div>
       </div>
     </>
   );
