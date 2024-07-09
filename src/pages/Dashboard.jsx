@@ -212,7 +212,7 @@ const Dashboard = () => {
                     </div>
                     <div className={`dashboard-chart ${showChart ? 'active' : ''}`}>
                             <canvas id="acquisitions" ref={chartRef}></canvas> {/* Attach ref to canvas */}
-                        </div>
+                    </div>
                 </div>
             </div>
         </>

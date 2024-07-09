@@ -35,3 +35,13 @@
 .activity-notif p{
   font-size: 20px;
 }
+
+.activity-notif i{
+  font-size: 30px;
+  display: flex;
+  cursor: pointer;
+  position: fixed;
+  right: 0;
+  margin-top: -29px;
+  margin-right: 28px;
+}
