@@ -67,7 +67,9 @@
 .text-container p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
-    margin-top: 20px;
-    line-height: 30px; 
+    margin-top: 130px;
+    margin-left: 40px;
+    margin-right: 40px;
+    line-height: 40px; 
     font-size: 20px;
 }

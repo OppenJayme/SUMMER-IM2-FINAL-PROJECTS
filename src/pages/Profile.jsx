@@ -2,6 +2,7 @@ import SideNav from '../components/SideNav';
 import React, { useState, useEffect } from 'react';
 import supabase from '../client/database';
 import Notification from '../components/Notification';
+import '../styles/profile.css';
 
 
 
@@ -9,6 +10,7 @@ const Profile = () => {
     const [ showNotification, setNotification] = useState(false);
     const [username, setUsername] = useState('');
     const [companyName, setCompanyName] = useState('');
+    const [email, setEmail] = useState('');
     const handleNotification = () => {
         setNotification(prev => !prev);
     }
@@ -16,7 +18,7 @@ const Profile = () => {
     useEffect (() => {
         const fetchData = async () => {
             try {
-                const { data: sessionData, errorData: sessionError } = await supabase.auth.getSession();
+                const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
                 if (sessionError) {
                     console.error(sessionError);
                 }
@@ -27,13 +29,14 @@ const Profile = () => {
                     .from('employee_t')
                     .select('*')
                     .eq('employeeemail', user.email);
-
+    
                 if (employeeError) throw employeeError;
-
+    
                 setUsername(`${employeeData[0].fname} ${employeeData[0].lname}`);
+                setEmail(employeeData[0].employeeemail);
                 
-                const companyID = employeeData.companyid;
-
+                const companyID = employeeData[0].companyid; 
+    
                 const { data: companyData, error: companyError } = await supabase 
                 .from('company_t')
                 .select('companyname')
@@ -41,9 +44,9 @@ const Profile = () => {
                 .single();
                 
                 if (companyError)  throw companyError;
-
+    
                 setCompanyName(companyData.companyname);
-
+    
                 }
             } catch (err){
                 console.error('Error cant get data', err);
@@ -61,8 +64,10 @@ const Profile = () => {
             </div>
             <div className="user-profile">
             <i class="bi bi-person"></i>
-            <span>{username} </span>
-            <span> companyName: { companyName } </span> 
+            <span> Username: { username }</span>
+            <p> companyName: { companyName } </p> 
+            <p>Email: { email } </p>
+    
             </div>
         </div>
     );
