@@ -106,6 +106,18 @@ const Dashboard = () => {
             }
         };
         fetchData();
+
+        const inventorySubscription = supabase
+        .channel('inventory_t')
+        .on('postgres_changes',{event: '*', schema: 'public', table: 'inventory_t'}, payload => {
+            console.log('Change Received', payload);
+            fetchData();
+        })
+        .subscribe();
+
+        return () => {
+            supabase.removeChannel(inventorySubscription);
+        };
     }, []);
 
     const handleNotification = () => {

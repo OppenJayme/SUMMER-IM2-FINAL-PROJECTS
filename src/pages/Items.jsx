@@ -61,6 +61,19 @@ const Items = () => {
            }
         };
         fetchInventory();
+
+        const inventorySubscription = supabase
+        .channel('inventory_t')
+        .on('postgres_changes',{event: '*', schema: 'public', table: 'inventory_t'}, payload => {
+            console.log('Change Received', payload);
+            fetchInventory();
+        })
+        .subscribe();
+
+        return () => {
+            supabase.removeChannel(inventorySubscription);
+        };
+
     }, []);
     const handleShowModal = () => setShowModal(true);
     const handleCloseModal = () => setShowModal(false);

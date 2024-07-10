@@ -7,43 +7,55 @@ import LoadingScreen from "../components/LoadingScreen"
 
 const ActLogs = () => {
   const [showNotification, setNotification] = useState(false);
-  const [companyID, setCompanyID] = useState(null);
+  const [loading, isLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [loading, isLoading] = useState(true)
+  const [isInsert, setIsInsert] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
-            if (sessionError) {
-                console.error(sessionError);
-            }
-            const user = sessionData?.session.user;
-            if (user) {
-                const { data: employeeData, error: employeeError } = await supabase
-                    .from('employee_t')
-                    .select('companyid')
-                    .eq('employeeemail', user.email)
-                    .single();
-                if (employeeError) throw employeeError;
-                const companyID = employeeData.companyid;
-                setCompanyID(companyID);
 
-                const { data: inventoryData, error: inventoryError } = await supabase
-                    .from('inventory_t')
-                    .select('*, product_t(product_name, category, product_quantity, product_price, suppliername, dateadded, image_path), employee_t(fname)')
-                    .eq('companyid', companyID);
-                if (inventoryError) throw inventoryError;
-                setProducts(inventoryData);
-            }
-        } catch (err) {
-            console.error('Error fetching data:', err);
-        } finally {
-          isLoading(false)
-        }
+      const {data: inventoryData, error} = await supabase
+      .from('inventory_t')
+      .select('*, employee_t(fname), product_t(product_name, dateadded)');
+
+      if (error) {
+        console.error(error)
+        return;
+      }
+      setProducts(inventoryData);
+      isLoading(false);
     };
     fetchData();
-}, []);
+
+    const inventorySubscription = supabase
+    .channel('inventory_t')
+    .on('postgres_changes', {event: 'INSERT', schema: 'public', table: 'inventory_t'}, payload => {
+      console.log('Insert Recieved', payload);
+      setIsInsert(true);
+      setIsUpdate(false);
+      setProducts(prevProducts => [payload.new, ...prevProducts])
+    })
+    .on('postgres_changes', {event: 'UPDATE', schema: 'public', table: 'inventory_t'}, payload => {
+      console.log('Update Received', payload);
+      setIsInsert(false);
+      setIsUpdate(true);
+      setProducts(prevProducts => {
+        const updatedProducts = prevProducts.map(product => product.id === payload.id.new ? payload.new: product
+        );
+        return updatedProducts;
+      });
+    })
+    .subscribe();
+
+    return () => {
+      supabase.removeChannel(inventorySubscription);
+    }
+
+
+
+  }, [])
 
   const handleNotification = () => {
     setNotification(prev => !prev);
@@ -67,26 +79,21 @@ const ActLogs = () => {
         ) : (
           products.map((product, index) => (
             <div key={index} className="activity-notif">
-              <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t.product_name}" from items</p>
-              <p>{product.product_t.dateadded}</p>
+             {isInsert && (
+              <div className="logs-container">
+                <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t.product_name}" from items</p>
+                <p>{product.product_t.dateadded}</p>
+              </div>
+             )}
+             {isUpdate && (
+              <div className="logs-container">
+               <p>{product.employee_t?.fName || 'Unknown'} has updated an item "{product.product_t.product_name}"</p>
+               <p>{product.product_t.dateadded}</p>
+              </div>
+             )}
             </div>
           ))
         )}
-
-
-
-{/* HIMOA IF ELSE OR WATEVER PARAS TAAS
-            <div key={index} className="activity-notif">
-              <p>{product.employee_t?.fname || 'Unknown'} has deleted an item "{product.product_t.product_name}" from items</p>
-              <p>{product.product_t.dateadded}</p>
-            </div>
-
-            <div key={index} className="activity-notif">
-              <p>{product.employee_t?.fname || 'Unknown'} has updated an item "{product.product_t.product_name}" from items</p>
-              <p>{product.product_t.dateadded}</p>
-            </div> */}
-
-
         </div>
       </div>
     </>
