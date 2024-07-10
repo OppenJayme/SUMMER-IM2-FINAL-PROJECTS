@@ -8,7 +8,7 @@ import LoadingScreen from "../components/LoadingScreen"
 const ActLogs = () => {
   const [showNotification, setNotification] = useState(false);
   const [loading, isLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [product, setProducts] = useState([]);
   const [isInsert, setIsInsert] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
 
@@ -24,6 +24,7 @@ const ActLogs = () => {
         console.error(error)
         return;
       }
+      console.log('Fetched data:', inventoryData);
       setProducts(inventoryData);
       isLoading(false);
     };
@@ -56,6 +57,9 @@ const ActLogs = () => {
 
 
   }, [])
+  console.log('Products:', product)
+            console.log('isInsert:', isInsert)
+            console.log('isUpdate:', isUpdate)
 
   const handleNotification = () => {
     setNotification(prev => !prev);
@@ -74,25 +78,20 @@ const ActLogs = () => {
       </div>
       <div className="activity_content">
         <div className="activity_content_container">
-        {products.length === 0 ? (
+        {product.length === 0 ? (
           <p>No products found</p>
         ) : (
-          products.map((product, index) => (
+          product.map((item, index) => (
             <div key={index} className="activity-notif">
-             {isInsert && (
-              <div className="logs-container">
-                <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t.product_name}" from items</p>
-                <p>{product.product_t.dateadded}</p>
-              </div>
-             )}
-             {isUpdate && (
-              <div className="logs-container">
-               <p>{product.employee_t?.fName || 'Unknown'} has updated an item "{product.product_t.product_name}"</p>
-               <p>{product.product_t.dateadded}</p>
-              </div>
-             )}
+              {isInsert && (
+                <p>{item.employee_t?.fname || 'Unknown'} has added an item "{item.product_t.product_name}" from items</p>
+              )}
+              {isUpdate && (
+                <p>{item.employee_t?.fname || 'Unknown'} has updated an item "{item.product_t.product_name}"</p>
+              )}
             </div>
           ))
+          
         )}
         </div>
       </div>
