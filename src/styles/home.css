@@ -125,7 +125,7 @@ header{
 
 .Login-Register .Register:hover{
     color: white;
-    background-color: rgb(127, 81, 165);;
+    background-color: rgb(127, 81, 165);
     transition: .2  s;
 }
 
@@ -215,11 +215,10 @@ header{
 }
 
 .BtnRegisterCompany {
-    background-color: rgb(153, 96, 199);
+    background: linear-gradient(rgb(0,0,0),rgb(54,57,62),rgb(30,33,36));
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    border: 0px;
     color: #fff;    
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 15px 30px;
     font-size: 17px;
     cursor: pointer;
@@ -227,8 +226,7 @@ header{
 
 .BtnRegisterCompany:hover{
     color: white;
-    background-color: rgb(127, 81, 165);;
-    transition: .2  s;
+    background: rgb(114,137,218);
 }
 
 footer {
