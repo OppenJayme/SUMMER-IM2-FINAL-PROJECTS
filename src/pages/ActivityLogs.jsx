@@ -9,8 +9,6 @@ const ActLogs = () => {
   const [showNotification, setNotification] = useState(false);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  const [isInsert, setIsInsert] = useState(false);
-  const [isUpdate, setIsUpdate] = useState(false);
 
   const handleNotification = () => {
     setNotification(prev => !prev);
@@ -27,36 +25,68 @@ const ActLogs = () => {
         return;
       }
 
+      console.log('Initial Fetch Data:', data);
       setProducts(data);
       setLoading(false);
     };
 
     fetchData();
 
+    const handleInsert = async (payload) => {
+      console.log('Insert Received:', payload);
+
+      // Fetch full details of the new product
+      const { data: newProductData, error } = await supabase
+        .from('inventory_t')
+        .select('*, employee_t(fname), product_t(product_name, dateadded)')
+        .eq('inventoryid', payload.new.inventoryid)
+        .single();
+
+      if (error) {
+        console.error('Error fetching new product data:', error);
+        return;
+      }
+
+      const newProduct = {
+        ...newProductData,
+        type: 'INSERT'
+      };
+
+      setProducts(prevProducts => [newProduct, ...prevProducts]);
+    };
+
+    const handleUpdate = async (payload) => {
+      console.log('Update Received:', payload);
+
+      // Fetch full details of the updated product
+      const { data: updatedProductData, error } = await supabase
+        .from('inventory_t')
+        .select('*, employee_t(fname), product_t(product_name, dateadded)')
+        .eq('inventoryid', payload.new.inventoryid)
+        .single();
+
+      if (error) {
+        console.error('Error fetching updated product data:', error);
+        return;
+      }
+
+      const updatedProduct = {
+        ...updatedProductData,
+        type: 'UPDATE'
+      };
+
+      setProducts(prevProducts => {
+        const updatedProducts = prevProducts.map(product =>
+          product.inventoryid === updatedProduct.inventoryid ? updatedProduct : product
+        );
+        return updatedProducts;
+      });
+    };
+
     const inventorySubscription = supabase
       .channel('inventory_t')
-      .on('postgres_changes', { event: 'SELECT', schema: 'public', table: 'inventory_t' }, payload => {
-        console.log('Select Received', payload);
-        // Handle SELECT event
-        fetchData();
-      })
-      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'inventory_t' }, payload => {
-        console.log('Insert Received', payload);
-        setIsInsert(true);
-        setIsUpdate(false);
-        setProducts(prevProducts => [payload.new, ...prevProducts]);
-      })
-      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'inventory_t' }, payload => {
-        console.log('Update Received', payload);
-        setIsInsert(false);
-        setIsUpdate(true);
-        setProducts(prevProducts => {
-          const updatedProducts = prevProducts.map(product =>
-            product.inventoryid === payload.new.inventoryid ? payload.new : product
-          );
-          return updatedProducts;
-        });
-      })
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'inventory_t' }, handleInsert)
+      .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'inventory_t' }, handleUpdate)
       .subscribe();
 
     return () => {
@@ -77,23 +107,20 @@ const ActLogs = () => {
       </div>
       <div className="activity_content">
         <div className="activity_content_container">
-          {/* Display activity notifications only if isInsert or isUpdate is true */}
-          {(isInsert || isUpdate) && (
+          {products.length === 0 ? (
+            <p>No products found</p>
+          ) : (
             products.map((product, index) => (
               <div key={index} className="activity-notif">
-                {isInsert && (
+                {product.type === 'INSERT' && (
                   <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t?.product_name || 'Unknown'}" on {product.product_t?.dateadded || 'Unknown'}</p>
                 )}
-                {isUpdate && (
+                {product.type === 'UPDATE' && (
                   <p>{product.employee_t?.fname || 'Unknown'} has updated an item "{product.product_t?.product_name || 'Unknown'}" on {product.product_t?.dateadded || 'Unknown'}</p>
                 )}
               </div>
             ))
           )}
-          { products.map((product, index) => (
-              <div key={index} className="activity-notif">
-                  <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t?.product_name || 'Unknown'}" on {product.product_t?.dateadded || 'Unknown'}</p>
-              </div>))} 
         </div>
       </div>
     </>
