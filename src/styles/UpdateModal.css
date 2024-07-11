@@ -1,0 +1,100 @@
+.update-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.update-modal-content {
+    background: white;
+    border-radius: 5px;
+    max-width: 1000px;
+    height: 200px;
+    width: 100%;
+    height: 50%;
+    z-index: 1001;
+    display: flex;
+    padding: 20px;
+}
+
+.update-modal-content_left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid black 1px;
+    border-radius: 6px;
+}
+
+.update-modal-content_left img{
+    width: 100%;
+    height: 100%;
+}
+
+.update-modal-content_right{
+    width: 50%;
+    height: 100%;
+    padding-left: 20px;
+}
+
+.update-modal-content_right p{
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
+.update-modal-content_right h2{
+    padding-bottom: 15px;
+    font-size: 35px;
+    font-family: Patua One;
+    text-transform: uppercase;
+    margin-left: -10px;
+}
+
+.update-Btns{
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.update-Btns button{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition:  0.5s;
+    font-size: 25px;
+    font-family: Patua One;
+}
+
+.update-Btnfirst:hover{
+    background-color: #B998FF;
+}
+
+.update-Btnsecond:hover{
+    background-color: #e83616;   
+}
+
+.update-close{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: -15px;
+    margin-right: -15px;
+}
+
+.update-close i{
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
