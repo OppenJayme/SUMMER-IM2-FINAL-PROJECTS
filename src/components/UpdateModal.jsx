@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
 import "../styles/UpdateModal.css";
-import supabase from '../client/database';
 
 
-const updateModal = () => {
+const UpdateModal = ({show, item, onClose}) => {
+
+
+    if (!show) {
+        return null;
+    }
+
+    console.log(item);
     return (
         <div className="update-modal-overlay">
             <div className="update-modal-content">
@@ -18,30 +23,30 @@ const updateModal = () => {
                     </div>
 
                     <p>SUPPLIER NAME</p>
-                        <input name="suppliername" className="update-input-container" value={supplierName} onChange={(e) => setSupplierName(e.target.value)} required/>
+                        <input name="suppliername" className="update-input-container" placeholder={item.product_t.suppliername} required/>
 
                     <p>PRODUCT QUANTITY</p>
-                        <input name="quantity" className="update-input-container" value={quantity} onChange={(e) => setQuantity(e.target.value)} required/>
+                        <input name="quantity" className="update-input-container" placeholder={item.product_t.product_quantity}  required/>
 
                     <p>PRODUCT NAME</p>
-                        <input name="productname" className="update-input-container" value={productName} onChange={(e) => setProductName(e.target.value)} required/>
+                        <input name="productname" className="update-input-container" placeholder={item.product_t.product_name}  required/>
                 
                     <p>CATEGORY</p>
-                        <input name="category" className="update-input-container" value={category} onChange={(e) => setCategory(e.target.value)} required/>
+                        <input name="category" className="update-input-container" placeholder={item.product_t.category}  required/>
 
                     <p>PRODUCT PRICE</p>
-                        <input name="price" className="update-input-container" value={price} onChange={(e) => setPrice(e.target.value)} required/>
+                        <input name="price" className="update-input-container" placeholder={item.product_t.product_price}  required/>
 
                     <p>NO. PRODCUTS SOLD</p>
-                        <input name="sale" className="update-input-container" value={sale} onChange={(e) => setSales(e.target.value)} required/>
+                        <input name="sale" className="update-input-container" placeholder={item.productSale}  required/>
 
                     <p>ITEM IMAGE</p>
-                        <input name="sale" className="update-img-input-container" type="file" onChange={handleFile}required/>
+                        <input name="sale" className="update-img-input-container" type="file"required/>
                         
                     <div className="update-Btns">
-                        <button className='update-Btnfirst' onClick={onClose}>Update</button>
-                        <button className='update-Btnsecond' onClick={deleteInventory} disabled ={deleteLoading}>
-                            {deleteLoading ? 'Updating Product..' : 'Update'}
+                        <button className='update-Btnfirst'>Update</button>
+                        <button className='update-Btnsecond' onClick={onClose}>
+                            Cancel
                         </button>
                     </div>
                 </div>
@@ -50,4 +55,4 @@ const updateModal = () => {
     );
 };
 
-export default updateModal;
+export default UpdateModal;

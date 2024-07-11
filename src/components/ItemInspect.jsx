@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import "../styles/ItemInspect.css";
 import supabase from '../client/database';
+import UpdateModal from "../components/UpdateModal";
 
 
 const ItemInspect = ({ show, onClose, item }) => {
     const [deleteLoading, setDeleteLoading] = useState(false);
-    const [updateLoading, setUpdateLoading] = useState(false);
+    const [showUpdateModal, setUpdateModal] = useState(false)
     const [ItemInspectError, setInspectError] = useState(false)
+
 
 
     const deleteInventory = async () => {
@@ -45,17 +47,27 @@ const ItemInspect = ({ show, onClose, item }) => {
             setDeleteLoading(false);
         }
     }
-        
 
-
+    const openUpdate = () => {
+        setUpdateModal(true);
+    }
+   
     if (!show) {
         return null;
     }
-    console.log(item.product_t.image_path);
+
+    if (showUpdateModal) {   
+        return (
+            <UpdateModal 
+            show = {showUpdateModal}
+            item = {item}
+            onClose = {() => setUpdateModal(false)} 
+            />
+        )
+    }
     return (
         <div className="inspect-modal-overlay">
             <div className="inspect-modal-content">
-
                 <div className="inspect-modal-content_left">
                     <img src={item.product_t.image_path} alt="" />
                 </div>
@@ -73,7 +85,7 @@ const ItemInspect = ({ show, onClose, item }) => {
                         <p>Supplier: {item.product_t.suppliername}</p>
                         <p>Date Added: {item.product_t.dateadded}</p>
                     <div className="Btns">
-                        <button className='Btnfirst' onClick={onClose}>Update</button>
+                        <button className='Btnfirst' onClick={openUpdate}>Update</button>
                         <button className='Btnsecond' onClick={deleteInventory} disabled ={deleteLoading}>
                             {deleteLoading ? 'Deleting Product..' : 'Delete'}
                         </button>
