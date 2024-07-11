@@ -4,6 +4,7 @@ import Notification from "../components/Notification";
 import supabase from '../client/database';
 import '../styles/activitylogs.css'; 
 import LoadingScreen from "../components/LoadingScreen";
+import { format, differenceInDays } from 'date-fns';
 
 const ActLogs = () => {
   const [showNotification, setNotification] = useState(false);
@@ -26,7 +27,14 @@ const ActLogs = () => {
       }
 
       console.log('Initial Fetch Data:', data);
-      setProducts(data);
+
+      // Add a type to the fetched data (if needed, based on your logic)
+      const initialProducts = data.map(product => ({
+        ...product,
+        type: 'INITIAL'
+      }));
+
+      setProducts(initialProducts);
       setLoading(false);
     };
 
@@ -98,6 +106,48 @@ const ActLogs = () => {
     return <LoadingScreen />;
   }
 
+  const groupProductsByDay = (products) => {
+    const grouped = products.reduce((acc, product) => {
+      const date = new Date(product.product_t?.dateadded || '');
+      const diffDays = differenceInDays(new Date(), date);
+      let label;
+
+      if (diffDays === 0) {
+        label = 'Today';
+      } else if (diffDays === 1) {
+        label = 'Yesterday';
+      } else {
+        label = `${diffDays} days ago`;
+      }
+
+      if (!acc[label]) {
+        acc[label] = [];
+      }
+
+      acc[label].push(product);
+      return acc;
+    }, {});
+
+    // Sort the products within each group by dateadded in descending order
+    Object.keys(grouped).forEach(key => {
+      grouped[key].sort((a, b) => new Date(b.product_t?.dateadded) - new Date(a.product_t?.dateadded));
+    });
+
+    // Sort the groups by their labels ("Today", "Yesterday", etc.)
+    const sortedGroups = Object.keys(grouped).sort((a, b) => {
+      const aDays = a === 'Today' ? 0 : a === 'Yesterday' ? 1 : parseInt(a);
+      const bDays = b === 'Today' ? 0 : b === 'Yesterday' ? 1 : parseInt(b);
+      return aDays - bDays;
+    });
+
+    return sortedGroups.reduce((acc, key) => {
+      acc[key] = grouped[key];
+      return acc;
+    }, {});
+  };
+
+  const groupedProducts = groupProductsByDay(products);
+
   return (
     <>
       <SideNav />
@@ -107,17 +157,25 @@ const ActLogs = () => {
       </div>
       <div className="activity_content">
         <div className="activity_content_container">
-          {products.length === 0 ? (
+          {Object.keys(groupedProducts).length === 0 ? (
             <p>No products found</p>
           ) : (
-            products.map((product, index) => (
-              <div key={index} className="activity-notif">
-                {product.type === 'INSERT' && (
-                  <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t?.product_name || 'Unknown'}" on {product.product_t?.dateadded || 'Unknown'}</p>
-                )}
-                {product.type === 'UPDATE' && (
-                  <p>{product.employee_t?.fname || 'Unknown'} has updated an item "{product.product_t?.product_name || 'Unknown'}" on {product.product_t?.dateadded || 'Unknown'}</p>
-                )}
+            Object.keys(groupedProducts).map((dayLabel, index) => (
+              <div key={index}>
+                <h3 className="day-label">{dayLabel}</h3>
+                {groupedProducts[dayLabel].map((product, idx) => (
+                  <div key={idx} className="activity-notif">
+                    {product.type === 'INSERT' && (
+                      <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t?.product_name || 'Unknown'}" on {format(new Date(product.product_t?.dateadded), 'MMMM d, yyyy')}</p>
+                    )}
+                    {product.type === 'UPDATE' && (
+                      <p>{product.employee_t?.fname || 'Unknown'} has updated an item "{product.product_t?.product_name || 'Unknown'}" on {format(new Date(product.product_t?.dateadded), 'MMMM d, yyyy')}</p>
+                    )}
+                    {product.type === 'INITIAL' && (
+                      <p>{product.employee_t?.fname || 'Unknown'} has added an item "{product.product_t?.product_name || 'Unknown'}" on {format(new Date(product.product_t?.dateadded), 'MMMM d, yyyy')}</p>
+                    )}
+                  </div>
+                ))}
               </div>
             ))
           )}
