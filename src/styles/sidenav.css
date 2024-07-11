@@ -98,11 +98,11 @@
     text-decoration: none;
 }
 
-/* .dashboard_menu_lists li:hover {
+.dashboard_menu_lists li:hover {
     background: #303030a8;
     transition: 0.5s all;
     cursor: pointer;
-} */
+}
 
 .Menu_active li{
     background: #ffffff;
