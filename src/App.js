@@ -8,9 +8,8 @@ import Register from "./pages/Registration"
 import Dashboard from "./pages/Dashboard";
 import CompReg from "./pages/CompanyRegister"
 import Items from "./pages/Items"
-import Transactions from "./pages/Transaction";
+import Employees from "./pages/Employees";
 import ActLogs from "./pages/ActivityLogs";
-import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -24,9 +23,8 @@ function App() {
                 <Route path="/dashboard" element = {<Dashboard/>} />
                 <Route path="/companyregister" element = {<CompReg/>} /> 
                 <Route path="/items" element = {<Items/>} />
-                <Route path="/transactions" element = {<Transactions/>} />
+                <Route path="/Employees" element = {<Employees/>} />
                 <Route path = "/activitylogs" element = {<ActLogs/>} />
-                <Route path = "/profile" element = {<Profile/>}/>
     </Routes>
     </Router>
   );

@@ -1,13 +1,14 @@
-import logoimg from "../styles/images/logo.png"
+import logoimg from "../styles/images/logo.png";
 import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import supabase from "../client/database";
 import LogOut from "../components/LogOutCard";
+import ProfileModal from "../components/ProfileCard";
 import "../styles/sidenav.css";
-
 
 const SideNav = () => {
     const [showLogoutModal, setShowLogoutModal] = useState(false);
+    const [showProfileModal, setShowProfileModal] = useState(false); 
     const [companyName, setCompanyName] = useState('');
 
     useEffect(() => {
@@ -47,13 +48,13 @@ const SideNav = () => {
         getCompanyName();
     }, []);
 
-    const handleShowModal = () => {
+    const handleShowLogoutModal = () => {
         setShowLogoutModal(true);
-    }
+    };
 
     const handleCancelLogout = () => {
         setShowLogoutModal(false);
-    }
+    };
 
     const handleConfirmLogout = async () => {
         const { error } = await supabase.auth.signOut();
@@ -61,8 +62,16 @@ const SideNav = () => {
         if (error) {
             console.error('Error signing out:', error.message);
         } else {
-            window.location.href = '/'; 
+            window.location.href = '/';
         }
+    };
+
+    const handleShowProfileModal = () => {
+        setShowProfileModal(true);
+    };
+
+    const handleCloseProfileModal = () => {
+        setShowProfileModal(false);
     };
 
     return (
@@ -92,7 +101,7 @@ const SideNav = () => {
                                 </NavLink>
                                 <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to= "/transactions">                              
                                     <li><div>
-                                        <i class="bi bi-bezier2"></i><h1>Transaction</h1>
+                                        <i class="bi bi-bezier2"></i><h1>Employees</h1>
                                     </div></li>
                                 </NavLink>  
                                 <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to = "/activitylogs">
@@ -100,14 +109,12 @@ const SideNav = () => {
                                         <i class="bi bi-clipboard-check-fill"></i><h1>Activity Logs</h1>
                                     </div></li>
                                 </NavLink>
-                                    <li className="logoutBtn"><div onClick={handleShowModal}>
+                                    <li className="logoutBtn"><div onClick={handleShowLogoutModal}>
                                         <i class="bi bi-box-arrow-left"></i><h1>Log-out</h1>
                                     </div></li>
-                                    <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to = "/profile">
-                                    <li className="profileBtn"><div >
-                                        <i class="bi bi-person"><span>Profile</span></i>
+                                    <li className="profileBtn"><div onClick={handleShowProfileModal}>
+                                        <i class="bi bi-person"><span>Profile</span> </i>
                                     </div></li>
-                                </NavLink>
                             </ul>
                         </div>
                 </div>
@@ -118,6 +125,9 @@ const SideNav = () => {
             </div>
             {showLogoutModal && (
                 <LogOut handleCancel={handleCancelLogout} handleConfirm={handleConfirmLogout} />
+            )}
+            {showProfileModal && (
+                <ProfileModal handleClose={handleCloseProfileModal} />
             )}
         </>
     )

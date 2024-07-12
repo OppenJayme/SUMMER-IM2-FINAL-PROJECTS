@@ -1,0 +1,52 @@
+/* Employees.css */
+
+/* General styling for the Employees component */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styling for the notification icon and container */
+  .notif {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  
+  .notif i {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .notif i:hover {
+    color: #007bff;
+  }
+  
+  /* Styling for the table */
+  table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  thead {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tbody tr:hover {
+    background-color: #ddd;
+  }
+  
