@@ -33,23 +33,25 @@
     margin-bottom: 50px;
 }
 
+/* Purple */
+/* background: linear-gradient(rgb(153, 96, 199), black); HOVER*/
+/* background: linear-gradient(rgb(104, 29, 165), black); */
+
 .login button{
-    background-color: rgb(153, 96, 199);
+    background: linear-gradient(rgb(104, 29, 165), black);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 30%;
     height: 50px;
     font-size: 17px;
-    border-radius: 20px;
+    border-radius: 15px;
     color: whitesmoke;
-    border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
     margin-left: 35%;
     margin-top: 20px;
 }
 
 .login button:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
+    background: linear-gradient(rgb(153, 96, 199), black);
     background-color: transparent;
     transition: .5s;
 }

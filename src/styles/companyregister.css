@@ -32,22 +32,25 @@
 }
 
 .BtnProceed{
-    background-color: rgb(153, 96, 199);
+    background: linear-gradient(rgb(104, 29, 165), black);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 150px;
     height: 50px;
     font-size: 17px;
-    border-radius: 30px;
+    border-radius: 15px;
     color: whitesmoke;
-    border: solid rgb(127, 75, 170) 2px;
     cursor: pointer;
     margin-top: 35px;
     margin-left: 43%;
 }
 
 .BtnProceed:hover{
-    color: rgb(46, 14, 73);
-    border-color: rgb(46, 14, 73);
-    background-color: transparent;
+    background: linear-gradient(rgb(153, 96, 199), black);
+    color: whitesmoke;
     transition: .5s;
 }
+
+
+/* Purple */
+/* background: linear-gradient(rgb(153, 96, 199), black); HOVER*/
+/* background: linear-gradient(rgb(104, 29, 165), black); */
