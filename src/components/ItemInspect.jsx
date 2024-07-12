@@ -25,9 +25,14 @@ const ItemInspect = ({ show, onClose, item }) => {
                 setDeleteLoading(false);
                 return;
             }
-            const {error: imageError} = await supabase.storage
+
+            const imagePath = item.product_t.image_path;
+            const fileName = imagePath.split('/').pop(); 
+
+            const {error: imageError} = await supabase
+            .storage
             .from('Products Image')
-            .remove([`Images/${item.product_t.image_path}`]);
+            .remove([`Images/${fileName}`]);
 
             if (imageError) {
                 console.log('Error deleting image:', imageError);

@@ -90,7 +90,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
         const productID = productData.productid;
 
 
-        const {inventoryData, error: inventoryError} = await supabase
+        const {error: inventoryError} = await supabase
         .from('inventory_t')
         .insert([{
             companyid : companyID ,
@@ -100,7 +100,6 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
         },
         ])
         .single();
-        console.log(inventoryData);
 
         if(inventoryError) {
             setError('Trouble creating Inventory. Try again later')
