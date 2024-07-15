@@ -1,3 +1,7 @@
+.notif i{
+    font-size: 40px;
+}
+
 .notification-main-container {
     position: absolute;
     top: 60px; /* Adjust this value based on your needs */

@@ -65,11 +65,12 @@
     width: 1700px;
     position: fixed;
     margin-top: 250px;
+    display: flex;
 }
 
 .text-container p {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
+    text-align: justify;
     margin-top: 130px;
     margin-left: 40px;
     margin-right: 40px;

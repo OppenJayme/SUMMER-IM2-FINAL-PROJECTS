@@ -159,15 +159,10 @@
 .dashboard_topNav h1{
     font-family: Patua One;
     font-size: 50px;
-}
-
-.dashboard_topNav i{
-    font-size: 40px;
-    padding-right: 20px;
-    cursor: pointer;
-}
-.dashboard_topNav i:hover {
-    color: #474747;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
 }
 
 .form-modal {
