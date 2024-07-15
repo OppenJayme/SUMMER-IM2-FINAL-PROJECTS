@@ -24,24 +24,19 @@ const UpdateModal = ({ show, item, onClose }) => {
   return (
     <div className="update-modal-overlay">
       <div className="update-modal-content">
+
         <div className="update-modal-content_left">
-          <div
-            className="image-container"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <img src={item.product_t.image_path} alt="" />
+          <div className="image-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <img src={item.product_t.image_path} alt="image" />
             {hovered && (
-              <button className="replace-image-btn" onClick={handleReplaceImage}>
-                Replace Image
-              </button>
+              <button className="replace-image-btn" onClick={handleReplaceImage}>Replace Image</button>
             )}
           </div>
         </div>
 
         <div className="update-modal-content_right">
           <div className="update-close">
-            <i onClick={onClose} className="bi bi-x-lg"></i>
+            <i onClick={onClose} class="bi bi-arrow-right"></i>
           </div>
 
           <p>SUPPLIER NAME</p>

@@ -69,11 +69,11 @@ const ProfileModal = ({ handleClose }) => {
                     </div>
 
                     <div className="profile-details">
-                        <p>Employee Name: {username}</p>
                         <p>Company: {companyName}</p>
                         <p>Email: {email}</p>
                         <p>Contact Number: {contacts}</p>
                         <p>Date Employeed: {datecreated}</p>
+                        <h1>{username}</h1>
                     </div>
 
                 </div>

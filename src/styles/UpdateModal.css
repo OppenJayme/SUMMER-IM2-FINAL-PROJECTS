@@ -23,7 +23,7 @@
     padding: 20px;
 }
 
-.update-modal-content_left{
+.update-modal-content_left {
     width: 50%;
     height: 100%;
     display: flex;
@@ -31,25 +31,61 @@
     align-items: center;
     border: solid black 1px;
     border-radius: 6px;
+    position: relative;
 }
 
-.update-modal-content_left img{
+.update-modal-content_left .image-container {
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
-.update-modal-content_right{
+.update-modal-content_left .image-container img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%) blur(5px);
+}
+
+/* Purple */
+/* background: linear-gradient(rgb(153, 96, 199), black); HOVER*/
+/* background: linear-gradient(rgb(104, 29, 165), black); */
+
+.update-modal-content_left .image-container button {
+    font-size: 25px;
+    font-family: Patua One;
+    display: flex;
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .5s;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(rgb(104, 29, 165), black);
+}
+
+.update-modal-content_left .image-container button:hover {
+    color: rgb(255, 255, 255);
+background: linear-gradient(rgb(153, 96, 199), black); 
+}
+
+.update-modal-content_right {
     width: 50%;
     height: 100%;
     padding-left: 20px;
 }
 
-.update-modal-content_right p{
+.update-modal-content_right p {
     font-size: 20px;
     padding-bottom: 10px;
 }
 
-.update-modal-content_right h2{
+.update-modal-content_right h2 {
     padding-bottom: 15px;
     font-size: 35px;
     font-family: Patua One;
@@ -57,7 +93,7 @@
     margin-left: -10px;
 }
 
-.update-Btns{
+.update-Btns {
     margin-top: 35px;
     display: flex;
     justify-content: center;
@@ -75,15 +111,17 @@
     font-family: Patua One;
 }
 
-.update-Btnfirst:hover{
-    background-color: #B998FF;
+.update-Btnfirst:hover {
+    color: white;
+    background: linear-gradient(#2fff2f,rgba(0, 0, 0, 0.801));
 }
 
-.update-Btnsecond:hover{
-    background-color: #e83616;   
+.update-Btnsecond:hover {
+    color: white;
+    background: linear-gradient(#FF2F2F,rgba(0, 0, 0, 0.801));   
 }
 
-.update-close{
+.update-close {
     display: flex;
     justify-content: right;
     align-items: center;
@@ -91,7 +129,7 @@
     margin-right: -15px;
 }
 
-.update-close i{
+.update-close i {
     font-size: 30px;
     display: flex;
     align-items: center;
