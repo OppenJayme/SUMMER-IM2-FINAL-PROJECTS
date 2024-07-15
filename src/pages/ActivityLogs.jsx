@@ -17,9 +17,26 @@ const ActLogs = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) {
+          console.error(sessionError);
+          throw sessionError;
+      }
+      const user = sessionData?.session.user;
+
+      const { data: employeeData, error: employeeError } = await supabase
+            .from('employee_t')
+            .select('companyid')
+            .eq('employeeemail', user.email)
+            .single();
+
+      if (employeeError) throw employeeError;
+
+      const companyID = employeeData.companyid;
       const { data, error } = await supabase
         .from('inventory_t')
-        .select('*, employee_t(fname), product_t(product_name, dateadded)');
+        .select('*, employee_t(fname), product_t(product_name, dateadded)')
+        .eq('companyid', companyID);
       
       if (error) {
         console.error(error);
