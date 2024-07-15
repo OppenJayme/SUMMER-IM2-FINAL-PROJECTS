@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import Notification from "../components/Notification";
 import supabase from "../client/database";
 import "../styles/Employees.css";
+import LoadingScreen from "../components/LoadingScreen";
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
   const [showNotification, setNotification] = useState(false);
+  const [loading, setLoading] = useState(true)
     
   const handleNotification = () => {
     setNotification(prev => !prev);
@@ -13,19 +15,28 @@ const Employees = () => {
 
   useEffect(() => {
     const fetchEmployees = async () => {
-      const { data, error } = await supabase
-        .from('employee_t')
-        .select('*');
+        try {
+        const { data, error } = await supabase
+          .from('employee_t')
+          .select('*');
 
-      if (error) {
-        console.error(error);
-      } else {
-        setEmployees(data);
+        if (error) {
+          console.error(error);
+        } else {
+          setEmployees(data);
+        }
+      } catch (err) {
+        console.err(err.message)
+      } finally {
+        setLoading(false);
       }
     };
-
     fetchEmployees();
   }, []);
+
+    if (loading) {
+      return <LoadingScreen/>;
+    }
 
   return (
     <>

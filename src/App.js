@@ -23,7 +23,7 @@ function App() {
                 <Route path="/dashboard" element = {<Dashboard/>} />
                 <Route path="/companyregister" element = {<CompReg/>} /> 
                 <Route path="/items" element = {<Items/>} />
-                <Route path="/Employees" element = {<Employees/>} />
+                <Route path="/employees" element = {<Employees/>} />
                 <Route path = "/activitylogs" element = {<ActLogs/>} />
     </Routes>
     </Router>

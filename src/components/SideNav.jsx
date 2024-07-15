@@ -99,7 +99,7 @@ const SideNav = () => {
                                         <i class="bi bi-box-seam-fill"></i><h1>Items</h1>
                                     </div></li>
                                 </NavLink>
-                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to= "/transactions">                              
+                                <NavLink className={({isActive}) => isActive ? "Menu_active" : ""}to= "/employees">                              
                                     <li><div>
                                         <i class="bi bi-bezier2"></i><h1>Employees</h1>
                                     </div></li>
