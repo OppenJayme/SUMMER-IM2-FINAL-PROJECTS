@@ -6,12 +6,31 @@ const Notification = () => {
     const [notifications, setNotifications] = useState([]);
 
     useEffect(() => {
+        const fetchNotifications = async () => {
+            const { data, error } = await supabase
+                .from('inventory_t')
+                .select('*, product_t(*)');
+
+            if (error) {
+                console.error("Error fetching notifications:", error);
+            } else {
+                setNotifications(data.map(notification => ({
+                    id: notification.productid,
+                    title: 'Existing Inventory',
+                    message: `Item: ${notification.product_t.product_name}`,
+                    timestamp: new Date(notification.inventorydate).toLocaleTimeString(),
+                })));
+            }
+        };
+
+        fetchNotifications();
+
         const subscription = supabase
-            .channel('inventory_t') 
-            .on('postgres_changes', {event: '*', schema: 'public', table: 'inventory_t'}, payload => {
+            .channel('inventory_t')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'inventory_t' }, payload => {
                 setNotifications(prevNotifications => [
                     {
-                        id: payload.new?.id || payload.old?.id, // Handling for both insert and delete
+                        id: payload.new?.productid || payload.old?.productid,
                         title: getNotificationTitle(payload.eventType),
                         message: getNotificationMessage(payload),
                         timestamp: new Date().toLocaleTimeString(),
@@ -42,11 +61,11 @@ const Notification = () => {
     const getNotificationMessage = (payload) => {
         switch (payload.eventType) {
             case 'INSERT':
-                return `A new item has been added.`;
+                return `Item: ${payload.new.product_t.product_name} has been added.`;
             case 'UPDATE':
-                return `Item has been updated.`;
+                return `Item: ${payload.new.product_t.product_name} has been updated.`;
             case 'DELETE':
-                return `Item has been deleted.`;
+                return `Item: ${payload.old.product_t.product_name} has been deleted.`;
             default:
                 return 'You have a new notification.';
         }
