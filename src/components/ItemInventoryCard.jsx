@@ -96,7 +96,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
             companyid : companyID ,
             productid : productID ,
             employeeid : employeeID ,
-            productSale : sale
+            productSale : sale, 
+            inventorydate: new Date().toISOString(),
         },
         ])
         .single();

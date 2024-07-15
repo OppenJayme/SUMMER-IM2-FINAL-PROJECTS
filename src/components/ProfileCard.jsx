@@ -57,7 +57,7 @@ const ProfileModal = ({ handleClose }) => {
                 <div className="user-profile-container">
 
                     <div className="profile-picture-holder">
-                        <img src={Ivan} alt="Profile Picture" />
+                        <img src={Ivan} alt="Profile" />
 
                         <div className="edit-container">
                             <i class="bi bi-pencil-square"></i>
