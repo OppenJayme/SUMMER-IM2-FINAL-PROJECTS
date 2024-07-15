@@ -183,6 +183,7 @@ const Dashboard = () => {
             <SideNav />
             <div className="notif">
                 <i className="bi bi-bell-fill" onClick={handleNotification}></i>
+                <span class="badge">3</span>
                 {showNotification && <Notification />}
             </div>
             <div className="dashboard_content">
