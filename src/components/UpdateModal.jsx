@@ -29,6 +29,28 @@ const UpdateModal = ({ show, item, onClose }) => {
     e.preventDefault();
     setLoading(true)
     try {
+      const {data: userData, error: userError} = await supabase.auth.getSession();
+      if (userError) {
+        console.log('Failed getting user Data:', userError);
+        setError('Failed getting user Data');
+        return;
+      }
+      const user = userData?.session.user;
+
+      const {data: employeeData,error: employeeError} = await supabase
+      .from('employee_t')
+      .select('employeeid')
+      .eq('employeeemail', user.email)
+      .single();
+
+      if (employeeError) {
+        console.log('Failed to fetch employee data:', employeeError);
+        setError('Failed to fetch employee data');
+        return;
+      }
+
+      const fetchedEmlpoyeeID = employeeData.employeeemail;
+
       const oldProdId = item.product_t.productid;
       const {error: productUpdateError} = await supabase
       .from('product_t')
@@ -50,8 +72,7 @@ const UpdateModal = ({ show, item, onClose }) => {
       }
 
       const inventoryID = item.inventoryid;
-      const employeeID = item.employeeid;
-
+      const employeeID = fetchedEmlpoyeeID;
       const {error: inventoryUpdateError} = await supabase
       .from('inventory_t')
       .update({
