@@ -38,6 +38,7 @@ const UpdateModal = ({ show, item, onClose }) => {
         product_name: prodName || item.product_t.product_name,
         category: category || item.product_t.category,
         product_price: prodPrice || item.product_t.product_price,
+        dateadded: new Date().toISOString() || item.product_t.dateadded,
       })
       .eq('productid', oldProdId)
       .single();
