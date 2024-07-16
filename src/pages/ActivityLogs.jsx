@@ -45,7 +45,6 @@ const ActLogs = () => {
 
       console.log('Initial Fetch Data:', data);
 
-      // Add a type to the fetched data (if needed, based on your logic)
       const initialProducts = data.map(product => ({
         ...product,
         type: 'INITIAL'
