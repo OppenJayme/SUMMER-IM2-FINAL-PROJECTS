@@ -130,9 +130,6 @@ const UpdateModal = ({ show, item, onClose }) => {
         </div>
 
         <div className="update-modal-content_right">
-          <div className="update-close">
-            <i onClick={onClose} class="bi bi-arrow-right"></i>
-          </div>
 
           <form onSubmit={handleUpdate}>
           {error && <p className="error-message">{error}</p>}

@@ -56,9 +56,10 @@
     background-color: white;
     margin-right: auto;
     border: 1px solid black;
-    border-radius: 5%;
+    border-radius: 15px;
     padding-left: 30px;
 }
+
 .main-content-area {
     display: block;
     justify-content: center;
