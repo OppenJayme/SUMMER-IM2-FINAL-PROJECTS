@@ -4,29 +4,47 @@ import Notification from "../components/Notification";
 import supabase from "../client/database";
 import "../styles/Employees.css";
 import LoadingScreen from "../components/LoadingScreen";
+
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
   const [showNotification, setNotification] = useState(false);
-  const [loading, setLoading] = useState(true)
-    
+  const [loading, setLoading] = useState(true);
+
   const handleNotification = () => {
-    setNotification(prev => !prev);
+    setNotification((prev) => !prev);
   };
 
   useEffect(() => {
     const fetchEmployees = async () => {
-        try {
-        const { data, error } = await supabase
+      try {
+        const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
+        if (sessionError) {
+          console.error(sessionError);
+          throw sessionError;
+        }
+        const user = sessionData?.session.user;
+        
+        const { data: userData, error: userError } = await supabase
           .from('employee_t')
-          .select('*');
+          .select('companyid')
+          .eq('employeeemail', user.email)
+          .single();
+        if (userError) {
+          console.error(userError);
+          throw userError;
+        }
 
+        const { data: employeeData, error } = await supabase
+          .from('employee_t')
+          .select('*')
+          .eq('companyid', userData.companyid);
         if (error) {
           console.error(error);
         } else {
-          setEmployees(data);
+          setEmployees(employeeData);
         }
       } catch (err) {
-        console.err(err.message)
+        console.error(err.message);
       } finally {
         setLoading(false);
       }
@@ -34,9 +52,9 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
-    if (loading) {
-      return <LoadingScreen/>;
-    }
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -57,7 +75,7 @@ const Employees = () => {
           </tr>
         </thead>
         <tbody>
-          {employees.map(employee => (
+          {employees.map((employee) => (
             <tr key={employee.employeeid}>
               <td>{employee.employeeid}</td>
               <td>{employee.fname}</td>
