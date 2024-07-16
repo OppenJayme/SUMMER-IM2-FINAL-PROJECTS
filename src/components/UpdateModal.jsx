@@ -49,7 +49,7 @@ const UpdateModal = ({ show, item, onClose }) => {
         return;
       }
 
-      const fetchedEmlpoyeeID = employeeData.employeeemail;
+      const fetchedEmlpoyeeID = employeeData.employeeid;
 
       const oldProdId = item.product_t.productid;
       const {error: productUpdateError} = await supabase
