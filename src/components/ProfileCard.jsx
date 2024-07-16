@@ -56,6 +56,7 @@ const ProfileModal = ({ handleClose }) => {
         <div className="profile-modal">
                 <div className="user-profile-container">
 
+                
                     <div className="profile-picture-holder">
                         <img src={Ivan} alt="Profile" />
 
@@ -66,14 +67,22 @@ const ProfileModal = ({ handleClose }) => {
                         <div className="close-profile-modal">
                             <i class="bi bi-x-lg" onClick={handleClose}></i>
                         </div>
+
                     </div>
 
                     <div className="profile-details">
-                        <p>Company: {companyName}</p>
+                        <h1>{username}</h1>
                         <p>Email: {email}</p>
                         <p>Contact Number: {contacts}</p>
                         <p>Date Employeed: {datecreated}</p>
-                        <h1>{username}</h1>
+                    </div>
+
+                    <div className="socials">
+                        <a href=""><i class="bi bi-facebook"></i></a>
+                        <a href=""><i class="bi bi-instagram"></i></a>
+                        <a href=""><i class="bi bi-twitter-x"></i></a>
+                        <a href=""><i class="bi bi-linkedin"></i></a>
+                        <a href=""><i class="bi bi-envelope-at-fill"></i></a>
                     </div>
 
                 </div>

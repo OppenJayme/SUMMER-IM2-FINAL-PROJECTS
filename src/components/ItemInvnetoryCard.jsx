@@ -20,7 +20,7 @@ const InventoryCard = ({ item }) => {
                 <div className="table-box"><p>{item.product_t.category}</p></div>
                 <div className="table-box"><p>{item.product_t.product_quantity}</p></div>
                 <div className="table-box"><p>{item.productSale} / {item.product_t.product_quantity}</p></div>
-                <div className="table-box"><p>$ {item.product_t.product_price}.00</p></div>
+                <div className="table-box"><p>₱ {item.product_t.product_price}.00</p></div>
             </div>
             <ItemInspect show={showModal} onClose={handleClose} item={item} />
         </div>

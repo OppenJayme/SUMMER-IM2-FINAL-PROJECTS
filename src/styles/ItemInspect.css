@@ -11,6 +11,70 @@
     z-index: 1000;
 }
 
+.left-arrow{
+    margin-right: -10px;
+    width: 85px;
+    height: 100px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    z-index: 1002;
+    cursor: pointer;
+    border: outset 2.5px black;
+}
+
+.left-arrow:hover{ 
+    background: white;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.623);
+    width: 100px;
+    height: 115px;
+}
+
+.left-arrow i{
+    font-size: 75px;
+    color: black;
+}
+
+.left-arrow i:hover{
+    font-size: 85px;
+    color: black;
+}
+
+
+.right-arrow{
+    margin-left: -10px;
+    width: 85px;
+    height: 100px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    z-index: 1002;
+    cursor: pointer;
+    border: outset 2.5px black;
+}
+
+.right-arrow:hover{ 
+    background: white;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.623);
+    width: 100px;
+    height: 115px;
+}
+
+.right-arrow i{
+    font-size: 75px;
+    color: black;
+}
+
+.right-arrow i:hover{
+    font-size: 85px;
+    color: black;
+}
+
+
 .inspect-modal-content {
     background: white;
     border-radius: 5px;
