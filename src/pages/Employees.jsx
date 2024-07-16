@@ -4,6 +4,7 @@ import Notification from "../components/Notification";
 import supabase from "../client/database";
 import "../styles/Employees.css";
 import LoadingScreen from "../components/LoadingScreen";
+import Ivan from "../styles/images/Ivan.jpg";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -59,33 +60,34 @@ const Employees = () => {
   return (
     <>
       <SideNav />
+
       <div className="notif">
         <i className="bi bi-bell-fill" onClick={handleNotification}></i>
         {showNotification && <Notification />}
       </div>
-      <h1>Employees</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Employee ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Contact</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee) => (
-            <tr key={employee.employeeid}>
-              <td>{employee.employeeid}</td>
-              <td>{employee.fname}</td>
-              <td>{employee.lname}</td>
-              <td>{employee.employeeemail}</td>
-              <td>{employee.employeecontact}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+
+      <div className="employees_content">
+        <div className="employees_container">
+
+          <div className="employee-display-card">
+
+              <img src={Ivan} alt="" />
+
+            <div className="employee-details">
+              <h1><i class="bi bi-person-fill"></i>Employee Name</h1>
+              <p><i class="bi bi-envelope-at-fill"></i>Employee Email</p>
+              <p><i class="bi bi-telephone-fill"></i>Contact Number</p>
+            </div>
+
+          <div className="chatboxdiv">
+            <i class="bi bi-chat-dots-fill"></i>
+          </div>
+          
+
+          </div>
+
+        </div>
+      </div>
     </>
   );
 };

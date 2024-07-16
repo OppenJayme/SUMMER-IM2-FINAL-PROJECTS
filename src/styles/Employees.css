@@ -1,0 +1,80 @@
+.employees_content {
+    display: flex;
+    position: fixed;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    margin-top: 110px;
+    margin-left: 225px;
+    width: calc(100% - 225px);
+    height: calc(100% - 110px);
+    overflow: auto;
+    z-index: 1;
+}
+
+.employees_container{
+    width: 100%;
+}
+
+.employee-display-card{
+    width: 1600px;
+    height: 200px;
+    background: rgb(134, 134, 134);
+    border: black 2px solid;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+}
+
+/* .employee-img-container{
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+} */
+
+.employee-display-card img{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: solid black 2px;
+    margin-left: 25px;
+}
+
+.employee-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    height: 100%;
+}
+
+.employee-details h1{
+    padding-left: 10px;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.employee-details p{
+    padding-left: 15px;
+    margin-top: 3px;
+    font-size: 20px;
+}
+
+.employee-details h1 i{
+    padding-left: 10px;
+    font-size: 35px;
+    margin-bottom: 10px;
+    padding-right: 1px;
+}
+
+.employee-details p i{
+    padding-left: 15px;
+    margin-top: 3px;
+    font-size: 20px;
+    padding-right: 2px;
+}
+
+.employees_container .employee-display-card .chatboxdiv i{
+    font-size: 75px;
+}
