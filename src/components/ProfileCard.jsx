@@ -7,7 +7,6 @@ import Ivan from "../styles/images/Ivan.jpg";
 
 const ProfileModal = ({ handleClose }) => {
     const [username, setUsername] = useState('');
-    const [companyName, setCompanyName] = useState('');
     const [email, setEmail] = useState('');
     const [contacts, setContacts] = useState('');
     const [datecreated, setDatecreated] = useState('');
@@ -33,17 +32,6 @@ const ProfileModal = ({ handleClose }) => {
                     setEmail(employeeData.employeeemail);
                     setContacts(employeeData.employeecontact);
                     setDatecreated(employeeData.date_created);
-
-                    const companyID = employeeData.companyid;
-
-                    const { data: companyData, error: companyError } = await supabase
-                        .from('company_t')
-                        .select('companyname')
-                        .eq('companyid', companyID)
-                        .single();
-                    if (companyError) throw companyError;
-
-                    setCompanyName(companyData.companyname);
                 }
             } catch (err) {
                 console.error('Error fetching data:', err);
@@ -78,11 +66,11 @@ const ProfileModal = ({ handleClose }) => {
                     </div>
 
                     <div className="socials">
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-twitter-x"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
-                        <a href=""><i class="bi bi-envelope-at-fill"></i></a>
+                        <a href="/"><i class="bi bi-facebook"></i></a>
+                        <a href="/"><i class="bi bi-instagram"></i></a>
+                        <a href="/"><i class="bi bi-twitter-x"></i></a>
+                        <a href="/"><i class="bi bi-linkedin"></i></a>
+                        <a href="/"><i class="bi bi-envelope-at-fill"></i></a>
                     </div>
 
                 </div>
