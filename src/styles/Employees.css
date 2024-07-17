@@ -1,80 +1,58 @@
-.employees_content {
-    display: flex;
-    position: fixed;
-    left: 0;
-    padding: 0;
+/* Employees.css */
+
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    top: 0;
-    margin-top: 110px;
-    margin-left: 225px;
-    width: calc(100% - 225px);
-    height: calc(100% - 110px);
-    overflow: auto;
-    z-index: 1;
-}
-
-.employees_container{
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  
+  .notif {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .notif i {
+    font-size: 24px;
+    cursor: pointer;
+    color: #555;
+  }
+  
+  .employees_content {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .employees_table_container {
+    overflow-x: auto;
+  }
+  
+  .employees_table {
     width: 100%;
-}
-
-.employee-display-card{
-    width: 1600px;
-    height: 200px;
-    background: rgb(134, 134, 134);
-    border: black 2px solid;
-    border-radius: 17px;
-    display: flex;
-    align-items: center;
-}
-
-/* .employee-img-container{
-    width: 30%;
-    height: 100%;
-    padding: 10px;
-} */
-
-.employee-display-card img{
-    width: 150px;
-    height: 150px;
-    border-radius: 100%;
-    border: solid black 2px;
-    margin-left: 25px;
-}
-
-.employee-details{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 70%;
-    height: 100%;
-}
-
-.employee-details h1{
-    padding-left: 10px;
-    font-size: 35px;
-    margin-bottom: 10px;
-}
-
-.employee-details p{
-    padding-left: 15px;
-    margin-top: 3px;
-    font-size: 20px;
-}
-
-.employee-details h1 i{
-    padding-left: 10px;
-    font-size: 35px;
-    margin-bottom: 10px;
-    padding-right: 1px;
-}
-
-.employee-details p i{
-    padding-left: 15px;
-    margin-top: 3px;
-    font-size: 20px;
-    padding-right: 2px;
-}
-
-.employees_container .employee-display-card .chatboxdiv i{
-    font-size: 75px;
-}
+    border-collapse: collapse;
+  }
+  
+  .employees_table th, .employees_table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .employees_table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .employees_table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .employees_table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
