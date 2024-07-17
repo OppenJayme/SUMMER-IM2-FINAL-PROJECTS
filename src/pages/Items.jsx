@@ -82,7 +82,8 @@ const Items = () => {
 
     const filterInventory = inventory.filter(item => 
         item.product_t.product_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.product_t.category.toLowerCase().includes(searchQuery.toLowerCase())
+        item.product_t.category.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        item.product_t.status.toLowerCase().includes(searchQuery.toLowerCase())
     )
 
     if (loading) {

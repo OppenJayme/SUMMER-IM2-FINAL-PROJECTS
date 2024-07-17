@@ -199,8 +199,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setStatus(e.target.value)}
                         required
                     >
-                        <option value="Non perishable">Non perishable</option>
-                        <option value="Perishable">Perishable</option>
+                        <option className="option-container" value="Non perishable">Non perishable</option>
+                        <option className="option-container" value="Perishable">Perishable</option>
                     </select>
 
                     {status === 'Perishable' && (
