@@ -9,6 +9,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
     const [category, setCategory] = useState('');
     const [price, setPrice] = useState('');
     const [sale, setSales] = useState('');
+    const [status, setStatus] = useState('Non-perishable');
+    const [perishDate, setPerishDate] = useState('');
     const [error, setError] = useState(null);
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
@@ -16,6 +18,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
     const handleFile = (e) => {
         setImage(e.target.files[0]);
     }
+
+    
 
     const addImage = async (file) => {
         const {data: imageData, error} = await supabase.storage
@@ -73,6 +77,8 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 product_name: productName,
                 category: category,
                 product_price: price,
+                status: status,
+                perishable_date: status === 'Perishable' ? perishDate : null,
                 image_path: 'https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/' + image.name
             }
         ])
@@ -184,6 +190,32 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         onChange={(e) => setSales(e.target.value)}
                         required
                     />
+
+                     <p>STATUS</p>
+                    <select
+                        name="status"
+                        className="input-container"
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        required
+                    >
+                        <option value="Non perishable">Non perishable</option>
+                        <option value="Perishable">Perishable</option>
+                    </select>
+
+                    {status === 'Perishable' && (
+                        <>
+                            <p>PERISH DATE</p>
+                            <input
+                                name="perishDate"
+                                type="date"
+                                className="input-container"
+                                value={perishDate}
+                                onChange={(e) => setPerishDate(e.target.value)}
+                                required
+                            />
+                        </>
+                    )}
 
                     <p>ITEM IMAGE</p>
                     <input
