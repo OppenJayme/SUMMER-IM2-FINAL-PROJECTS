@@ -63,7 +63,8 @@ const Login = () => {
   };
 
     return (
-        <>
+      <div className="login-main-container">
+          <>
         <header>
             <div className="Logosect">
                 <img className="Logo" src={Logo} alt="stockwise-logo"/>
@@ -115,6 +116,7 @@ const Login = () => {
 
         <Footer/>
         </>
+      </div>
     )
 }
 

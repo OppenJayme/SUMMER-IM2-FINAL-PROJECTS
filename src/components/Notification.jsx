@@ -7,9 +7,30 @@ const Notification = () => {
 
     useEffect(() => {
         const fetchNotifications = async () => {
+            const {data:sessionData, error: sessionError} = await supabase.auth.getSession();
+
+            if (sessionError) {
+                console.error(sessionError)
+                return;
+            }
+
+            const user  = sessionData?.session.user;
+
+            const {data: employeeData, error:employeeError} = await supabase
+            .from('employee_t')
+            .select('companyid')
+            .eq('employeeeail', user.email);
+
+            if (employeeError) {
+                console.error(employeeError)
+                return;
+            }
+
+            const companyID = employeeData.companyid;
             const { data, error } = await supabase
                 .from('inventory_t')
-                .select('*, product_t(*)');
+                .select('*, product_t(*)')
+                .eq('companyid', companyID);
 
             if (error) {
                 console.error("Error fetching notifications:", error);

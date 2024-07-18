@@ -3,7 +3,7 @@ import "../styles/ItemInspect.css";
 import supabase from '../client/database';
 import UpdateModal from "../components/UpdateModal";
 
-const ItemInspect = ({ show, onClose, item }) => {
+const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showUpdateModal, setUpdateModal] = useState(false);
   const [ItemInspectError, setInspectError] = useState(false);
@@ -83,9 +83,10 @@ const ItemInspect = ({ show, onClose, item }) => {
       />
     )
   }
+
   return (
     <div className="inspect-modal-overlay">
-      <div className="left-arrow">
+      <div className="left-arrow" onClick={onPrev}>
         <i className="bi bi-caret-left-fill"></i>
       </div>
       <div className="inspect-modal-content">
@@ -113,7 +114,7 @@ const ItemInspect = ({ show, onClose, item }) => {
           </div>
         </div>
       </div>
-      <div className="right-arrow">
+      <div className="right-arrow" onClick={onNext}>
         <i className="bi bi-caret-right-fill"></i>
       </div>
     </div>

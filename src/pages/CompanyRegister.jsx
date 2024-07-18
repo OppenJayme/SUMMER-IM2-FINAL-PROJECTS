@@ -36,6 +36,7 @@ const CompReg = () => {
         } else {
             setError('');
             console.log('company registered successfully', data);
+            alert('An email confirmation has been sent')
             navigate('/');
         }
     }
