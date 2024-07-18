@@ -1,26 +1,4 @@
-/* Employees.css */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-  }
-  
-  .notif {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
-  
-  .notif i {
-    font-size: 24px;
-    cursor: pointer;
-    color: #555;
-  }
-  
-  .employees_content {
+.employees_content {
     margin: 20px;
     padding: 20px;
     background-color: #fff;
