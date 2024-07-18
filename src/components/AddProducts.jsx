@@ -192,7 +192,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         required
                     />
 
-                     <p>STATUS</p>
+                     <p>TYPE</p>
                     <select
                         name="status"
                         className="input-container"
@@ -206,7 +206,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
 
                     {status === 'Perishable' && (
                         <>
-                            <p>PERISH DATE</p>
+                            <p className="pdate-text">PERISH DATE</p>
                             <input
                                 name="perishDate"
                                 type="date"
@@ -218,7 +218,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                         </>
                     )}
 
-                    <p>ITEM IMAGE</p>
+                    <p className="item-text-img">ITEM IMAGE</p>
                     <input
                         name="sale"
                         className="img-input-container"
