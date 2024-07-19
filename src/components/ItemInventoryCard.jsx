@@ -13,11 +13,11 @@ const InventoryCard = ({ item , onInspect }) => {
                 <div className="table-box"><p>{item.product_t.category}</p></div>
                 <div className="table-box"><p>{item.product_t.product_quantity}</p></div>
                 <div className="table-box"><p>{item.productSale} / {item.product_t.product_quantity}</p></div>
-                <div className="table-box"><p style={changeColorByStatus(item.product_t.quantity_status)}>
+                <div className="table-box"><p className="centeredps" style={changeColorByStatus(item.product_t.quantity_status)}>
                         {item.product_t.quantity_status}
                     </p>
                     </div>
-                <div className="table-box"><p>{item.product_t.status}</p></div>
+                <div className="table-box"><p className="centeredps">{item.product_t.status}</p></div>
                 <div className="table-box"><p>₱ {item.product_t.product_price}.00</p></div>
             </div>
            

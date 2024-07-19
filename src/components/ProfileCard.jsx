@@ -62,7 +62,7 @@ const ProfileModal = ({ handleClose }) => {
                         <h1>{username}</h1>
                         <p>Email: {email}</p>
                         <p>Contact Number: {contacts}</p>
-                        <p>Date Employeed: {datecreated}</p>
+                        <p>Date Registered: {datecreated}</p>
                     </div>
 
                     <div className="socials">
