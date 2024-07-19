@@ -77,7 +77,8 @@ const Register = () => {
                 employeeemail: email,
                 employeecontact: contactNumber,
                 employeepassword: password,
-                companyid: companyID
+                companyid: companyID,
+                date_created: new Date().toISOString(),
               },
             ])
             .single();
