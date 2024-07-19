@@ -86,9 +86,9 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
 
   return (
     <div className="inspect-modal-overlay">
-      <div className="left-arrow" onClick={onPrev}>
+      {/* <div className="left-arrow" onClick={onPrev}>
         <i className="bi bi-caret-left-fill"></i>
-      </div>
+      </div> */}
       <div className="inspect-modal-content">
         <div className="inspect-modal-content_left">
           <img src={updatedItem.product_t.image_path} alt="" />
@@ -118,9 +118,9 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
           </div>
         </div>
       </div>
-      <div className="right-arrow" onClick={onNext}>
+      {/* <div className="right-arrow" onClick={onNext}>
         <i className="bi bi-caret-right-fill"></i>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -19,7 +19,8 @@ const Notification = () => {
             const {data: employeeData, error:employeeError} = await supabase
             .from('employee_t')
             .select('companyid')
-            .eq('employeeeail', user.email);
+            .eq('employeeemail', user.email)
+            .single();
 
             if (employeeError) {
                 console.error(employeeError)
