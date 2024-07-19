@@ -106,6 +106,10 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
           <p>Price: ${updatedItem.product_t.product_price}.00</p>
           <p>Supplier: {updatedItem.product_t.suppliername}</p>
           <p>Date Added: {updatedItem.product_t.dateadded}</p>
+          <p>Type:{updatedItem.product_t.status}</p>
+          {updatedItem.product_t.status === 'Perishable' && (
+            <p>Perish Date: {updatedItem.product_t.perishable_date  }</p>
+          )}
           <div className="Btns">
             <button className='Btnfirst' onClick={openUpdate}>Update</button>
             <button className='Btnsecond' onClick={deleteInventory} disabled={deleteLoading}>

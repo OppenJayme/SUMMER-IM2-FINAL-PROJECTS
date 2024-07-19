@@ -179,7 +179,7 @@ const Register = () => {
 
       <div className="input-group">
         <div className="input-group1">
-          <label htmlFor="companyID"><i class="bi bi-postcard-fill"></i> Company ID</label>
+          <label htmlFor="companyID"><i class="bi bi-postcard-fill"></i>Enter Company NO.</label>
           <input className="inputBox" type="text" id="companyID" value={companyID} onChange={(e) => setCompanyID(e.target.value)} required/>
         </div>
 

@@ -195,7 +195,9 @@
     cursor: pointer;
     z-index: 1000;
 }
-.notif .badge {
+
+/* badge function removed till i fix this shit */
+/* .notif .badge {
     position: absolute;
     top: 15px;
     right: 14px;
@@ -203,7 +205,7 @@
     border-radius: 50%;
     background-color: red;
     color: white;
-}
+} */
 
 .notif i{
     font-size: 35px;

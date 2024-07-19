@@ -10,10 +10,13 @@
 }
 
 .contact-us-container .img-container {
+    width: 80%;
     display: flex; 
     align-items: center; 
     justify-content: start; 
-    margin-bottom: 75px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border-bottom: 1px solid black;
 }
 
 .contact-us-container .img-container .img-profile {
