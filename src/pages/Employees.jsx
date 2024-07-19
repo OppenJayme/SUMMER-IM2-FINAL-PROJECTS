@@ -84,6 +84,7 @@ const Employees = () => {
                 <th>Email</th>
                 <th>Contact Number</th>
                 <th>Employee Created</th>
+                <th># Items Added</th>
               </tr>
             </thead>
             <tbody>
@@ -93,6 +94,7 @@ const Employees = () => {
                   <td>{employee.employeeemail}</td>
                   <td>{employee.employeecontact}</td>
                   <td>{employee.date_created}</td>
+                  <td>123</td>
                 </tr>
               ))}
             </tbody>
