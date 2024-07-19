@@ -87,6 +87,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
                 perishable_date: status === 'Perishable' ? perishDate : null,
                 image_path: 'https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/' + image.name,
                 quantity_status: quantityStatus,
+                initial_quantity: initialQuantity,
             }
         ])
         .select('productid')

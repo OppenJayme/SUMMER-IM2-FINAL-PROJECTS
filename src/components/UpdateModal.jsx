@@ -70,20 +70,26 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
           return;
         }
       }
-
       const imagePath = newImage
         ? `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/${oldFileName}`
         : item.product_t.image_path;
-      const { error: productUpdateError } = await supabase
+
+
+      const initialQuantity = parseFloat(item.product_t.initial_quantity);
+      const newQuantity = parseFloat(prodQuantity) - parseFloat(prodSold);
+      const quantityStatus = newQuantity < (initialQuantity * 0.10) ? 'low' : 'high';
+      const {error: productUpdateError } = await supabase
         .from('product_t')
         .update({
           suppliername: supplierName || item.product_t.suppliername,
-          product_quantity: prodQuantity || item.product_t.product_quantity,
+          product_quantity: newQuantity || item.product_t.product_quantity,
           product_name: prodName || item.product_t.product_name,
           category: category || item.product_t.category,
           product_price: prodPrice || item.product_t.product_price,
           dateadded: new Date().toISOString() || item.product_t.dateadded,
-          image_path: imagePath
+          image_path: imagePath,
+          quantity_status: quantityStatus,
+          initial_quantity: prodQuantity,
         })
         .eq('productid', oldProdId)
         .single();

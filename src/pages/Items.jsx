@@ -141,7 +141,7 @@ const Items = () => {
                     <div className="inventory-card-categories">
                             <div className="table-box-categories"><p>Product Name </p></div>
                             <div className="table-box-categories"><p>Category </p></div>
-                            <div className="table-box-categories"><p>Quantity </p></div>
+                            <div className="table-box-categories"><p>Current Quantity </p></div>
                             <div className="table-box-categories"><p>Items Sold </p></div>
                             <div className="table-box-categories"><p>Status </p></div>
                             <div className="table-box-categories"><p>Type </p></div>
