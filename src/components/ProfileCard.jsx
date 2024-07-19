@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import supabase from '../client/database';
 import "../styles/ProfileCard.css";
-// dummy data for profile pic //
+import ProfileUpdateModal from "../components/ProfileUpdateModal";
 import Ivan from "../styles/images/Ivan.jpg";
-// dummy data for profile pic // 
+
 
 const ProfileModal = ({ handleClose }) => {
+    const [showProfileUpdateModal, setProfileUpdateModal] = useState(false);
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [contacts, setContacts] = useState('');
@@ -40,6 +41,19 @@ const ProfileModal = ({ handleClose }) => {
         fetchData();
     }, []);
 
+    const openProfileUpdateModal = () => {
+        setProfileUpdateModal(true);
+    }
+
+    if (showProfileUpdateModal){
+        return (
+            <ProfileUpdateModal
+                show={showProfileUpdateModal}
+                onClose={()=> setProfileUpdateModal(false)}
+            />
+        )
+    }
+
     return (
         <div className="profile-modal">
                 <div className="user-profile-container">
@@ -49,7 +63,7 @@ const ProfileModal = ({ handleClose }) => {
                         <img src={Ivan} alt="Profile" />
 
                         <div className="edit-container">
-                            <i class="bi bi-pencil-square"></i>
+                            <i class="bi bi-pencil-square" onClick={openProfileUpdateModal}></i>
                         </div>
 
                         <div className="close-profile-modal">
@@ -70,7 +84,6 @@ const ProfileModal = ({ handleClose }) => {
                         <a href="/"><i class="bi bi-instagram"></i></a>
                         <a href="/"><i class="bi bi-twitter-x"></i></a>
                         <a href="/"><i class="bi bi-linkedin"></i></a>
-                        <a href="/"><i class="bi bi-envelope-at-fill"></i></a>
                     </div>
 
                 </div>

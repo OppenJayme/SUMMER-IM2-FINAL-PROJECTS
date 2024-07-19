@@ -83,7 +83,7 @@ const Employees = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact Number</th>
-                <th>Employee Created</th>
+                <th>Account Created</th>
                 <th># Items Added</th>
               </tr>
             </thead>
