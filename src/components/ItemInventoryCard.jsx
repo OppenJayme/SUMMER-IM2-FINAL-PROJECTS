@@ -1,3 +1,4 @@
+import { color } from "chart.js/helpers";
 import "../styles/inventorycard.css";
 
 const InventoryCard = ({ item , onInspect }) => {
@@ -11,7 +12,7 @@ const InventoryCard = ({ item , onInspect }) => {
             <div className="inventory-card" onClick={onInspect}>
                 <div className="table-box"><p>{item.product_t.product_name}</p></div>
                 <div className="table-box"><p>{item.product_t.category}</p></div>
-                <div className="table-box"><p>{item.product_t.product_quantity}</p></div>
+                <div className="table-box"><p>{item.product_t.product_quantity} {item.product_t.quantity_status === 'low' && (<i style={{color: 'red'}}  class="bi bi-exclamation-triangle-fill"></i>)}</p></div>
                 <div className="table-box"><p>{item.productSale} / {item.product_t.product_quantity}</p></div>
                 <div className="table-box"><p className="centeredps" style={changeColorByStatus(item.product_t.quantity_status)}>
                         {item.product_t.quantity_status}
