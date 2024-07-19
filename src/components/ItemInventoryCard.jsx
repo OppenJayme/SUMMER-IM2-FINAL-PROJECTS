@@ -1,4 +1,3 @@
-import { color } from "chart.js/helpers";
 import "../styles/inventorycard.css";
 
 const InventoryCard = ({ item , onInspect }) => {
