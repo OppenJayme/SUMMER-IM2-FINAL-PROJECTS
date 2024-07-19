@@ -112,6 +112,8 @@ const Items = () => {
         setCurrentItemIndex((prevIndex) => (prevIndex - 1 + filterInventory.length) % filterInventory.length);
     };
 
+    
+
     return (
         <>
             <SideNav />

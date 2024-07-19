@@ -68,19 +68,25 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
             console.log(imagePath)
         }
         
+
+        const initialQuantity = parseFloat(quantity);
+        const productsSold = parseFloat(sale);
+        const remainingQuantity = initialQuantity - productsSold;
+        const quantityStatus = remainingQuantity < (initialQuantity * 0.10) ? 'low' : 'high';
         
         const { data: productData , error } = await supabase
         .from('product_t')
         .insert([
             {
                 suppliername: supplierName,
-                product_quantity: quantity,
+                product_quantity: quantity - sale,
                 product_name: productName,
                 category: category,
                 product_price: price,
                 status: status,
                 perishable_date: status === 'Perishable' ? perishDate : null,
-                image_path: 'https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/' + image.name
+                image_path: 'https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/' + image.name,
+                quantity_status: quantityStatus,
             }
         ])
         .select('productid')
