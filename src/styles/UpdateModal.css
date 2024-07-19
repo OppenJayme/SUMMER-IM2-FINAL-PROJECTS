@@ -128,3 +128,23 @@ background: linear-gradient(#FF2F2F,rgba(0, 0, 0, 0.801)); */
     color: white;
     background: linear-gradient(#FF2F2F,rgb(0, 0, 0));   
 }
+
+
+.update-modal-content_left .image-container input[type="file"] {
+    width: auto;
+    height: auto;
+    background: #ffffff;
+    font-size: 15px;
+    border: black 1px solid;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 479px;
+}
+
+.update-modal-content_left .image-container .choosefile {
+    margin-top: -27px;
+    position: fixed;
+    width: 5000px;
+}

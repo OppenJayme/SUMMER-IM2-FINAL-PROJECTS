@@ -47,7 +47,9 @@
 }
 
 .search_box_container i:hover{
-    color: #474747;
+    transform: scale(2.0);
+    margin-top: px;
+    color: #a5a4a4;
 }
 
 .search-box{

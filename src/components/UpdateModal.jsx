@@ -172,7 +172,11 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
               <button className="replace-image-btn" onClick={handleReplaceImage}>Replace Image</button>
             )}
             {showFileInput && (
-              <input type="file" onChange={handleFileChange} />
+              <>
+                <div className="choosefile">
+                  <input type="file" onChange={handleFileChange} />
+                </div>              
+              </>
             )}
           </div>
         </div>
