@@ -21,43 +21,42 @@ const Employees = () => {
   const deactivateEmployee = async ({employee}) => {
     try {
       const employeeId = employee.employeeid;
-      const employeeEmail = employee.employeeemail;
+      // const employeeEmail = employee.employeeemail;
       
       // Pang Deac in sa employee
-      const { data: empDataInstance, error } = await supabase
+      const { error } = await supabase
         .from('employee_t')
-        .select('*')
         .update({ STATUS: false })
         .eq('employeeid', employeeId);
       if (error) {
         throw error;
       }
 
-      // Pang delete sa profile pic if naa
-      if (empDataInstance.image_path != null) {
-        const imagePath = employee.image_path;
-        const fileName = imagePath.split('/').pop();
+    //   // Pang delete sa profile pic if naa
+    //   if (empDataInstance.image_path != null) {
+    //     const imagePath = employee.image_path;
+    //     const fileName = imagePath.split('/').pop();
 
-        const { error: empDeleteError } = await supabase
-        .storage
-        .from('Profile Picutres')
-        .remove([`Images/${fileName}`]);
+    //     const { error: empDeleteError } = await supabase
+    //     .storage
+    //     .from('Profile Picutres')
+    //     .remove([`Images/${fileName}`]);
 
-      if (empDeleteError) {
-        console.log('Error deleting employee profile picture:', empDeleteError);
-        return;
-      }
+    //   if (empDeleteError) {
+    //     console.log('Error deleting employee profile picture:', empDeleteError);
+    //     return;
+    //   }
 
-      //Pang delete sa auth
-      }
-      const { error: userError } = await supabase
-      .auth
-      .admin
-      .deleteUser(employeeEmail);
-    if (userError) {
-      console.error('Error deleting employee from authentication:', userError);
-      return;
-    }
+    //   //Pang delete sa auth
+    //   }
+    //   const { error: userError } = await supabase
+    //   .auth
+    //   .admin
+    //   .deleteUser(employeeEmail);
+    // if (userError) {
+    //   console.error('Error deleting employee from authentication:', userError);
+    //   return;
+    // }
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.employeeid !== employeeId));
     } catch (err) {
       console.error("Error deactivating employee:", err.message);
@@ -74,8 +73,7 @@ const Employees = () => {
           throw sessionError;
         }
         const user = sessionData?.session?.user;
-        console.log("User:", user);
-
+        
         if (!user) {
           throw new Error("No user is logged in.");
         }
@@ -90,7 +88,6 @@ const Employees = () => {
           console.error("User Data Error:", userError);
           throw userError;
         }
-        console.log("User Data:", userData);
 
         const { data: companyData, error: companyError } = await supabase
           .from('company_t')
@@ -102,7 +99,7 @@ const Employees = () => {
           throw companyError;
         }
         setCompanyEmail(companyData.companyemail);
-        console.log("Company Data:", companyData);
+        
 
         const { data: employeeData, error } = await supabase
           .from('employee_t')
@@ -115,7 +112,6 @@ const Employees = () => {
         } else {
           if (isMounted) {
             setEmployees(employeeData);
-            console.log("Employee Data:", employeeData);
           }
         }
       } catch (err) {
@@ -130,7 +126,6 @@ const Employees = () => {
     const inventorySubscription = supabase
       .channel('employee_t')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'employee_t' }, payload => {
-        console.log('Change Received', payload);
         fetchEmployees();
       })
       .subscribe();
