@@ -17,33 +17,18 @@ const Employees = () => {
     setNotification((prev) => !prev);
   };
 
-  const deleteEmployee = async ({ employee }) => {
+  const deactivateEmployee = async (employeeId) => {
     try {
-      const employeeId = employee.employeeid;
       const { error } = await supabase
         .from('employee_t')
-        .delete()
+        .update({ STATUS: false })
         .eq('employeeid', employeeId);
       if (error) {
         throw error;
       }
-
-      const imagePath = employee.image_path;
-      const fileName = imagePath.split('/').pop();
-
-      const { error: empDeleteError } = await supabase
-        .storage
-        .from('Profile Picutres')
-        .remove([`Images/${fileName}`]);
-
-      if (empDeleteError) {
-        console.log('Error deleting employee profile picture:', empDeleteError);
-        return;
-      }
-
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.employeeid !== employeeId));
     } catch (err) {
-      console.error("Error deleting employee:", err.message);
+      console.error("Error deactivating employee:", err.message);
     }
   };
 
@@ -90,7 +75,8 @@ const Employees = () => {
         const { data: employeeData, error } = await supabase
           .from('employee_t')
           .select('*')
-          .eq('companyid', userData.companyid);
+          .eq('companyid', userData.companyid)
+          .eq('STATUS', true); 
         if (error) {
           console.error("Employee Data Error:", error);
           if (isMounted) setFetchError("Could not fetch employee data. Please try again later.");
@@ -110,17 +96,17 @@ const Employees = () => {
     fetchEmployees();
 
     const inventorySubscription = supabase
-            .channel('employee_t')
-            .on('postgres_changes', { event: '*', schema: 'public', table: 'employee_t' }, payload => {
-                console.log('Change Received', payload);
-                fetchEmployees();
-            })
-            .subscribe();
+      .channel('employee_t')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'employee_t' }, payload => {
+        console.log('Change Received', payload);
+        fetchEmployees();
+      })
+      .subscribe();
 
-        return () => {
-            supabase.removeChannel(inventorySubscription);
-            isMounted = false;
-        };
+    return () => {
+      supabase.removeChannel(inventorySubscription);
+      isMounted = false;
+    };
   }, []);
 
   if (loading) {
@@ -147,7 +133,6 @@ const Employees = () => {
                 <th>Contact Number</th>
                 <th>Account Created</th>
                 <th># Items Added</th>
-                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -159,8 +144,8 @@ const Employees = () => {
                   <td>{employee.date_created}</td>
                   <td>123</td>
                   {userEmail === companyEmail && (
-                    <td className="delete_button_container">
-                      <button onClick={() => deleteEmployee({ employee })} className="delete_button">
+                    <td className="deactivate_button_container">
+                      <button onClick={() => deactivateEmployee(employee.employeeid)} className="deactivate_button">
                         <i className="bi bi-person-x-fill"></i>
                       </button>
                     </td>

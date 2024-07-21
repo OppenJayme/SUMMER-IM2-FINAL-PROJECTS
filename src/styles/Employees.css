@@ -63,13 +63,13 @@
   color: whitesmoke;
 }
 
-.employees_table td.delete_button_container {
+.employees_table td.deactivate_button_container {
   border: none;
   border-right: none;
   background-color: rgb(255, 255, 255);
 }
 
-.delete_button {
+.deactivate_button {
   margin-left: 10px;
   scale: 150%;
   background: none;
@@ -81,10 +81,10 @@
   background-color: rgb(255, 255, 255);
 }
 
-.delete_button:hover {
+.deactivate_button:hover {
   transform: scale(1.5);
 }
 
-.delete_button i {
+.deactivate_button i {
   pointer-events: none;
 }
