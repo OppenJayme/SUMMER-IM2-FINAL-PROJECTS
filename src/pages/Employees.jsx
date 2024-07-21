@@ -13,19 +13,51 @@ const Employees = () => {
   const [companyEmail, setCompanyEmail] = useState(null);
   const [fetchError, setFetchError] = useState(null);
 
+
   const handleNotification = () => {
     setNotification((prev) => !prev);
   };
 
-  const deactivateEmployee = async (employeeId) => {
+  const deactivateEmployee = async ({employee}) => {
     try {
-      const { error } = await supabase
+      const employeeId = employee.employeeid;
+      const employeeEmail = employee.employeeemail;
+      
+      // Pang Deac in sa employee
+      const { data: empDataInstance, error } = await supabase
         .from('employee_t')
+        .select('*')
         .update({ STATUS: false })
         .eq('employeeid', employeeId);
       if (error) {
         throw error;
       }
+
+      // Pang delete sa profile pic if naa
+      if (empDataInstance.image_path != null) {
+        const imagePath = employee.image_path;
+        const fileName = imagePath.split('/').pop();
+
+        const { error: empDeleteError } = await supabase
+        .storage
+        .from('Profile Picutres')
+        .remove([`Images/${fileName}`]);
+
+      if (empDeleteError) {
+        console.log('Error deleting employee profile picture:', empDeleteError);
+        return;
+      }
+
+      //Pang delete sa auth
+      }
+      const { error: userError } = await supabase
+      .auth
+      .admin
+      .deleteUser(employeeEmail);
+    if (userError) {
+      console.error('Error deleting employee from authentication:', userError);
+      return;
+    }
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.employeeid !== employeeId));
     } catch (err) {
       console.error("Error deactivating employee:", err.message);
@@ -145,7 +177,7 @@ const Employees = () => {
             <td>123</td>
             {userEmail === companyEmail && employee.employeeemail !== companyEmail && (
               <td className="deactivate_button_container">
-                <button onClick={() => deactivateEmployee(employee.employeeid)} className="deactivate_button">
+                <button onClick={() => deactivateEmployee({employee})} className="deactivate_button">
                   <i className="bi bi-person-x-fill"></i>
                 </button>
               </td>

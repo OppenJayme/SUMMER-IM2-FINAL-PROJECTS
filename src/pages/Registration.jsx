@@ -31,9 +31,9 @@ const Register = () => {
     
     const handleSubmit = async (e) => {
       e.preventDefault();
-      setLoading(true);
       const maxRetries = 5;
       let success = false;
+      setLoading(true)
   
       if (attempts < maxRetries && !success) {
         try {
@@ -51,6 +51,7 @@ const Register = () => {
           // If user already exists
           if (existingEmployee && existingEmployee.length > 0) {
             console.error('Email is already used');
+            setLoading(false);
             alert('This email has already been used');
             return;
           }
@@ -63,6 +64,7 @@ const Register = () => {
   
           if (authError && !user) {
             console.error('Error signing up user:', authError);
+            setLoading(false);
             throw authError || new Error('User not created');
           }
           
@@ -86,6 +88,7 @@ const Register = () => {
           if (insertError) {
             console.error('Error inserting user data:', insertError);
             setError('Error registering user')
+            setLoading(false);
             throw insertError;
           }
   
@@ -101,17 +104,17 @@ const Register = () => {
           console.log(`Retrying signup in ${backoffTime / 1000} seconds...`);
           setError(`Too many requests. Retrying signup in ${backoffTime / 1000} seconds...`);
           await delay(backoffTime);
+          setLoading(false);
         } else {
           setError('Registration Error, Try again');
           return;
         }
       }
     }
-  
+    setLoading(false);
       if (!success) {
         setError('Registration Error due to rate limit. Please try again later.');
       }
-      setLoading(false)
     };
 
     if (loading) {
