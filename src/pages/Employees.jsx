@@ -137,21 +137,21 @@ const Employees = () => {
             </thead>
             <tbody>
             {employees.map((employee) => (
-  <tr key={employee.employeeid}>
-    <td>{employee.fname} {employee.lname}</td>
-    <td>{employee.employeeemail}</td>
-    <td>{employee.employeecontact}</td>
-    <td>{employee.date_created}</td>
-    <td>123</td>
-    {userEmail === companyEmail && employee.employeeemail !== companyEmail && (
-      <td className="deactivate_button_container">
-        <button onClick={() => deactivateEmployee(employee.employeeid)} className="deactivate_button">
-          <i className="bi bi-person-x-fill"></i>
-        </button>
-      </td>
-    )}
-  </tr>
-))}
+            <tr key={employee.employeeid}>
+            <td>{employee.fname} {employee.lname}</td>
+            <td>{employee.employeeemail}</td>
+            <td>{employee.employeecontact}</td>
+            <td>{employee.date_created}</td>
+            <td>123</td>
+            {userEmail === companyEmail && employee.employeeemail !== companyEmail && (
+              <td className="deactivate_button_container">
+                <button onClick={() => deactivateEmployee(employee.employeeid)} className="deactivate_button">
+                  <i className="bi bi-person-x-fill"></i>
+                </button>
+              </td>
+            )}
+            </tr>
+          ))}
             </tbody>
           </table>
         </div>
