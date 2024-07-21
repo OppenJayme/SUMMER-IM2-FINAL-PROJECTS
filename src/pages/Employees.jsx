@@ -159,7 +159,7 @@ const Employees = () => {
                 <th>Email</th>
                 <th>Contact Number</th>
                 <th>Account Created</th>
-                <th># Items Added</th>
+  
               </tr>
             </thead>
             <tbody>
@@ -169,7 +169,7 @@ const Employees = () => {
             <td>{employee.employeeemail}</td>
             <td>{employee.employeecontact}</td>
             <td>{employee.date_created}</td>
-            <td>123</td>
+           
             {userEmail === companyEmail && employee.employeeemail !== companyEmail && (
               <td className="deactivate_button_container">
                 <button onClick={() => deactivateEmployee({employee})} className="deactivate_button">
