@@ -3,7 +3,7 @@ import "../styles/profileupdatemodal.css";
 import supabase from "../client/database";
 import no_image from "../styles/images/placeholderimage.webp";
 
-const ProfileUpdate = ({ onClose }) => {
+const ProfileUpdate = ({ onClose, profileInstances }) => {
     const [newProfilePic, setNewProfilePic] = useState(null);
     const [contactNumber, setContactNumber] = useState('');
     const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ const ProfileUpdate = ({ onClose }) => {
             }
 
             const user = sessionData?.session?.user;
-            let imagePath = imageData.imagePath;
+            let imagePath_to_upload = imageData.imagePath;
 
             if (newProfilePic) {
                 const {  error: uploadError } = await supabase
@@ -77,13 +77,13 @@ const ProfileUpdate = ({ onClose }) => {
                     return;
                 }
 
-                imagePath = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/${newProfilePic.name}`;
+                imagePath_to_upload = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/${newProfilePic.name}`;
             }
             const { error: updateError } = await supabase
                 .from('employee_t')
                 .update({
                     employeecontact: contactNumber,
-                    image_path: imagePath,
+                    image_path: imagePath_to_upload,
                 })
                 .eq('employeeemail', user.email);
 
@@ -107,7 +107,7 @@ const ProfileUpdate = ({ onClose }) => {
             <div className="profileUpdate-modal-overlay">
                 <div className="profileUpdate-modal-content">
                     <div className="profileUpdateModal-top">
-                        <img src={imageData.imagePath || no_image} alt="Profile" />
+                        <img src={newProfilePic ? URL.createObjectURL(newProfilePic) : (imageData.imagePath || no_image)} alt="Profile" />
 
                         <div className="close-profileUpdate-modal">
                             <i className="bi bi-x-lg" ></i>
@@ -123,6 +123,7 @@ const ProfileUpdate = ({ onClose }) => {
                                 type="text" 
                                 value={contactNumber}
                                 defaultValue={contactNumber}
+                                placeholder= {profileInstances.employeecontact}
                                 onChange={(e) => setContactNumber(e.target.value)}
                             />
 

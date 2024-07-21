@@ -74,7 +74,6 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
         ? `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/${oldFileName}`
         : item.product_t.image_path;
 
-
       const initialQuantity = parseFloat(item.product_t.initial_quantity);
       const newQuantity = parseFloat(prodQuantity) - parseFloat(prodSold);
       const quantityStatus = newQuantity < (initialQuantity * 0.10) ? 'low' : 'high';

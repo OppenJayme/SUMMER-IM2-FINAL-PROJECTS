@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import "../styles/ItemInspect.css";
-import supabase from '../client/database';
+import supabase from "../client/database";
 import UpdateModal from "../components/UpdateModal";
 
 const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
@@ -9,65 +9,69 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
   const [ItemInspectError, setInspectError] = useState(false);
   const [updatedItem, setUpdatedItem] = useState(item);
 
+  useEffect(() => {
+    setUpdatedItem(item);
+  }, [item])
+
   const deleteInventory = async () => {
     setDeleteLoading(true);
     try {
       const { error: deleteInventoryError } = await supabase
-        .from('inventory_t')
+        .from("inventory_t")
         .delete()
-        .eq('productid', item.product_t.productid);
+        .eq("productid", item.product_t.productid);
 
       if (deleteInventoryError) {
-        console.log('Error deleting inventory:', deleteInventoryError);
-        setInspectError('Error deleting inventory');
+        console.log("Error deleting inventory:", deleteInventoryError);
+        setInspectError("Error deleting inventory");
         setDeleteLoading(false);
         return;
       }
 
       const imagePath = item.product_t.image_path;
-      const fileName = imagePath.split('/').pop();
+      const fileName = imagePath.split("/").pop();
 
       const { error: imageError } = await supabase
         .storage
-        .from('Products Image')
+        .from("Products Image")
         .remove([`Images/${fileName}`]);
 
       if (imageError) {
-        console.log('Error deleting image:', imageError);
-        setInspectError('Error deleting image');
+        console.log("Error deleting image:", imageError);
+        setInspectError("Error deleting image");
         setDeleteLoading(false);
         return;
       }
 
       const { error: deleteProductError } = await supabase
-        .from('product_t')
+        .from("product_t")
         .delete()
-        .eq('productid', item.product_t.productid);
+        .eq("productid", item.product_t.productid);
 
       if (deleteProductError) {
-        console.log('Error deleting product:', deleteProductError);
-        setInspectError('Error deleting product');
+        console.log("Error deleting product:", deleteProductError);
+        setInspectError("Error deleting product");
         setDeleteLoading(false);
         return;
       }
 
-      alert('Product and Inventory successfully deleted');
+      alert("Product and Inventory successfully deleted");
       onClose();
-
     } catch (err) {
       console.error(err.message);
     } finally {
       setDeleteLoading(false);
     }
-  }
+  };
 
   const openUpdate = () => {
     setUpdateModal(true);
-  }
+  };
 
   const handleUpdate = (updatedItem) => {
     setUpdatedItem(updatedItem);
-  }
+    setUpdateModal(false);
+  };
 
   if (!show) {
     return null;
@@ -81,14 +85,11 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
         onClose={() => setUpdateModal(false)}
         onUpdate={handleUpdate}
       />
-    )
+    );
   }
-
+console.log(updatedItem.product_t.image_path)
   return (
     <div className="inspect-modal-overlay">
-      {/* <div className="left-arrow" onClick={onPrev}>
-        <i className="bi bi-caret-left-fill"></i>
-      </div> */}
       <div className="inspect-modal-content">
         <div className="inspect-modal-content_left">
           <img src={updatedItem.product_t.image_path} alt="" />
@@ -106,21 +107,18 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
           <p>Price: ${updatedItem.product_t.product_price}.00</p>
           <p>Supplier: {updatedItem.product_t.suppliername}</p>
           <p>Date Added: {updatedItem.product_t.dateadded}</p>
-          <p>Type:{updatedItem.product_t.status}</p>
-          {updatedItem.product_t.status === 'Perishable' && (
-            <p>Perish Date: {updatedItem.product_t.perishable_date  }</p>
+          <p>Type: {updatedItem.product_t.status}</p>
+          {updatedItem.product_t.status === "Perishable" && (
+            <p>Perish Date: {updatedItem.product_t.perishable_date}</p>
           )}
           <div className="Btns">
-            <button className='Btnfirst' onClick={openUpdate}>Update</button>
-            <button className='Btnsecond' onClick={deleteInventory} disabled={deleteLoading}>
-              {deleteLoading ? 'Deleting Product..' : 'Delete'}
+            <button className="Btnfirst" onClick={openUpdate}>Update</button>
+            <button className="Btnsecond" onClick={deleteInventory} disabled={deleteLoading}>
+              {deleteLoading ? "Deleting Product.." : "Delete"}
             </button>
           </div>
         </div>
       </div>
-      {/* <div className="right-arrow" onClick={onNext}>
-        <i className="bi bi-caret-right-fill"></i>
-      </div> */}
     </div>
   );
 };

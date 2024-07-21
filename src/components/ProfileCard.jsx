@@ -12,6 +12,7 @@ const ProfileModal = ({ handleClose }) => {
     const [datecreated, setDatecreated] = useState('');
     const [profilePic, setProfilePic] = useState(no_image);
     const [loading, setLoading] = useState(true);
+    const [profileInstance, setProfileInstance] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +35,7 @@ const ProfileModal = ({ handleClose }) => {
                     setEmail(employeeData.employeeemail);
                     setContacts(employeeData.employeecontact);
                     setDatecreated(employeeData.date_created);
+                    setProfileInstance(employeeData);
 
                     const imagePath = employeeData.image_path;
                     if (imagePath) {
@@ -58,6 +60,7 @@ const ProfileModal = ({ handleClose }) => {
             <ProfileUpdateModal
                 show={showProfileUpdateModal}
                 onClose={() => setProfileUpdateModal(false)}
+                profileInstances = {profileInstance}
             />
         );
     }

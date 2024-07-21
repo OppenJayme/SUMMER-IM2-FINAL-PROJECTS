@@ -7,36 +7,37 @@
     top: 0;
     margin-top: 110px;
     margin-left: 200px;
-    width: 100%;
+    width: calc(100% - 200px);
+    height: calc(100% - 110px);
     overflow: auto;
 }
 
-.item_content_container{
+.item_content_container {
     width: 100%;
+    height: 100%;
 }
 
-.search-container{
+.search-container {
     width: 100%;
     height: 45px;
-    /* ^Kini */
     align-items: center;
     background-color: #141414;
     display: flex;
 }
 
-.search-container i{
+.search-container i {
     position: fixed;
     margin-left: 25px;
     font-size: 20px;
 }
 
-.search_box_container{
+.search_box_container {
     padding-left: 20px;
     display: flex;
     align-items: center;
 }
 
-.search_box_container i{
+.search_box_container i {
     right: 0;
     padding-right: 20px;
     color: whitesmoke;
@@ -46,13 +47,13 @@
     transition: .5s;
 }
 
-.search_box_container i:hover{
+.search_box_container i:hover {
     transform: scale(2.0);
     margin-top: px;
     color: #a5a4a4;
 }
 
-.search-box{
+.search-box {
     width: 500px;
     height: 30px;
     background-color: white;
@@ -63,18 +64,20 @@
 }
 
 .main-content-area {
-    display: block;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    height: inherit;
+    height: auto;
     margin-left: 10px;
+    overflow: auto;
 }
 
-.container-input{
+.container-input {
     width: 1000px;
     height: 400px;
 }
 
-.inventory-card-categories{
+.inventory-card-categories {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
@@ -83,17 +86,16 @@
     border-left: 1px solid #000000;
     border-top: 1px solid #000000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 89%; 
-    /* ^Kini */
+    width: 90%;
 }
 
-.table-box-categories{
+.table-box-categories {
     width: 100%;
     height: 100%;
     border-right: 1px solid #000000;
     background-color: #141414;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
 }
 
@@ -105,4 +107,10 @@
     margin: 4px 0;
     font-size: 18px;
     color: whitesmoke;
+}
+
+.inventory-cards {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
 }
