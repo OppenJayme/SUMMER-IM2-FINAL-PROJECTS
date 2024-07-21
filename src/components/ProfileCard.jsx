@@ -73,6 +73,8 @@ const ProfileModal = ({ handleClose }) => {
         );
     }
 
+    console.log(profilePic)
+
     return (
         <div className="profile-modal">
             <div className="user-profile-container">

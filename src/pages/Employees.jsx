@@ -11,13 +11,15 @@ const Employees = () => {
   const [loading, setLoading] = useState(true);
   const [userEmail, setUserEmail] = useState(null);
   const [companyEmail, setCompanyEmail] = useState(null);
+  const [fetchError, setFetchError] = useState(null);
 
   const handleNotification = () => {
     setNotification((prev) => !prev);
   };
 
-  const deleteEmployee = async (employeeId) => {
+  const deleteEmployee = async ({ employee }) => {
     try {
+      const employeeId = employee.employeeid;
       const { error } = await supabase
         .from('employee_t')
         .delete()
@@ -25,6 +27,20 @@ const Employees = () => {
       if (error) {
         throw error;
       }
+
+      const imagePath = employee.image_path;
+      const fileName = imagePath.split('/').pop();
+
+      const { error: empDeleteError } = await supabase
+        .storage
+        .from('Profile Picutres')
+        .remove([`Images/${fileName}`]);
+
+      if (empDeleteError) {
+        console.log('Error deleting employee profile picture:', empDeleteError);
+        return;
+      }
+
       setEmployees((prevEmployees) => prevEmployees.filter((emp) => emp.employeeid !== employeeId));
     } catch (err) {
       console.error("Error deleting employee:", err.message);
@@ -32,6 +48,7 @@ const Employees = () => {
   };
 
   useEffect(() => {
+    let isMounted = true;
     const fetchEmployees = async () => {
       try {
         const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
@@ -76,17 +93,34 @@ const Employees = () => {
           .eq('companyid', userData.companyid);
         if (error) {
           console.error("Employee Data Error:", error);
+          if (isMounted) setFetchError("Could not fetch employee data. Please try again later.");
         } else {
-          setEmployees(employeeData);
-          console.log("Employee Data:", employeeData);
+          if (isMounted) {
+            setEmployees(employeeData);
+            console.log("Employee Data:", employeeData);
+          }
         }
       } catch (err) {
         console.error("Error:", err.message);
+        if (isMounted) setFetchError("An error occurred while fetching employee data.");
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     };
     fetchEmployees();
+
+    const inventorySubscription = supabase
+            .channel('employee_t')
+            .on('postgres_changes', { event: '*', schema: 'public', table: 'employee_t' }, payload => {
+                console.log('Change Received', payload);
+                fetchEmployees();
+            })
+            .subscribe();
+
+        return () => {
+            supabase.removeChannel(inventorySubscription);
+            isMounted = false;
+        };
   }, []);
 
   if (loading) {
@@ -103,6 +137,7 @@ const Employees = () => {
       </div>
 
       <div className="employees_content">
+        {fetchError && <p className="error-message">{fetchError}</p>}
         <div className="employees_table_container">
           <table className="employees_table">
             <thead>
@@ -112,6 +147,7 @@ const Employees = () => {
                 <th>Contact Number</th>
                 <th>Account Created</th>
                 <th># Items Added</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -124,7 +160,7 @@ const Employees = () => {
                   <td>123</td>
                   {userEmail === companyEmail && (
                     <td className="delete_button_container">
-                      <button onClick={() => deleteEmployee(employee.employeeid)} className="delete_button">
+                      <button onClick={() => deleteEmployee({ employee })} className="delete_button">
                         <i className="bi bi-person-x-fill"></i>
                       </button>
                     </td>

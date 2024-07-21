@@ -13,11 +13,11 @@ const ProfileUpdate = ({ onClose }) => {
 
     useEffect(() => {
         setLoading(true);
-       try {
         const fetchData = async () => {
             const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
             if (sessionError) {
                 console.error(sessionError);
+                setLoading(false);
                 return;
             }
 
@@ -31,78 +31,74 @@ const ProfileUpdate = ({ onClose }) => {
 
                 if (error) {
                     console.error('Error fetching profile data:', error);
+                    setLoading(false);
                     return;
                 }
 
                 setImageData(prevData => ({ ...prevData, imagePath: data.image_path }));
-                setContactNumber(data.employeecontact || '');
+                
             }
+            setLoading(false);
         };
 
         fetchData();
-       } catch (err) {
-        console.log(err.message)
-        return;
-       } finally {
-        setLoading(false);
-       }
     }, []);
 
     const handleFile = (e) => {
         setNewProfilePic(e.target.files[0]);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setLoading(true);
         try {
             const { data: sessionData, error: sessionError } = await supabase.auth.getSession();
             if (sessionError) {
                 console.error(sessionError);
+                setLoading(false);
                 return;
             }
 
             const user = sessionData?.session?.user;
             let imagePath = imageData.imagePath;
-            const fileName = `${newProfilePic.name}`;
 
             if (newProfilePic) {
-                const { error: uploadError } = await supabase
+                const {  error: uploadError } = await supabase
                     .storage
                     .from('Profile Picutres')
-                    .upload(`Images/${fileName}`, newProfilePic, {
+                    .upload(`Images/${newProfilePic.name}`, newProfilePic, {
                         cacheControl: '3600',
                         upsert: false
                     });
 
                 if (uploadError) {
                     console.error('Error uploading image:', uploadError);
+                    setLoading(false);
                     return;
                 }
 
-                imagePath = "https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/";
+                imagePath = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/${newProfilePic.name}`;
             }
-
-            const path_name_to_employee = imagePath + fileName;
             const { error: updateError } = await supabase
                 .from('employee_t')
                 .update({
                     employeecontact: contactNumber,
-                    image_path: path_name_to_employee,
+                    image_path: imagePath,
                 })
                 .eq('employeeemail', user.email);
 
             if (updateError) {
                 console.error('Error updating profile:', updateError);
+                setLoading(false);
                 return;
             }
 
-            alert('Profile updated successfully!');
+            alert('Profile updated successfully! Reload to view changes');
             onClose();
         } catch (err) {
             console.error(err.message);
         } finally {
             setLoading(false);
-            onClose();
         }
     };
 
@@ -112,6 +108,10 @@ const ProfileUpdate = ({ onClose }) => {
                 <div className="profileUpdate-modal-content">
                     <div className="profileUpdateModal-top">
                         <img src={imageData.imagePath || no_image} alt="Profile" />
+
+                        <div className="close-profileUpdate-modal">
+                            <i className="bi bi-x-lg" ></i>
+                        </div>
                     </div>
 
                     <form className="pfp-update-form" onSubmit={handleSubmit}>
@@ -122,6 +122,7 @@ const ProfileUpdate = ({ onClose }) => {
                             <input 
                                 type="text" 
                                 value={contactNumber}
+                                defaultValue={contactNumber}
                                 onChange={(e) => setContactNumber(e.target.value)}
                             />
 
