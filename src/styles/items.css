@@ -23,12 +23,16 @@
     align-items: center;
     background-color: #141414;
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .search-container i {
     position: fixed;
     margin-left: 25px;
     font-size: 20px;
+
 }
 
 .search_box_container {
@@ -68,7 +72,6 @@
     flex-direction: column;
     justify-content: center;
     height: auto;
-    margin-left: 10px;
     overflow: auto;
 }
 
