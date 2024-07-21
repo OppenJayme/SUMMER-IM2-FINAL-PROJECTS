@@ -78,20 +78,22 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
                     return;
                 }
 
-                const oldImage_path = profileInstances.image_path;
-                const fileName = oldImage_path.split("/").pop();
-
-                const { error: imageError } = await supabase
-                .storage
-                .from("Profile Picutres")
-                .remove([`Images/${fileName}`]);
-
-                if (imageError) {
-                    console.log("Error deleting image:", imageError);
-                    setProfileUpdateError("Error deleting image");
-                    setLoading(false);
-                    return;
-                  }
+                if (profileInstances.image_path) {
+                    const oldImage_path = profileInstances.image_path;
+                    const fileName = oldImage_path.split("/").pop();
+    
+                    const { error: imageError } = await supabase
+                        .storage
+                        .from("Profile Picutres")
+                        .remove([`Images/${fileName}`]);
+    
+                    if (imageError) {
+                        console.log("Error deleting image:", imageError);
+                        setProfileUpdateError("Error deleting image");
+                        setLoading(false);
+                        return;
+                    }
+                }
 
                 imagePath_to_upload = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/${newProfilePic.name}`;
             }
