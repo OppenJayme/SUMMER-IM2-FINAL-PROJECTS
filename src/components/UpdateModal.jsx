@@ -55,25 +55,32 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
 
       const oldImagePath = item.product_t.image_path;
       const oldFileName = oldImagePath.split('/').pop();
+      
+//------------------------------------------------------------------------------
 
-      if (newImage) {
-        const { error: imageError } = await supabase.storage
-          .from('Products Image')
-          .update(`Images/${oldFileName}`, newImage, {
-            cacheControl: '3600',
-            upsert: true
-          });
+      let imagePath = item.product_t.image_path; // Default to old image path
 
-        if (imageError) {
-          console.log('Error updating image:', imageError);
-          setError('Error in updating image');
-          return;
-        }
+    if (newImage) {
+      const newFileName = `${Date.now()}-${newImage.name}`; // Generate a unique filename
+      const { error: imageUploadError } = await supabase.storage
+        .from('Products Image')
+        .upload(`Images/${newFileName}`, newImage, {
+          cacheControl: '3600',
+          upsert: false,
+        });
+
+      if (imageUploadError) {
+        console.error('Error updating image:', imageUploadError);
+        setError('Error in updating image');
+        setLoading(false);
+        return;
       }
-      const imagePath = newImage
-        ? `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products%20Image/Images/${oldFileName}`
-        : item.product_t.image_path;
 
+      // Update imagePath to new image path
+      imagePath = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Products Image/Images/${newFileName}`;
+    }
+    
+//------------------------------------------------------------------------------
       const initialQuantity = parseFloat(item.product_t.initial_quantity);
       const newQuantity = parseFloat(prodQuantity) - parseFloat(prodSold);
       const quantityStatus = newQuantity < (initialQuantity * 0.10) ? 'low' : 'high';
