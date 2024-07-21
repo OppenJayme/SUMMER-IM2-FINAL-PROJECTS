@@ -82,7 +82,7 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
             const { error: updateError } = await supabase
                 .from('employee_t')
                 .update({
-                    employeecontact: contactNumber,
+                    employeecontact: contactNumber ? contactNumber : profileInstances.employeecontactv,
                     image_path: imagePath_to_upload,
                 })
                 .eq('employeeemail', user.email);
