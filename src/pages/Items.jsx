@@ -137,13 +137,13 @@ const Items = () => {
                     </div>
                     <div className="main-content-area">
                         <div className="inventory-card-categories">
-                            <div className="table-box-categories"><p>Product Name </p></div>
-                            <div className="table-box-categories"><p>Category </p></div>
-                            <div className="table-box-categories"><p>Current Quantity </p></div>
-                            <div className="table-box-categories"><p>Items Sold </p></div>
-                            <div className="table-box-categories"><p>Status </p></div>
-                            <div className="table-box-categories"><p>Type </p></div>
-                            <div className="table-box-categories"><p>Price</p></div>
+                            <div className="table-box-categories0"><p>Product Name</p></div>
+                            <div className="table-box-categories1"><p>Category</p></div>
+                            <div className="table-box-categories2"><p>Current Quantity</p></div>
+                            <div className="table-box-categories3"><p>Items Sold / Initial Quantity</p></div>
+                            <div className="table-box-categories4"><p>Status</p></div>
+                            <div className="table-box-categories5"><p>Type</p></div>
+                            <div className="table-box-categories6"><p>Price</p></div>
                         </div>
                         {filterInventory.map((item, index) => (
                             <InventoryCard key={item.id} item={item} onInspect={() => handleOpenInspect(index)} />
