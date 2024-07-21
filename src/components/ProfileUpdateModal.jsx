@@ -124,10 +124,6 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
                 <div className="profileUpdate-modal-content">
                     <div className="profileUpdateModal-top">
                         <img src={newProfilePic ? URL.createObjectURL(newProfilePic) : (imageData.imagePath || no_image)} alt="Profile" />
-
-                        <div className="close-profileUpdate-modal">
-                            <i className="bi bi-x-lg" ></i>
-                        </div>
                     </div>
 
                     <form className="pfp-update-form" onSubmit={handleSubmit}>
