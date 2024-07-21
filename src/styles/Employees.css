@@ -42,6 +42,7 @@
   text-align: left;
 }
 
+
 .employees_table th {
   background: #000000;
   color: whitesmoke;
@@ -62,14 +63,10 @@
   color: whitesmoke;
 }
 
-.employees_table td:last-child {
-  border-right: none;
-  background-color: whitesmoke;
-}
-
-.employees_table td:last-child {
+.employees_table td.delete_button_container {
   border: none;
-  background-color: whitesmoke;
+  border-right: none;
+  background-color: rgb(255, 255, 255);
 }
 
 .delete_button {
@@ -80,7 +77,8 @@
   cursor: pointer;
   color: red;
   font-size: 1.2rem;
-  transition: 0.2s; /* add transition to the button itself */
+  transition: 0.2s;
+  background-color: rgb(255, 255, 255);
 }
 
 .delete_button:hover {
