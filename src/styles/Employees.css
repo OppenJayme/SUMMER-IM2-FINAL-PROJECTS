@@ -70,21 +70,13 @@
 }
 
 .deactivate_button {
-  margin-left: 10px;
   scale: 150%;
-  background: none;
-  border: none;
   cursor: pointer;
   color: red;
-  font-size: 1.2rem;
+  border: none;
   transition: 0.2s;
-  background-color: rgb(255, 255, 255);
 }
 
 .deactivate_button:hover {
   transform: scale(1.5);
-}
-
-.deactivate_button i {
-  pointer-events: none;
 }
