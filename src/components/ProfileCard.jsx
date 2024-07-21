@@ -49,6 +49,16 @@ const ProfileModal = ({ handleClose }) => {
             }
         };
         fetchData();
+        const profileSubscription = supabase 
+        .channel('employee_t')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'employee_t' }, payload => {
+            console.log('Change Received', payload);
+            fetchData();
+        })
+        .subscribe();
+        return () => {
+            supabase.removeChannel(profileSubscription);
+        };
     }, []);
 
     const openProfileUpdateModal = () => {
