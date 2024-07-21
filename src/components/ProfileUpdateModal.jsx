@@ -7,6 +7,7 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
     const [newProfilePic, setNewProfilePic] = useState(null);
     const [contactNumber, setContactNumber] = useState('');
     const [loading, setLoading] = useState(false);
+    const [profileUpdateError, setProfileUpdateError] = useState('');
     const [imageData, setImageData] = useState({
         imagePath: null
     });
@@ -77,12 +78,27 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
                     return;
                 }
 
+                const oldImage_path = profileInstances.image_path;
+                const fileName = oldImage_path.split("/").pop();
+
+                const { error: imageError } = await supabase
+                .storage
+                .from("Profile Picutres")
+                .remove([`Images/${fileName}`]);
+
+                if (imageError) {
+                    console.log("Error deleting image:", imageError);
+                    setProfileUpdateError("Error deleting image");
+                    setLoading(false);
+                    return;
+                  }
+
                 imagePath_to_upload = `https://gsnildikcufttbrexwwt.supabase.co/storage/v1/object/public/Profile%20Picutres/Images/${newProfilePic.name}`;
             }
             const { error: updateError } = await supabase
                 .from('employee_t')
                 .update({
-                    employeecontact: contactNumber ? contactNumber : profileInstances.employeecontactv,
+                    employeecontact: contactNumber ? contactNumber : profileInstances.employeecontact,
                     image_path: imagePath_to_upload,
                 })
                 .eq('employeeemail', user.email);
@@ -115,6 +131,7 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
                     </div>
 
                     <form className="pfp-update-form" onSubmit={handleSubmit}>
+                        {profileUpdateError && (<p>{profileUpdateError}</p>)}
                         <div className="profileUpdateModal-bottom">
                             <h1>Update Profile</h1>
 
