@@ -69,6 +69,7 @@ const Dashboard = () => {
                     const { data: allEmployeeData, error: allEmployeeError } = await supabase
                         .from('employee_t')
                         .select('*')
+                        .eq('STATUS', "TRUE")
                         .eq('companyid', companyID);
 
                     if (allEmployeeError) throw allEmployeeError;
