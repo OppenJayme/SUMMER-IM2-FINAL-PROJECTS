@@ -36,9 +36,9 @@
   margin-top: 10px;
   margin-bottom: 10px;
   width: 87.5%;
-  background-color: #474747;
+  background-color: rgb(243, 242, 242);
   padding: 10px;
-  border: 2px solid;
+  border: 2px solid rgb(230, 230, 230);
   border-radius: 6px;
   color: whitesmoke;
 }
@@ -46,7 +46,7 @@
 
 .activity-notif p{
   font-size: 20px;
-  color: white;
+  color: black;
 }
 
 .activity-notif i{
