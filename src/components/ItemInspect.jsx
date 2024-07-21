@@ -3,7 +3,7 @@ import "../styles/ItemInspect.css";
 import supabase from "../client/database";
 import UpdateModal from "../components/UpdateModal";
 
-const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
+const ItemInspect = ({ show, onClose, item}) => {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [showUpdateModal, setUpdateModal] = useState(false);
   const [ItemInspectError, setInspectError] = useState(false);
@@ -54,9 +54,11 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
         setDeleteLoading(false);
         return;
       }
-
+      
       alert("Product and Inventory successfully deleted");
       onClose();
+
+      setUpdatedItem(null);
     } catch (err) {
       console.error(err.message);
     } finally {
@@ -77,6 +79,10 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
     return null;
   }
 
+  if (!updatedItem || !updatedItem.product_t) {
+    return null;
+  }
+
   if (showUpdateModal) {
     return (
       <UpdateModal
@@ -87,12 +93,12 @@ const ItemInspect = ({ show, onClose, item, onNext, onPrev }) => {
       />
     );
   }
-console.log(updatedItem.product_t.image_path)
+
   return (
     <div className="inspect-modal-overlay">
       <div className="inspect-modal-content">
         <div className="inspect-modal-content_left">
-          <img src={updatedItem.product_t.image_path} alt="" />
+          <img src={updatedItem.product_t.image_path ? updatedItem.product_t.image_path : null} alt="" />
         </div>
 
         <div className="inspect-modal-content_right">

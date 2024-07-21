@@ -53,8 +53,6 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
       const fetchedEmployeeID = employeeData.employeeid;
       const oldProdId = item.product_t.productid;
 
-      const oldImagePath = item.product_t.image_path;
-      const oldFileName = oldImagePath.split('/').pop();
       
 //------------------------------------------------------------------------------
 
@@ -137,6 +135,22 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
         },
         productSale: prodSold,
       });
+      // --------------------------------
+      // Deleting the previous instance of the image 
+      const oldImage_path = item.product_t.image_path;
+      const fileName = oldImage_path.split("/").pop();
+      const { error: imageError } = await supabase
+          .storage
+          .from("Products Image")
+          .remove([`Images/${fileName}`]);
+
+                if (imageError) {
+                    console.log("Error deleting image:", imageError);
+                    setError("Error deleting image");
+                    setLoading(false);
+                    return;
+                  }
+
       onClose();
     } catch (err) {
       console.error(err.message);

@@ -104,14 +104,6 @@ const Items = () => {
 
     const handleCloseInspect = () => setShowInspectModal(false);
 
-    const handleNextItem = () => {
-        setCurrentItemIndex((prevIndex) => (prevIndex + 1) % filterInventory.length);
-    };
-
-    const handlePrevItem = () => {
-        setCurrentItemIndex((prevIndex) => (prevIndex - 1 + filterInventory.length) % filterInventory.length);
-    };
-
     return (
         <>
             <SideNav />
@@ -157,8 +149,6 @@ const Items = () => {
                     show={showInspectModal}
                     onClose={handleCloseInspect}
                     item={filterInventory[currentItemIndex]}
-                    onNext={handleNextItem}
-                    onPrev={handlePrevItem}
                 />
             )}
         </>
