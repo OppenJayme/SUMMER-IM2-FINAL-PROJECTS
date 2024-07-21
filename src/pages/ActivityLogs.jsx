@@ -158,10 +158,20 @@ const ActLogs = () => {
                 {groupedActivities[dayLabel].map((activity, idx) => (
                   <div key={activity.id} className="activity-notif">
                     {activity.event_type === 'INSERT' && (
-                      <p>{activity.employee_t?.fname || 'Unknown'} has added an item "{activity.product_name || 'Unknown'}" on {format(new Date(activity.dateadded), 'MMMM d, yyyy')}</p>
+                      <div className="additem">
+                        <div className="additem-top">
+                        <h1 className="additem-empName">{activity.employee_t?.fname || 'Unknown'}</h1>
+                         has added an item "<h1 className="additem-activity">{activity.product_name || 'Unknown'}</h1>"</div>
+                        <h1 className="additem-date">{format(new Date(activity.dateadded), 'MMMM d, yyyy')}</h1>
+                      </div>
                     )}
                     {activity.event_type === 'UPDATE' && (
-                      <p>{activity.employee_t?.fname || 'Unknown'} has updated an item "{activity.product_name || 'Unknown'}" on {format(new Date(activity.dateadded), 'MMMM d, yyyy')}</p>
+                      <div className="updateitem">
+                        <div className="updateitem-top">
+                        <h1 className="updateitem-empName">{activity.employee_t?.fname || 'Unknown'}</h1> 
+                      has updated an item "<h1 className="updateitem-activity">{activity.product_name || 'Unknown'}</h1>"</div>
+                      <h1 className="updateitem-date">{format(new Date(activity.dateadded), 'MMMM d, yyyy')}</h1>
+                      </div>
                     )}
                   </div>
                 ))}
