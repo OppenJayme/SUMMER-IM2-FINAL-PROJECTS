@@ -9,51 +9,84 @@
   margin-left: 200px;
   width: 100%;
   overflow: auto;
-  }
-  
-  .employees_table_container {
-    overflow: auto;
-    width: 100%;
-    height: 100%;
-    display: block;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .employees_table {
-    margin-left: 7%;
-    width: 75%;
-    justify-content: center;
-    border-collapse: collapse;
-    cursor: pointer;
-  }
+}
 
-  
-  
-  .employees_table th, .employees_table td {
-    font-size: 17px;
-    padding: 12px 15px;
-    border: 1px solid #000000;
-    text-align: left;
-  }
-  
-  .employees_table th {
-    background: #000000;
-    color: whitesmoke;
-  }
-  
-  .employees_table tr:nth-child(even) {
-    background-color: #ffffff;
-  }
+.employees_table_container {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
 
-  .employees_table tr:nth-child(odd) {
-    background-color: #cccccc;
-  }
-  
-  .employees_table tr:hover {
-    background-color: #6e6c6c;
-    box-shadow: 0 8px 16px rgba(170, 0, 0, 0.2);
-    width: 99%;
-    color: whitesmoke;
-  }
-  
+.employee_row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.employees_table {
+  margin-left: 7%;
+  width: 75%;
+  justify-content: center;
+  border-collapse: collapse;
+  cursor: pointer;
+  flex: 1; 
+}
+
+.employees_table th, .employees_table td {
+  font-size: 17px;
+  padding: 12px 15px;
+  border: 1px solid #000000;
+  text-align: left;
+}
+
+.employees_table th {
+  background: #000000;
+  color: whitesmoke;
+}
+
+.employees_table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.employees_table tr:nth-child(odd) {
+  background-color: #cccccc;
+}
+
+.employees_table tr:hover {
+  background-color: #6e6c6c;
+  box-shadow: 0 8px 16px rgba(170, 0, 0, 0.2);
+  width: 99%;
+  color: whitesmoke;
+}
+
+.employees_table td:last-child {
+  border-right: none;
+  background-color: whitesmoke;
+}
+
+.employees_table td:last-child {
+  border: none;
+  background-color: whitesmoke;
+}
+
+.delete_button {
+  margin-left: 10px;
+  scale: 150%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 1.2rem;
+  transition: 0.2s; /* add transition to the button itself */
+}
+
+.delete_button:hover {
+  transform: scale(1.5);
+}
+
+.delete_button i {
+  pointer-events: none;
+}
