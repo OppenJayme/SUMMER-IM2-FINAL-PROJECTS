@@ -81,7 +81,7 @@ const UpdateModal = ({ show, item, onClose, onUpdate }) => {
 //------------------------------------------------------------------------------
       const initialQuantity = parseFloat(item.product_t.initial_quantity);
       const newQuantity = parseFloat(prodQuantity) - parseFloat(prodSold);
-      const quantityStatus = newQuantity < (initialQuantity * 0.10) ? 'low' : 'high';
+      const quantityStatus = newQuantity <= (initialQuantity * 0.20) ? 'low' : 'high';
       const {error: productUpdateError } = await supabase
         .from('product_t')
         .update({

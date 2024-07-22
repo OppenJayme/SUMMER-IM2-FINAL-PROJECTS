@@ -72,7 +72,7 @@ const AddProduct = ({ showModal, handleCloseModal }) => {
         const initialQuantity = parseFloat(quantity);
         const productsSold = parseFloat(sale);
         const remainingQuantity = initialQuantity - productsSold;
-        const quantityStatus = remainingQuantity < (initialQuantity * 0.10) ? 'low' : 'high';
+        const quantityStatus = remainingQuantity <= (initialQuantity * 0.20) ? 'low' : 'high';
         
         const { data: productData , error } = await supabase
         .from('product_t')
