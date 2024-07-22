@@ -111,7 +111,7 @@ const ProfileUpdate = ({ onClose, profileInstances }) => {
                 return;
             }
 
-            alert('Profile updated successfully! Reload to view changes');
+            alert('Profile updated successfully!');
             onClose();
         } catch (err) {
             console.error(err.message);
